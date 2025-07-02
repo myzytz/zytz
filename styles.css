@@ -157,8 +157,8 @@ body {
 
 #bio-section .bio-image {
   position: absolute;
-  top: 5rem;
-  left: 50rem;
+  top: 3vw !important;
+  left: 42% !important;
   max-width: 100%;
   height: auto;
   border-radius: 0.25rem; 
