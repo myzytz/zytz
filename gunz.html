@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gunz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-image: linear-gradient(to right, #808080, #666666);
+      font-family: 'Montserrat', sans-serif !important;
+      color: white;
+    }
+    .header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      position: relative;
+    }
+    .play-all-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: dimgray;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+    }
+    .play-all-button:hover {
+      background-color: #cfbdcd;
+    }
+    .video-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .video {
+      margin: 10px;
+    }
+    .video iframe {
+      width: 140px;
+      height: 250px;
+    }
+    @media (max-width: 600px) {
+
+      .play-all-button {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background-color: dimgray;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+    }
+
+      .video-row {
+        flex-direction: row;
+      }
+      .video iframe {
+        width: 60px;
+        height: 106px;
+      }
+      .last-video {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+    }
+    .back-button-container {
+      position: fixed;
+      top: 10px;
+      left: 2px;
+      z-index: 1;
+    }
+    .back-button {
+      background-color: dimgray;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .back-button:hover {
+      background-color: #cfbdcd;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Gun Collection</h1>
+    <button class="play-all-button" id="play-all-button">load & Fire!</button>
+  </div>
+  <div class="video-container">
+    <div class="video-row">
+      <!-- Video 1 -->
+      <div class="video">
+        <div id="video1"></div>
+      </div>
+      <!-- Video 2 -->
+      <div class="video">
+        <div id="video2"></div>
+      </div>
+      <!-- Video 3 -->
+      <div class="video">
+        <div id="video3"></div>
+      </div>
+      <!-- Video 4 -->
+      <div class="video">
+        <div id="video4"></div>
+      </div>
+    </div>
+    <div class="video-row">
+      <!-- Video 5 -->
+      <div class="video last-video">
+        <div id="video5"></div>
+      </div>
+    </div>
+  </div>
+  <div class="back-button-container">
+    <a href="index.html" class="back-button"> Back</a>
+  </div>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    let players = [];
+    let videoIds = ['kutUmh2D3-s', 'dpT0sPSI5UM', '8huoikTZ0xY', 'EK_bQY3B6GU', 'zRrxKJRu7Eg'];
+
+    function onYouTubeIframeAPIReady() {
+      for (let i = 0; i < videoIds.length; i++) {
+        players.push(new YT.Player('video' + (i + 1), {
+          videoId: videoIds[i],
+          playerVars: {
+            autoplay: 0,
+            controls: 1,
+            modestbranding: 1,
+            rel: 0,
+            showinfo: 0,
+          },
+          events: {
+            'onReady': onPlayerReady,
+          }
+        }));
+      }
+    }
+
+    function onPlayerReady(event) {
+      // do nothing
+    }
+
+    document.getElementById('play-all-button').addEventListener('click', function() {
+      players.forEach(function(player) {
+        player.playVideo();
+      });
+    });
+  </script>
+</body>
+</html>
