@@ -199,7 +199,7 @@
           if (player.getPlayerState() === YT.PlayerState.PLAYING) {
             let duration = player.getDuration();
             let currentTime = player.getCurrentTime();
-            if (currentTime >= duration - 0.05) {
+            if (currentTime >= duration - 0.09) {
               player.seekTo(0.01);
             }
           }
