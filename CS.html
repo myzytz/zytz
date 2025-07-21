@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter Strike</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    
+    <style>
+        body {
+            margin: 0;
+            background-image: linear-gradient(to right, #808080, #666666);
+            font-family: 'Montserrat', sans-serif !important;
+            color: white;
+        }
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            
+        }
+        .header h1{
+            font-size: 37px;
+        }
+        
+        .container {
+            margin-top: 50px;
+        }
+        
+        .container h2 {
+        font-size: 25px;
+    }
+
+        .container h3 {
+        font-size: 20px;
+    }
+
+        .ct-side {
+            background-color: #2e3a52;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .t-side {
+            background-color: #494848;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .weapon-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .weapon-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ct-side .weapon-list li {
+            flex-direction: row-reverse;
+            gap: 20px;
+        }
+
+        .weapon-image {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            cursor: pointer;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .weapon-image:hover {
+           transform: scale(1.1) !important;
+       } 
+
+
+        .ct-side img, .t-side img {
+        transition: transform 0.2s ease-in-out;
+        cursor: pointer;
+        }
+
+       .ct-side img:hover, .t-side img:hover {
+       transform: scale(1.1);
+       }
+
+
+       .back-button-container {
+      position: fixed;
+      top: 8px;
+      left: 2px;
+      z-index: 1;
+    }
+    .back-button {
+      background-color: dimgray;
+      color: #fff;
+      border: none;
+      padding: 0.3rem 0.7rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .back-button:hover {
+      background-color: #cfbdcd;
+      text-decoration: none;
+    }
+
+
+        @media only screen and (max-width: 768px) {
+  .weapon-image {
+    width: 250px !important;
+    height: auto !important;
+  }
+
+  .ct-side .weapon-list li {
+            font-size: 13px;
+        }
+
+  img[src="CS1/K&M.webp"] {
+    width: 175px !important;
+    height: auto !important;
+  }
+
+    img[src="CS1/SMP.png"] {
+    width: 185px !important;
+    height: auto !important;
+  }
+
+
+
+        .weapon-image {
+            transition: transform 0.4s ease-in-out !important;
+        }
+
+        .weapon-image:hover {
+           transform: scale(1.1) !important;
+       } 
+    .back-button-container {
+      position: fixed;
+      top: 6px;
+      left: 2px;
+      z-index: 1;
+    }
+
+    .header h1{
+        font-size: 20px;
+    }
+    
+    .header img {
+   width: 60px !important; 
+   height: auto !important;
+    }
+
+    .container h2 {
+        font-size: 16px;
+        margin-top: -16px;
+    }
+
+    .container h3{
+     font-size: 15px;
+    }
+        .ct-side li {
+  font-size: 8px !important;
+  font-weight: 600 !important;
+}
+
+.t-side li {
+  font-size: 8px !important;
+  font-weight: 600 !important;
+}
+}
+
+    </style>
+</head>
+<body>
+    <div class="header">
+ <a href="CS.html" style="text-decoration: none; color: #000;">
+  <h1 style="font-weight: bold; text-shadow: 
+    -1px -1px 0 #fff,  
+     1px -1px 0 #fff,
+    -1px  1px 0 #fff,
+     1px  1px 0 #fff; cursor: pointer;">Counter Strike</h1>
+</a>
+  <a href="https://counterstrike.fandom.com/wiki/Counter-Strike_Wiki" style="position: absolute; top: 5.5px; right: 5px;">
+    <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b1f444f5-ca6c-4df3-8c44-ec6e0276f5ac/d7f0049-a816d6ab-034c-4c2e-8091-82b8486000ea.png/v1/fit/w_512,h_512/counter_strike_1_6_icon_by_dudekpro_d7f0049-375w-2x.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTEyIiwicGF0aCI6IlwvZlwvYjFmNDQ0ZjUtY2E2Yy00ZGYzLThjNDQtZWM2ZTAyNzZmNWFjXC9kN2YwMDQ5LWE4MTZkNmFiLTAzNGMtNGMyZS04MDkxLTgyYjg0ODYwMDBlYS5wbmciLCJ3aWR0aCI6Ijw9NTEyIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.rcv0AOUaOMSe_QUK9XVIAv3ka786b7K3pRSL4dg8ts0" alt="Info" style="width: 80px; height: auto;">
+  </a>
+</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 ct-side">
+                <h2 style="font-weight: bold; text-shadow: -2px -2px 4px #adc1f7, 2px 2px 4px #000;">Counter Terrorists</h2>
+                <audio id="sound" src="sounds/CSvoice.weba"></audio>
+               <img src="https://pngimg.com/d/counter_strike_PNG33.png" alt="CT Soldier" style="transform: scaleX(-1); width: 260px; height: auto; margin-bottom: 20px; transition: transform 0.2s ease-in-out; cursor: pointer;" onclick="document.getElementById('sound').paused ? document.getElementById('sound').play() : document.getElementById('sound').pause()" onmouseover="this.style.transform='scaleX(-1) scale(1.1)'" onmouseout="this.style.transform='scaleX(-1)'">
+                <h3 style="font-weight: bold; color: #ADD8E6;">Weapons:</h3>
+                <ul class="weapon-list">
+                <li><img src="CS1/M4A1-S - with silencer.png" alt="M4A1-S" class="weapon-image" style=" mix-blend-mode: normal !important; width: 300px; height: auto;" onclick="playSound('m4a1s')"> M4A1-S</li> 
+                <li><img src="CS1/Bullpup.png" alt="bp" class="weapon-image" style="width: 280px; height: auto;" onclick="playSound('bp')">bullpup</li>    
+                <li><img src="CS1/SMP.png" alt="smp" class="weapon-image" style="width: 210px; height: auto;" onclick="playSound('smp')"> SMP</li>
+                <li><img src="negev.png" alt="Negev" class="weapon-image" onclick="playSound('negev')"> Negev</li>
+              </ul>
+            </div>
+            <div class="col-md-6 t-side">
+                <h2 style="font-weight: bold; text-shadow: 4px 4px 4px #2c2b2b, 4px 4px 8px #da2626;">Terrorists</h2>
+                <audio id="sound1" src="sounds/terrorist.weba"></audio>
+                <img src="https://pngimg.com/d/terrorist_PNG31.png" alt="T Soldier" style="width: 200px; height: auto; margin-bottom: 20px;" onclick="document.getElementById('sound1').paused ? document.getElementById('sound1').play() : document.getElementById('sound1').pause()">
+                <h3 style="font-weight: bold; color: #c93f3f;">Weapons:</h3>
+                <ul class="weapon-list">
+                    <li><img src="CS1/ak47.png" alt="AK-47" class="weapon-image" style="width: 300px; height: auto;" onclick="playSound('ak47')"> AK-47</li>
+                    <li><img src="CS1/krieg1.png" alt="Krieg" class="weapon-image" style="width: 240px; height: auto;" onclick="playSound('Krieg')">Krieg 552</li>
+                    <li><img src="CS1/K&M.png" alt="K&M" class="weapon-image" style="width: 200px; height: auto;" onclick="playSound('K&M')"> K&M</li>
+                    <li><img src="glock-18.png" alt="Glock-18" class="weapon-image" onclick="playSound('glock')"> Glock-18</li>
+                    <li><img src="desert-eagle.png" alt="Desert Eagle" class="weapon-image" onclick="playSound('deagle')"> Desert Eagle</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <audio id="m4a1s" src="sounds/M4A1-S.mp4"></audio>
+    <audio id="K&M" src="sounds/km1.weba"></audio>
+    
+    <audio id="bp" src="sounds/bullpup.weba"></audio>
+    
+    <audio id="ak47" src="sounds/ak47.weba"></audio>
+    <audio id="smp" src="sounds/smpsilencer.weba"></audio>
+    <audio id="Krieg" src="sounds/krieg.m4a"></audio>
+    <audio id="deagle" src="deagle.mp3"></audio>
+    <audio id="negev" src="negev.mp3"></audio>
+
+    <script>
+        function playSound(id) {
+            var sound = document.getElementById(id);
+            sound.play();
+        }
+    </script>
+
+<div class="back-button-container">
+    <a href="gunz.html" class="back-button"> Back</a>
+  </div>
+
+</body>
+</html>
