@@ -456,14 +456,14 @@ top: -5vw !important;
 
 
 #bio-section .bio-text {
-top: 80%;
+top: 70%;
 width: 100% !important;
 font-size: 3vw !important;
 }
 
 #bio-section .bio-image {
 position: absolute;
-top: 10% !important;
+top: 15% !important;
 display: block;
 margin: auto;
 left: 43% !important ;
