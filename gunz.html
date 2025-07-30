@@ -644,11 +644,11 @@ function onYouTubeIframeAPIReady() {
 document.getElementById('Weaponz').addEventListener('click', function() {
   let videosAndPlayButton = document.getElementById('videos-and-play-button');
   let showVideosButtonContainer = document.getElementById('show-videos-button-container');
-  let swordLogoContainer = document.getElementById('sword-logo-container');
+  
   if (videosAndPlayButton.style.display === 'none') {
     videosAndPlayButton.style.display = 'block';
     showVideosButtonContainer.style.display = 'none';
-    swordLogoContainer.style.display = 'none';
+    
     initPlayers();
   }
 });
