@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gunz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    *{
+    font-family: 'Montserrat', sans-serif !important;
+    }
+
+
+    body {
+      margin: 0;
+      background-image: linear-gradient(to right, #808080, #666666);
+      color: white;
+      overflow: hidden;
+    }
+    .header {
+      background-color: #333;
+      color: #fff;
+      padding: 29px;
+      text-align: center;
+      position: relative;
+    }
+
+    .header img  {
+      transition: transform 0.4s ease-in-out !important;
+    }
+
+     .header img:hover {
+       transform: scale(1.1) !important;
+
+     }
+
+    .play-all-button {
+  position: absolute;
+  top: -113px !important;
+  right: 0px !important;
+  background-color: dimgray;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+    .play-all-button:hover {
+      background-color: #cfbdcd;
+    }
+    .close-all-videos-button {
+  position: absolute;
+  top: -43px !important;
+  left: 2px !important;
+  background-color: dimgray;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+    .close-all-videos-button:hover {
+      background-color: #cfbdcd;
+    }
+    .video-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .video {
+      margin: 5px;
+    }
+    .video iframe {
+      width: 140px;
+      height: 250px;
+    }
+
+       #youtube-iframe { 
+        display: none; 
+        position: relative; 
+      }
+  #video-checkbox:checked ~ #youtube-iframe { 
+    display: block; 
+  
+  }
+  #video-checkbox { 
+    display: none; 
+  }
+
+  #close-button {
+    position: absolute;
+    top: -5px;
+    right: 3px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+    @media (max-width: 375px) {
+      body{
+    overflow-y: auto !important;
+
+      }
+      .header img{
+        position: absolute;
+        width: 65px !important;
+        height: auto;
+        bottom: 40px;
+        right: -5px !important;
+      }
+
+      .header h1{
+       font-size: 18px !important;
+      }
+      
+      .header p {
+        position: absolute;
+        font-size: 18px !important;
+        bottom: 5px;
+        right: 18px !important;
+      }
+      
+
+      .video iframe {
+    width: 110px;
+    height: 195px;
+  }
+
+      #show-videos-button-container #show-videos-button {
+    width: 50vw !important;
+  }
+      #show-videos-button-container label p {
+    font-size: 2.5vw !important;
+  }
+   #show-videos-button-container #youtube-iframe iframe {
+    width: 90vw !important;
+  }
+
+  #close-button {
+  position: absolute;
+  top: -1vw;
+  right: .1vw;
+  font-size: 4.5vw;
+  cursor: pointer;
+}
+
+    }
+
+    @media (min-width: 376px) and (max-width: 768px) {
+
+      .header img{
+        width: 80px !important;
+        height: auto;
+      }
+
+      .header p {
+        font-size: 25px !important;
+      }
+
+  .play-all-button {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background-color: dimgray;
+    color: #fff;
+    border: none;
+    padding: 0.3rem 0.7rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+
+  .video-row {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .video iframe {
+    width: 110px;
+    height: 195px;
+  }
+
+  .video {
+    margin: 5px;
+  }
+
+  .play-all-button, .close-all-videos-button {
+  font-size: 10px;
+  padding: 8px !important;
+}
+
+#show-videos-button {
+  cursor: pointer;
+  width: 200px !important; /* adjust the width to your desired size */
+  height: auto;
+  font-size: 100px !important;
+}
+
+
+#show-videos-button-container p {
+  font-size: 13px !important;
+}
+
+
+   #show-videos-button-container #show-videos-button {
+    width: 35vw !important;
+  }
+  #show-videos-button-container label p {
+    font-size: 1.3vw !important;
+    text-shadow: 0 0.5vw 0.5vw rgba(0, 0, 0, 0.9) !important;
+  }
+  #show-videos-button-container #youtube-iframe iframe {
+    width: 65vw !important;
+  }
+
+  #close-button {
+  position: absolute;
+  top: -1.5vw;
+  right: .1vw;
+  font-size: 4.3vw;
+  cursor: pointer;
+}
+
+
+}
+    .back-button-container {
+      position: fixed;
+      top: 6.5px;
+      left: 2px;
+      z-index: 1;
+    }
+    .back-button {
+      background-color: dimgray;
+      color: #fff;
+      border: none;
+      padding: 0.3rem 0.7rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .back-button:hover {
+      background-color: #cfbdcd;
+    }
+    .show-videos-button-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .show-videos-button {
+      background-color: dimgray;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+    }
+
+    .show-videos-button:hover {
+      background-color: #cfbdcd;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+  <h1 id="Weaponz" style="font-size: 25px; color: #746f6f; text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white, 3px 3px 8px rgb(87, 172, 61); cursor: pointer;">Weapon Arsenals</h1>
+  <a href="CS.html" onclick="return playSound('logoSound', this)" style="position: absolute; bottom: 20px; right: 5px; text-align: center;">
+  <div style="position: absolute; bottom: -45px; right: 5px; text-align: center;">
+  <img src="CS1/riffle logo.png" alt="Logo" style="width: 100px; height: auto;">
+ <p style="font-weight: bold; font-size: 22px; color: white; margin-top: -8px;">⇒</p>
+</div>
+  <audio id="logoSound" src="sounds/crack.weba"></audio>
+</a>
+</div>
+  <div class="show-videos-button-container" id="show-videos-button-container" style="display: flex; flex-direction: column; align-items: center;">
+  <input type="checkbox" id="video-checkbox">
+  <img src="CS1/cowboy.png" id="show-videos-button" style="width: 15vw; height: auto;">
+  <label for="video-checkbox"><p style="cursor: pointer; text-align: center; font-weight:bold; font-size: .7vw; text-shadow: 0 0.2vw 0.2vw rgba(0, 0, 0, 0.9); margin-top: -0.1vw;">They call me Trinity</p></label>
+  <div id="youtube-iframe">
+    <span id="close-button" onclick="document.getElementById('video-checkbox').checked = false;">&times;</span>
+    <iframe style="width: 30vw; aspect-ratio: 16 / 9;" src="" 
+  title="YouTube video player" frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+  </div>
+</div>
+  <div id="videos-and-play-button" style="display: none;">
+    <div class="play-all-button-container" style="text-align: center; margin-bottom: 10px; position: relative;">
+      <button class="play-all-button" id="play-all-button" style="position: absolute; top: -60px; right: 10px;">Load & Fire!</button>
+      <button class="close-all-videos-button" id="close-all-videos-button" style="position: absolute; top: -60px; left: 10px;">Close All Videos</button>
+    </div>
+    <div class="video-container">
+      <div class="video-row">
+        <!-- Video 1 -->
+        <div class="video">
+          <div id="video1"></div>
+        </div>
+        <!-- Video 2 -->
+        <div class="video">
+          <div id="video2"></div>
+        </div>
+        <!-- Video 3 -->
+        <div class="video">
+          <div id="video3"></div>
+        </div>
+      </div>
+      <div class="video-row">
+        <!-- Video 4 -->
+        <div class="video">
+          <div id="video4"></div>
+        </div>
+        <!-- Video 5 -->
+        <div class="video">
+          <div id="video5"></div>
+        </div>
+        <!-- Video 6 -->
+        <div class="video">
+          <div id="video6"></div>
+        </div>
+      </div>
+      <div class="video-row">
+        <!-- Video 7 -->
+        <div class="video">
+          <div id="video7"></div>
+        </div>
+        <!-- Video 8 -->
+        <div class="video">
+          <div id="video8"></div>
+        </div>
+        <!-- Video 9 -->
+        <div class="video">
+          <div id="video9"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <!-- Swordz in History -->
+
+ <div class="sword-logo-container" style="position: fixed; top: 130px; left: 10px; z-index: 1;">
+  <img src="swordz/Slogo.png" alt="Sword Logo" style="width: 85px; height: auto; cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onclick="toggleSwords()">
+</div>
+
+
+<div class="sword-container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; display: none; background-color: #3d3b3b; border: 1px solid #999393; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <div style="width: 100%; display: flex; justify-content: flex-end;">
+        <span style="font-size: 35px; cursor: pointer; color: #fff; position: fixed; top: -8px; right: 5px;" onclick="document.querySelector('.sword-container').style.display = 'none'; document.getElementById('show-videos-button-container').style.display = 'flex';">&times;</span>
+    </div>
+    <h1 style="margin-bottom: 50px; font-size: 24px; color: #fff;">Famous Swords</h1>
+    <div id="famous-swords" style="display: grid; grid-template-columns: repeat(5, 1fr); justify-items: center; gap: 10px;">
+      
+       
+        
+        <div class="sword" style="text-align: center;">
+  <img src="swordz/Ulfberht.png" 
+       style="cursor: pointer; max-width: 150px; max-height: 150px; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('Ulfberht').play()">
+  <h2 style="font-size: 10px; font-weight: normal; margin-top: 10px;">Ulfberht Sword</h2>
+  <audio id="Ulfberht" src="swordz/Ulfberht.weba"></audio>
+      </div>
+        <div class="sword" style="text-align: center;">
+  <img src="swordz/katana.png" 
+       style="cursor: pointer; max-width: 200px; max-height: 150px; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('katana').play()">
+  <h2 style="font-size: 10px; font-weight: normal; margin-top: 10px;">Dōjigatana Sword</h2>
+  <audio id="katana" src="swordz/katana.weba"></audio>
+</div>
+
+<div class="sword" style="text-align: center;">
+  <img src="swordz/scimitar.png" 
+       style="cursor: pointer; max-width: 80px; max-height: 150px; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('scimitar').play()">
+  <h2 style="font-size: 10px; font-weight: normal; margin-top: 10px;">Scimitar Sword</h2>
+  <audio id="scimitar" src="swordz/Scimitar.weba"></audio>
+</div>
+
+<div class="sword" style="text-align: center;">
+  <img src="swordz/broadsword.png" 
+       style="cursor: pointer; max-width: 300px; max-height: 150px; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('broadsword').play()">
+  <h2 style="font-size: 10px; font-weight: normal; margin-top: 1px;">Broad Sword</h2>
+  <audio id="broadsword" src="swordz/broadsword.weba"></audio>
+</div>
+
+<div class="sword" style="text-align: center;">
+  <img src="swordz/medieval.png" 
+       style="cursor: pointer; max-width: 45px; max-height: auto; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('medieval').play()">
+  <h2 style="font-size: 10px; font-weight: normal; margin-top: 1px;">Medieval Sword</h2>
+  <audio id="medieval" src="swordz/Medieval.weba"></audio>
+</div>
+
+<div class="sword" style="text-align: center;">
+  <img src="swordz/saber.png" 
+       style="cursor: pointer; max-width: 150px; max-height: 150px; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('saber').play()">
+  <h2 style="font-size: 10px; font-weight: normal; margin-top: 1px;">Saber Sword</h2>
+  <audio id="saber" src="swordz/Saber.weba"></audio>
+</div>
+
+<div class="sword" style="text-align: center;">
+  <img src="swordz/xiphos.png" 
+       style="cursor: pointer; max-width: 220px; max-height: 150px; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('xiphos').play()">
+  <h2 style="font-size: 10px; font-weight: normal; margin-top: 10px;">Xiphos Sword</h2>
+  <audio id="xiphos" src="swordz/xiphos.weba"></audio>
+</div>
+
+<div class="sword" style="text-align: center;">
+  <img src="swordz/kampilan.png" 
+       style="cursor: pointer; max-width: 230px; max-height: 150px; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('kampilan').play()">
+  <h2 style="font-size: 10px; font-weight: normal; margin-top: 10px;">Kampilan Sword</h2>
+  <audio id="kampilan" src="swordz/kampilan.weba"></audio>
+</div>
+
+<div class="sword" style="text-align: center;">
+  <img src="swordz/ninjato.png" 
+       style="cursor: pointer; max-width: 210px; max-height: 150px; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('ninjato').play()">
+  <h2 style="font-size: 10px; font-weight: normal; margin-top: 10px;">Ninjato Sword</h2>
+  <audio id="ninjato" src="swordz/ninjato.weba"></audio>
+</div>
+
+<div class="sword" style="text-align: center;">
+  <img src="swordz/Gladius.png" 
+       style="cursor: pointer; max-width: 50px; max-height: 150px; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('gladius').play()">
+  <h2 style="font-size: 10px; font-weight: normal; margin-top: 10px;">Gladius Sword</h2>
+  <audio id="gladius" src="swordz/gladius.weba"></audio>
+</div>
+        
+    </div>
+</div>
+
+<style>
+
+
+   @media (min-width: 376px) and (max-width: 768px) {
+
+    
+  .sword-container h1 {
+    position: absolute;
+    top: 10px !important;
+  }
+
+  .sword-logo-container img{
+      position: absolute;
+       top: 5px !important;
+       width: 50px !important;
+      height: auto !important;
+     }
+
+     .sword-container span{
+      position: absolute; 
+      top: -3px !important; 
+      right: 3px !important;
+      font-size: 25px !important;
+
+     }
+
+
+  .sword-container h2 {
+      font-size: 10px !important;
+    }
+    
+    .sword-container h1 {
+      font-size: 13px !important;
+    }
+
+  .sword-container {
+    padding-top: 120px !important; 
+    padding-bottom: 20px !important; 
+  position: absolute;
+  top: 58% !important;
+  width: 85% !important;
+  height: 61% !important;
+  max-height: 100% !important; /* adjust max height */
+  overflow-y: auto;
+}
+    #famous-swords {
+  position: absolute !important;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) !important;
+  top: 60px !important;
+  align-items: end;
+  gap: 50px !important; /* adjust the gap size */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 80% !important; /* adjust the width to your desired size */
+  column-gap: 1px !important; /* adjust the gap size */
+}
+    .sword img {
+    width: 70% !important;
+    height: auto !important;
+    margin: 1px; /* adjust margin */
+    padding: 0; /* adjust padding */
+   overflow-y: auto !important;
+    object-fit: contain !important; /* or object-fit: cover; */
+}
+
+    img[src*="Ulfberht"] {
+      max-width: 300px !important;
+      width: 250px !important;
+      height: auto !important;
+    }
+
+    img[src*="katana"] {
+        max-width: 250px !important; 
+        width: 200px !important;
+        
+    }
+
+    img[src*="scimitar"] {
+        max-width: 250px !important; 
+        width: 80px !important;
+    }
+
+
+    img[src*="broadsword"] {
+        max-width: 250px !important; 
+        width: 180px !important;
+    }
+
+    img[src*="xiphos"] {
+        max-width: 100px !important; 
+        width: 50px !important;
+    }
+
+    img[src*="medieval"] {
+    width: 100% !important;
+    max-width: 45px !important; 
+    max-height: auto !important;
+}
+
+    img[src*="saber"] {
+        max-width: 210px !important; 
+        max-height: auto !important;
+    }
+    
+
+
+    img[src*="kampilan"] {
+      
+        max-width: 300px !important; 
+        width: 250px !important;
+        
+    }
+
+    img[src*="ninjato"] {
+      
+        max-width: 300px !important; 
+      
+        
+    }
+    img[src*="Gladius"] {
+      
+        max-width: 100px !important; 
+        width: 80px !important;
+        
+        
+    }
+
+}
+
+
+@media (max-width: 375px) {
+
+  .sword-container h1 {
+    position: absolute;
+    top: 10px !important;
+  }
+
+  .sword-logo-container img{
+      position: absolute;
+       top: -20px !important;
+       width: 50px !important;
+      height: auto !important;
+     }
+
+     .sword-container span{
+      position: absolute; 
+      top: -3px !important; 
+      right: 3px !important;
+      font-size: 20px !important;
+
+     }
+
+
+  .sword-container h2 {
+      font-size: 8px !important;
+    }
+    
+    .sword-container h1 {
+      font-size: 13px !important;
+    }
+
+  .sword-container {
+    padding-top: 240px !important; 
+    padding-bottom: 1px !important; 
+  position: absolute;
+  top: 58% !important;
+  width: 84% !important;
+  height: 44% !important;
+  max-height: 150vh !important; /* adjust max height */
+  overflow-y: auto;
+}
+    #famous-swords {
+      position: absolute !important;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 30px !important;
+        top: 60px !important;
+        left: 1px !important;
+        
+    }
+    .sword img {
+    width: 70% !important;
+    height: auto !important;
+    margin: 1px; /* adjust margin */
+    padding: 0; /* adjust padding */
+   overflow-y: auto !important;
+    object-fit: contain !important; /* or object-fit: cover; */
+}
+
+.sword-grid {
+  grid-gap: 5px; /* adjust grid gap */
+}
+
+
+    img[src*="Ulfberht"] {
+      max-width: 300px !important;
+      width: 100px !important;
+    }
+
+    img[src*="katana"] {
+        max-width: 250px !important; 
+        width: 150px !important;
+    }
+
+    img[src*="scimitar"] {
+        max-width: 250px !important; 
+        width: 60px !important;
+    }
+
+    img[src*="xiphos"] {
+        max-width: 100px !important; 
+        width: 40px !important;
+    }
+
+    img[src*="medieval"] {
+    width: 100% !important;
+    max-width: 40px !important; 
+    max-height: auto !important;
+}
+
+    img[src*="saber"] {
+        max-width: 150px !important; 
+        max-height: auto !important;
+    }
+    
+
+
+    img[src*="kampilan"] {
+      
+        max-width: 300px !important; 
+        width: 140px !important;
+        
+    }
+
+    img[src*="ninjato"] {
+      
+        max-width: 200px !important; 
+        width: 145px !important;
+        
+    }
+    img[src*="Gladius"] {
+      
+        max-width: 100px !important; 
+        width: 40px !important;
+        
+        
+    }
+
+}
+</style>
+
+
+<script>
+//show swordz
+function toggleSwords() {
+  let swordContainer = document.querySelector('.sword-container');
+  let swordLogoContainer = document.querySelector('.sword-logo-container');
+  let showVideosButtonContainer = document.getElementById('show-videos-button-container');
+  if (swordContainer.style.display === 'flex') {
+    swordContainer.style.display = 'none';
+    swordLogoContainer.style.display = 'block';
+    showVideosButtonContainer.style.display = 'flex';
+  } else {
+    swordContainer.style.display = 'flex';
+    swordLogoContainer.style.display = 'none';
+    showVideosButtonContainer.style.display = 'none';
+  }
+}
+
+//close button for weapons
+document.querySelector('.sword-container span').addEventListener('click', function() {
+  document.querySelector('.sword-container').style.display = 'none';
+  document.querySelector('.sword-logo-container').style.display = 'block';
+  document.getElementById('show-videos-button-container').style.display = 'flex';
+});
+</script>
+  
+<!----------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    let players = [];
+let videoIds = ['kfJBGtOIoXc', 'dpT0sPSI5UM', '8huoikTZ0xY', 'EK_bQY3B6GU', 'zRrxKJRu7Eg', 'm7g-PHkt-D0', 'ExtG5rFg1iw', 'kutUmh2D3-s', 'rksvni9MeyE'];
+let isPlaying = false;
+
+function onYouTubeIframeAPIReady() {
+  // do nothing
+}
+
+document.getElementById('Weaponz').addEventListener('click', function() {
+  let videosAndPlayButton = document.getElementById('videos-and-play-button');
+  let showVideosButtonContainer = document.getElementById('show-videos-button-container');
+  let swordLogoContainer = document.querySelector('.sword-logo-container');
+  
+  if (videosAndPlayButton.style.display === 'none') {
+    videosAndPlayButton.style.display = 'block';
+    showVideosButtonContainer.style.display = 'none';
+    swordLogoContainer.style.display = 'none';
+    
+    initPlayers();
+  }
+});
+
+function initPlayers() {
+  for (let i = 0; i < videoIds.length; i++) {
+    players.push(new YT.Player('video' + (i + 1), {
+      videoId: videoIds[i],
+      playerVars: {
+        autoplay: 0,
+        controls: 1,
+        modestbranding: 1,
+        rel: 0,
+        showinfo: 0,
+        playsinline: 1,
+      },
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    }));
+  }
+}
+
+function onPlayerReady(event) {
+  // do nothing
+}
+
+function onPlayerStateChange(event) {
+  // do nothing
+}
+
+function loopVideos() {
+  if (isPlaying) {
+    players.forEach(function(player) {
+      if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+        let duration = player.getDuration();
+        let currentTime = player.getCurrentTime();
+        if (currentTime >= duration - 0.1) {
+          player.seekTo(0.01);
+          player.playVideo();
+        }
+      }
+    });
+    requestAnimationFrame(loopVideos);
+  }
+}
+
+document.getElementById('play-all-button').addEventListener('click', function() {
+  let iframe = document.querySelector('#youtube-iframe iframe');
+  iframe.src = iframe.src.replace('autoplay=1', 'autoplay=0');
+  
+  if (!isPlaying) {
+    isPlaying = true;
+    players.forEach(function(player) {
+      player.playVideo();
+    });
+    loopVideos();
+    document.getElementById('play-all-button').innerHTML = 'Stop';
+  } else {
+    isPlaying = false;
+    players.forEach(function(player) {
+      player.stopVideo();
+    });
+    document.getElementById('play-all-button').innerHTML = 'Load & Fire!';
+  }
+});
+
+document.getElementById('close-all-videos-button').addEventListener('click', function() {
+  let videosAndPlayButton = document.getElementById('videos-and-play-button');
+  let showVideosButtonContainer = document.getElementById('show-videos-button-container');
+  let swordLogoContainer = document.querySelector('.sword-logo-container');
+  
+  videosAndPlayButton.style.display = 'none';
+  showVideosButtonContainer.style.display = 'flex';
+  showVideosButtonContainer.style.flexDirection = 'column';
+  showVideosButtonContainer.style.alignItems = 'center';
+  swordLogoContainer.style.display = 'block';
+  
+  isPlaying = false;
+  players.forEach(function(player) {
+    player.stopVideo();
+  });
+  document.getElementById('play-all-button').innerHTML = 'Load & Fire!';
+});
+
+// Counters Strike Go Go Go
+function playSound(id, element) {
+  var sound = document.getElementById(id);
+  sound.currentTime = 1.8; // Skip the first 1.8 seconds
+  sound.play();
+  setTimeout(function() {
+    sound.pause();
+    window.location.href = element.getAttribute('href');
+  }, 1500); // Increased duration to 1.5 seconds
+  return false;
+}
+
+// Close stop for trinity
+document.getElementById('video-checkbox').addEventListener('change', function() {
+  let iframe = document.querySelector('#youtube-iframe iframe');
+  if (this.checked) {
+    iframe.src = 'https://www.youtube.com/embed/z9rDRjg2vMM?autoplay=1';
+  } else {
+    iframe.src = '';
+  }
+});
+
+document.getElementById('close-button').addEventListener('click', function() {
+  let iframe = document.querySelector('#youtube-iframe iframe');
+  iframe.src = '';
+  document.getElementById('video-checkbox').checked = false;
+});
+</script>
+
+
+<div class="back-button-container">
+    <a href="index.html" class="back-button"> Back</a>
+  </div>
+
+</body>
+</html>
