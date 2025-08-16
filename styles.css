@@ -343,7 +343,7 @@ min-width: 150px; /* adjust the width */
 .dropdown-item {
 font-family: 'Montserrat', sans-serif !important;
 font-size: 15px !important;
-color: darkslategrey;
+color: white;
 padding: 5px 10px; /* adjust the padding */
 }
 
@@ -556,4 +556,5 @@ color:#474343;
 margin-top: -.8vh !important;
 }
 } 
+
 
