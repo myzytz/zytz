@@ -118,7 +118,7 @@ z-index: 1;
 .play-button img {
 width: 3rem;
 height: auto;
-mix-blend-mode: multiply;
+mix-blend-mode: multiply !important;
 }
 
 .play-button:hover {
@@ -557,6 +557,7 @@ color:#474343;
 margin-top: -.8vh !important;
 }
 } 
+
 
 
 
