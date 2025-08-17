@@ -40,15 +40,12 @@
   cursor: pointer;
 }
     
-a[onclick*="09155505131"], 
-a[onclick*="09353429466"] {
-  color: white;
+a[onclick]::after {
+  content: attr(onclick);
+  color: white !important;
+  
 }
 
-a[onclick*="arjienunag_13@yahoo.com"], 
-a[onclick*="arjie.nunag2006@gmail.com"] {
-  color: white;
-}
 
   </style>
 
@@ -843,6 +840,7 @@ function showAlert(number) {
 </body>
 
 </html>
+
 
 
 
