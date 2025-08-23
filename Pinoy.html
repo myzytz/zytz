@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pinoy Funny Videos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+ body {
+  background-image: linear-gradient(to right, #808080, #666666);
+  font-family: 'Montserrat', sans-serif !important; 
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.video-episodes {
+ 
+  max-width: 80vw;
+  margin: 5vh auto;
+  text-align: center;
+  
+}
+
+.episode-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2vw;
+}
+
+.episode {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 1vh 1vw;
+  border-radius: 0.5vw;
+  box-shadow: 0 0 1vh rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.episode img {
+  width: 4.5vw;
+  height: 4.5vw;
+  object-fit: cover;
+  border-radius: 0.5vw;
+}
+
+.episode h3 {
+  font-size: .8vw;
+  margin-top: 1vh;
+  font-weight: 450;
+}
+
+.episode a {
+  text-decoration: none;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.pagination {
+  margin-top: 1vh;
+}
+.pagination button {
+  margin: 0 .5vw;
+  padding: .8vh .8vw;
+  border: none;
+  border-radius: 0.5vw;
+  background-color: #d3d3d3; /* Light gray background color */
+  color: #333; /* Dark text color */
+  cursor: pointer;
+  font-size: 1vw;
+}
+
+.pagination button:hover {
+  background-color: #ccc; /* Lighter gray hover background color */
+}
+
+.pagination button.active {
+  background-color: #999; /* Darker gray active background color */
+}
+
+.ndo-logo {
+    width: 15vw;
+    height: auto;
+     margin-bottom: -80px;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  .episode-list {
+    grid-template-columns: repeat(4, 1fr);
+     margin-bottom: -4vh
+  }
+  .pagination button {
+    padding: .5vh 1.5vw;
+    font-size: 3vw;
+  }
+  .episode img {
+    width: 15vw;
+    height: 15vw;
+    
+  }
+  .ndo-logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: -50px;
+}
+.episode h3 {
+  font-size: 2.5vw;
+  margin-top: 1vh;
+  font-weight: 450;
+}
+
+.video-episodes {
+  position: absolute;
+  top: 5vh; /* Adjust this value to your liking */
+  
+}
+
+.pagination {
+  margin-top: 5vh;
+}
+
+}
+
+
+.back-button-container {
+          position: fixed;
+          top: 12px;
+          left: 4px;
+       }
+.back-button {
+  background-color: #acadac;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  background-color: #212220;
+}
+
+.play-button {
+    position: fixed;
+    top: -5px;
+    right: -7px;
+    margin: 10px;
+    padding: 1rem;
+    background-color: #acadac;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif !important;
+  cursor: pointer;
+  font-size: 13px;
+  }
+  .play-button:hover {
+  background-color: #212220;
+}   
+
+@media only screen and (min-width: 720px) and (max-width: 1024px) and (orientation: landscape) {
+
+  .ndo-logo{
+    position: relative;
+    top: -11vh;
+  }
+
+
+}
+
+  </style>
+
+</head>
+<body>
+  <section class="video-episodes">
+    <h2 style="text-align: center;">
+      <img src="https://static.vecteezy.com/system/resources/thumbnails/058/271/270/small/smiling-emoji-with-eyeglasses-expressing-joy-and-positivity-png.png" alt="NDO" class="ndo-logo">
+    </h2>
+    <ul class="episode-list" id="episode-list"></ul>
+    <div class="pagination" id="pagination"></div>
+    <div id="video-container"></div>
+</section>
+
+  <script>
+    const episodesPerPage = 12;
+    const episodes = Array(48).fill(0).map((_, i) => [
+ `PinoyVidz ${i + 1}`,
+i === 0 ? "https://www.youtube.com/watch?v=VZI2SMRXPb8&t=40s" : 
+i === 1 ? "https://www.youtube.com/watch?v=ceyY_YfT-aI" : 
+i === 2 ? "https://www.youtube.com/watch?v=_YIopW7VGfM" : 
+i === 3 ? "https://www.youtube.com/watch?v=PsVoDnk_87Q" : 
+i === 4 ? "https://www.youtube.com/watch?v=zd-K-P9tZCM" : 
+i === 5 ? "https://www.youtube.com/watch?v=QicwyQz-ApU" : 
+i === 6 ? "https://www.youtube.com/watch?v=deeBSdcb14s" : 
+i === 7 ? "https://www.youtube.com/watch?v=vJVOZn8Dzhg" : 
+i === 8 ? "https://www.youtube.com/watch?v=B9FSdmpgG2o" : 
+i === 9 ? "https://www.youtube.com/watch?v=LHe9FPRP-gg&t=11s" : 
+i === 10 ? "https://www.facebook.com/watch?ref=search&v=1807324209566290&external_log_id=c66fb047-6794-4fef-bb85-d2eb54a4e2e0&q=gusto%20ko%20maging%20nanay%20wowowin" : 
+i === 11 ? "https://www.youtube.com/watch?v=kAn80Hs1bUA&t=288s" : 
+i === 12 ? "https://www.youtube.com/watch?v=6puafgSsNC8" : 
+i === 13 ? "https://www.youtube.com/watch?v=9Pbvub7GgeM" : 
+i === 14 ? "https://www.youtube.com/watch?v=MD8EjihBbZk" : 
+i === 15 ? "https://www.youtube.com/watch?v=a9KjGqik5QU" : 
+i === 16 ? "https://www.youtube.com/watch?v=8MJkBPvlhIM" : 
+i === 17 ? "https://www.youtube.com/watch?v=Lr39gC_HvKU" : 
+i === 18 ? "https://www.youtube.com/watch?v=qzEk46KTvLE" : 
+i === 19 ? "https://www.youtube.com/watch?v=4txK-7LNoQY" : 
+i === 20 ? "https://www.youtube.com/watch?v=aZyFXoDDGwY" : 
+i === 21 ? "https://www.youtube.com/watch?v=QuEdui4v1Vc" : 
+i === 22 ? "https://www.youtube.com/watch?v=MbS46yjXu-I" : 
+i === 23 ? "https://www.youtube.com/watch?v=drUTEroPhbw" :
+i === 24 ? "https://www.facebook.com/watch/?v=1266432304836375&rdid=YJlqmshn10RtBP3f" : 
+i === 25 ? "https://www.facebook.com/watch/?v=641441168304001&rdid=6QYRGiCQLin8dzi3" :
+i === 26 ? "https://www.youtube.com/watch?v=N2vrwWQaSCQ" : 
+i === 27 ? "https://www.youtube.com/watch?v=blJO6YonpPw" :
+i === 28 ? "https://www.youtube.com/watch?v=7P-MAZlxnlo" : 
+i === 29 ? "https://www.youtube.com/watch?v=roQ6A3LpYwM" :
+i === 30 ? "https://www.youtube.com/watch?v=S1fFfcxM8-c" : 
+i === 31 ? "https://www.youtube.com/watch?v=GljzgGVatxQ" :
+i === 32 ? "https://www.youtube.com/watch?v=6OSwLo97TeA" : 
+i === 33 ? "https://www.youtube.com/watch?v=uel6X2N0tWo&t=20s" :
+i === 34 ? "https://www.youtube.com/watch?v=-p9T-bVlT7o" : 
+i === 35 ? "https://www.youtube.com/watch?v=XgZ6X7l8BOc" : 
+i === 36 ? "https://www.youtube.com/watch?v=r2sXP6cduVM&t=4s" :
+i === 37 ? "https://www.youtube.com/watch?v=LYr2QaWm7ZM" : 
+i === 38 ? "https://www.youtube.com/watch?v=Edo1SOP-1hk" :
+i === 39 ? "https://www.facebook.com/reel/1988312648637269" : 
+i === 40 ? "https://www.facebook.com/reel/2523964971336670" : 
+i === 41 ? "https://www.facebook.com/reel/741605875174108" : 
+i === 42 ? "https://www.facebook.com/reel/4306587212906098" : 
+
+  `episode-${i + 1}-id`,
+i === 0 ? "https://i.ytimg.com/vi/VZI2SMRXPb8/hqdefault.jpg?sqp=-oaymwFBCOADEI4CSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AHeAoAC8AGKAgwIABABGFogPih_MA8=&rs=AOn4CLDkBPF44CwFCTmKfTYedd26l3yqCw" : 
+i === 1 ? "https://i.ytimg.com/vi/ceyY_YfT-aI/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDQga50XFyPstKUOt-gdZV8cWOtyw" : 
+i === 2 ? "https://i.ytimg.com/vi/_YIopW7VGfM/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAuFttNc_xNTJcAHZ1gxNt7s66iMA" : 
+i === 3 ? "https://i.ytimg.com/vi/PsVoDnk_87Q/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLD7xcp6LJlMyqWM2HdIGDmABnEdPQ" : 
+i === 4 ? "https://i.ytimg.com/vi/zd-K-P9tZCM/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAk5ERhW2cgZk9mhrFwHjP3emxaKQ" : 
+i === 5 ? "https://i.ytimg.com/vi/QicwyQz-ApU/hqdefault.jpg?sqp=-oaymwFBCOADEI4CSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AHcA4AC6AKKAgwIABABGEwgTihlMA8=&rs=AOn4CLCERYWt8TgOl-qEEvogdtH65cnM2g" : 
+i === 6 ? "https://i.ytimg.com/vi/deeBSdcb14s/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLA8OJ_0ptKRTlj8wDcZ0X1aLwn26A" : 
+i === 7 ? "https://i.ytimg.com/vi/vJVOZn8Dzhg/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLA32rgaydKP_7JHNxiVjy9TuLor7w" : 
+i === 8 ? "https://i.ytimg.com/vi/B9FSdmpgG2o/hqdefault.jpg?sqp=-oaymwFBCOADEI4CSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AHUBoAC4AOKAgwIABABGGUgYChFMA8=&rs=AOn4CLCaISd0Pb221S_lbAlyBvuZXGxJ4w" : 
+i === 9 ? "https://i.ytimg.com/vi/LHe9FPRP-gg/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLALSyGhsmZn4sLMgVpAXmNAxufr2Q" : 
+i === 10 ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY02Thm57C0LNhq-PS0Cp20i5FDwUxwJQZ8w&s" : 
+i === 11 ? "https://i.ytimg.com/vi/kAn80Hs1bUA/hqdefault.jpg?sqp=-oaymwFBCOADEI4CSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AHeAoAChgKKAgwIABABGGUgTShRMA8=&rs=AOn4CLCmIwe0M0sxoh2erLde2rE5jM1_cQ" : 
+i === 12 ? "https://i.ytimg.com/vi/6puafgSsNC8/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDRBk1koJ3p8xSBYIIVHM7hK_Y6qA" : 
+i === 13 ? "https://i.ytimg.com/vi/9Pbvub7GgeM/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBxNrg9VFqC_YJIv4jS6znPpi7zVg" : 
+i === 14 ? "https://i.ytimg.com/vi/MD8EjihBbZk/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLB-lk2dotzrduO11nE7tnMrPZhiJw" : 
+i === 15 ? "https://i.ytimg.com/vi/a9KjGqik5QU/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLC6aPv85pefHojlRwaiJdMrnp4u9g" : 
+i === 16 ? "https://i.ytimg.com/vi/8MJkBPvlhIM/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBJQ_5EhVSHH03HqE6ctdnx2kc1rQ" : 
+i === 17 ? "https://i.ytimg.com/vi/Lr39gC_HvKU/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAuwjE2Xibrgqy6rwGJwI5kxNrpeg" : 
+i === 18 ? "https://i.ytimg.com/vi/qzEk46KTvLE/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBwP2J0_DEcx671Yd8wALPhe_Mc8A" : 
+i === 19 ? "https://i.ytimg.com/vi/4txK-7LNoQY/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLClxzegbzfqSGSA9ROS1sO-Qh14mQ" : 
+i === 20 ? "https://i.ytimg.com/vi/aZyFXoDDGwY/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDewvJTt9988ITMPXlz8TXxneV0ag" : 
+i === 21 ? "https://i.ytimg.com/vi/QuEdui4v1Vc/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDbF-YEojepseUvE9H0VCj7bRHaHw" : 
+i === 22 ? "https://i.ytimg.com/vi/MbS46yjXu-I/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBPUNirTMOEQKxVqZ9r4dUedQm5wA" : 
+i === 23 ? "https://i.ytimg.com/vi/drUTEroPhbw/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAulSg3swZqVUzr6EQlCI0TTKiajg" :
+i === 24 ? "data:image/jpeg;base64,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" : 
+i === 25 ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7dPJRl9BQP9UJ2BCoNisDrschxXNnWowtXA&s" :
+i === 26 ? "https://i.ytimg.com/vi/N2vrwWQaSCQ/hq720.jpg?sqp=-oaymwFBCNAFEJQDSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGHIgVCg5MA8=&rs=AOn4CLALXpYUsf5bJUnV5S8Tpu4OQlINEg" : 
+i === 27 ? "https://i.ytimg.com/vi/blJO6YonpPw/hqdefault.jpg?sqp=-oaymwFBCOADEI4CSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-BIAC6AKKAgwIABABGGUgYShTMA8=&rs=AOn4CLAfl4BeGeY9p7t9EnOgXQDGR_pkMg" :
+i === 28 ? "https://i.ytimg.com/vi/7P-MAZlxnlo/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCkUrX_Xnxn62kpdEMeYEj_SvQjFQ" : 
+i === 29 ? "https://i.ytimg.com/vi/roQ6A3LpYwM/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBoZGKB6I8mw1flQTzF_TioeSEX0w" :
+i === 30 ? "https://i.ytimg.com/vi/S1fFfcxM8-c/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLD34edSDF_nAvMUBbq9_0sol1s3iA" : 
+i === 31 ? "https://i.ytimg.com/vi/GljzgGVatxQ/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAVxtBZB2Ss6wwKmoHKK56qoQPV9w" :
+i === 32 ? "https://i.ytimg.com/vi/6OSwLo97TeA/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDOjEUBWrjqFIeyhBbZb1bcwbDhlQ" : 
+i === 33 ? "https://i.ytimg.com/vi/uel6X2N0tWo/hq720.jpg?sqp=-oaymwFBCNAFEJQDSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AGECYAC0AWKAgwIABABGH8gWSgpMA8=&rs=AOn4CLAVe-MYp5vwAZ-QVLrjZoBh0AUqsw" :
+i === 34 ? "https://i.ytimg.com/vi/-p9T-bVlT7o/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDb52fqYQ6BaFWIwNh-Ckjplj4OKw" : 
+i === 35 ? "https://i.ytimg.com/vi/XgZ6X7l8BOc/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDfrMLG5KMpmXQ702H3ZW1fg89Qrg" : 
+i === 36 ? "https://i.ytimg.com/vi/r2sXP6cduVM/hq720.jpg?sqp=-oaymwFBCNAFEJQDSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG-B4AC0AWKAgwIABABGGUgXihWMA8=&rs=AOn4CLABIYj8iLPhal5kFIjXs7rIr4GltA" :
+i === 37 ? "https://i.ytimg.com/vi/LYr2QaWm7ZM/hq720.jpg?sqp=-oaymwFBCNAFEJQDSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYACyAWKAgwIABABGH8gWygoMA8=&rs=AOn4CLCjuWdvyUtiEmA2G77gU2dhM6cP2g" : 
+i === 38 ? "https://i.ytimg.com/vi/Edo1SOP-1hk/hq720.jpg?sqp=-oaymwFBCNAFEJQDSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGH8gSSgWMA8=&rs=AOn4CLC5BWs3eT5BdYYLHG2D-MbLXe64uA" :
+i === 39 ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaYDYz0kHsVg5IjnsU_-i4BUsgv9q9Tmi7sw&s" : 
+i === 40 ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaYDYz0kHsVg5IjnsU_-i4BUsgv9q9Tmi7sw&s" : 
+i === 41 ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaYDYz0kHsVg5IjnsU_-i4BUsgv9q9Tmi7sw&s" : 
+i === 42 ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaYDYz0kHsVg5IjnsU_-i4BUsgv9q9Tmi7sw&s" : 
+   ''
+]);
+
+    let currentPage = 1;
+
+    function generateEpisodeList(page) {
+  const start = (page - 1) * episodesPerPage;
+  const end = start + episodesPerPage;
+  const list = document.getElementById('episode-list');
+  list.innerHTML = '';
+  episodes.slice(start, end).forEach(([title, id, image], index) => {
+    list.insertAdjacentHTML('beforeend', `
+  <li class="episode">
+    <a href="${id}" target="_blank">
+      <img src="${image}" alt="${title}">
+      <h3>${title}</h3>
+    </a>
+  </li>
+`);
+});
+}
+
+    
+
+    function generatePagination() {
+      const pagination = document.getElementById('pagination');
+      const totalPages = Math.ceil(episodes.length / episodesPerPage);
+      pagination.innerHTML = '';
+      for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement('button');
+        button.textContent = i;
+        button.onclick = () => {
+          currentPage = i;
+          generateEpisodeList(currentPage);
+          updateActiveButton();
+        };
+        pagination.appendChild(button);
+      }
+      updateActiveButton();
+    }
+
+    function updateActiveButton() {
+  const buttons = document.querySelectorAll('#pagination button');
+  buttons.forEach((button, index) => {
+    if (index + 1 === currentPage) {
+      button.classList.add('active');
+    } else {
+      button.classList.remove('active');
+    }
+  });
+}
+
+    generateEpisodeList(currentPage);
+    generatePagination();
+  </script>
+ <div class="back-button-container">
+    <a href="Funnyvidz.html"  class="back-button"> Back</a>
+  </div>
+
+  <audio id="tomahhhhh" playsinline>
+  <source src="sounds/tomahhhhhh!.weba" type="audio/webm">
+</audio>
+
+<audio id="tomscream" playsinline>
+  <source src="sounds/Tomscream.weba" type="audio/webm">
+</audio>
+
+<button class="play-button" onclick="playRandomAudio()">Play Me</button>
+
+<script>
+  function playRandomAudio() {
+    const audios = ["tomahhhhh", "tomscream"];
+    const randomAudio = audios[Math.floor(Math.random() * audios.length)];
+    document.getElementById(randomAudio).play();
+  }
+</script>
+  
+</body>
+</html>
