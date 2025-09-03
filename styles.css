@@ -514,8 +514,8 @@ right: 0;
 width: 50vw;
 height: 50vw;
 object-fit: cover;
-border: 0.5rem solid hsl(280, 2%, 33%);
-border-radius: .5rem;
+border: 0.3rem solid hsl(280, 2%, 33%);
+border-radius: .3rem;
 }
 /* play button styles*/
 .play-button img {
@@ -674,5 +674,6 @@ font-size: 20px ;
 
 
 }
+
 
 
