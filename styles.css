@@ -599,7 +599,7 @@ div[style*="linear-gradient(to right"] {
 }
 .resume-container span {
   position: relative !important;
-  font-size: 5px !important;
+  font-size: 6px !important;
   top: 5px !important;
   left: -2.4vw;
   display: block !important;
@@ -800,4 +800,5 @@ font-size: 20px ;
 
 
 }
+
 
