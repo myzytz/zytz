@@ -701,7 +701,7 @@ div[style*="linear-gradient(to right"] {
     display: block !important;
     position: absolute; 
     top: 589vh !important;
-    right: 11.8px !important;  
+    right: 12.5px !important;  
     left: auto !important; 
     z-index: 2 !important;
   }
@@ -944,5 +944,6 @@ font-size: 20px ;
 
 
 }
+
 
 
