@@ -996,7 +996,7 @@ document.querySelector('.arrow.down img').onclick = function() {
   function scroll() {
     const elapsed = performance.now() - startTime;
     const progress = Math.min(elapsed / duration, 1);
-    window.scrollTo(0, start + (targetScroll - start) * progress);
+    window.scrollTo({ top: targetScroll, behavior: 'smooth' });
     if (progress < 1) {
       requestAnimationFrame(scroll);
     } else {
@@ -1055,6 +1055,7 @@ goTopButton.addEventListener('click', () => {
 </body>
 
 </html>
+
 
 
 
