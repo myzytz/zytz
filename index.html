@@ -977,7 +977,7 @@ document.querySelector('.arrow.down img').onclick = function() {
   clickSoundDown.play();
   
   const targetScroll = window.scrollY + window.innerHeight / 2;
-  const step = (targetScroll - window.scrollY) / 50; // adjust this value to control the scroll speed
+  const step = (targetScroll - window.scrollY) / 20; // adjust this value to control the scroll speed
   
   function scroll() {
     if (Math.abs(targetScroll - window.scrollY) < Math.abs(step)) {
@@ -1043,6 +1043,7 @@ goTopButton.addEventListener('click', () => {
 </body>
 
 </html>
+
 
 
 
