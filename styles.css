@@ -702,7 +702,7 @@ div[style*="linear-gradient(to right"] {
     display: block !important;
     top: 594vh !important;
     z-index: 2 !important;
-     right: 14px !important;
+     right: 180px !important;
   }
  #goTop {
   
@@ -945,4 +945,5 @@ font-size: 20px ;
 
 
 }
+
 
