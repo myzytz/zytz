@@ -902,9 +902,7 @@ width: fit-content; /* or a specific width */
 height: fit-content; /* or a specific height */
 text-align: center;
 }
-  .footer {
-top: 10vw !important; /* adjust the value to move it up */
-}
+  
 
 .footer span {
 font-family: 'Montserrat', sans-serif !important;
@@ -1048,3 +1046,4 @@ height: auto;
 
 
 }
+
