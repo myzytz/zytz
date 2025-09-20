@@ -1048,7 +1048,7 @@ gokuTop.style.display = 'none';
 arrowUp.addEventListener('click', () => {
 window.scrollTo({ top: 0, behavior: 'smooth' });
 
-if (window.innerWidth <= 768 && window.matchMedia("(orientation: portrait)").matches) {
+if (window.innerWidth <= 900 && window.matchMedia("(orientation: portrait)").matches) {
 clickSound.currentTime = .9;
 clickSound.play();
 
@@ -1068,7 +1068,7 @@ gokuTopP.style.display = 'block';
 });
 
 window.addEventListener('resize', () => {
-if (window.innerWidth > 768) {
+if (window.innerWidth > 900) {
 goTop.style.display = 'none';
 gokuTop.style.display = 'none';
 } else {
@@ -1076,7 +1076,7 @@ goTop.style.display = 'block';
 }
 });
 
-if (window.innerWidth > 768) {
+if (window.innerWidth > 900) {
 goTop.style.display = 'none';
 gokuTop.style.display = 'none';
 } else {
@@ -1086,7 +1086,7 @@ goTop.style.display = 'block';
 // Arrow Up Slowly Appearing
 const goTopButton = document.getElementById('goTop');
 
-if (window.matchMedia("(max-width: 768px) and (orientation: portrait)").matches) {
+if (window.matchMedia("(max-width: 900px) and (orientation: portrait)").matches) {
   window.addEventListener('scroll', () => {
     if (window.scrollY > 500) {
       goTopButton.style.opacity = '0';
@@ -1115,6 +1115,7 @@ goTopButton.addEventListener('click', () => {
 </body>
 
 </html>
+
 
 
 
