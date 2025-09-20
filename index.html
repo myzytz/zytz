@@ -1086,27 +1086,25 @@ goTop.style.display = 'block';
 // Arrow Up Slowly Appearing
 const goTopButton = document.getElementById('goTop');
 
-if (window.matchMedia("(max-width: 900px) and (orientation: portrait)").matches) {
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 500) {
-      goTopButton.style.opacity = '0';
-      goTopButton.style.display = 'block';
-      let opacity = 0;
-      const fadeInterval = setInterval(() => {
-        opacity += 0.05;
-        goTopButton.style.opacity = opacity;
-        if (opacity >= 1) clearInterval(fadeInterval);
-      }, 20);
-    } else {
-      goTopButton.style.display = 'none';
-    }
-  });
+window.addEventListener('scroll', () => {
+if (window.scrollY + window.innerHeight >= document.body.offsetHeight) {
+goTopButton.style.opacity = '0';
+goTopButton.style.display = 'block';
+let opacity = 0;
+const fadeInterval = setInterval(() => {
+opacity += 0.05;
+goTopButton.style.opacity = opacity;
+if (opacity >= 1) clearInterval(fadeInterval);
+}, 20);
+} else {
+goTopButton.style.opacity = '0';
 }
+});
 
 goTopButton.addEventListener('click', () => {
-  clickSound.currentTime = .9;
-  clickSound.play();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+clickSound.currentTime = .9;
+clickSound.play();
+window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 </script>
 
@@ -1115,6 +1113,7 @@ goTopButton.addEventListener('click', () => {
 </body>
 
 </html>
+
 
 
 
