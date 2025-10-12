@@ -1,0 +1,2482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gunz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    *{
+    font-family: 'Montserrat', sans-serif !important;
+    }
+
+
+    body {
+      margin: 0;
+      background-image: linear-gradient(to right, #808080, #666666);
+      color: white;
+      overflow: hidden;
+    }
+    .header {
+      background-color: #333;
+      color: #fff;
+      padding: 29px;
+      text-align: center;
+      position: relative;
+    }
+
+    .header img  {
+      transition: transform 0.4s ease-in-out !important;
+    }
+
+     .header img:hover {
+       transform: scale(1.1) !important;
+
+     }
+
+    .play-all-button {
+  position: absolute;
+  top: -113px !important;
+  right: 0px !important;
+  background-color: dimgray;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+    .play-all-button:hover {
+      background-color: #cfbdcd;
+    }
+    .close-all-videos-button {
+  position: absolute;
+  top: -43px !important;
+  left: 2px !important;
+  background-color: dimgray;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+    .close-all-videos-button:hover {
+      background-color: #cfbdcd;
+    }
+    .video-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .video {
+      margin: 5px;
+    }
+    .video iframe {
+      width: 140px;
+      height: 250px;
+    }
+
+       #youtube-iframe { 
+        display: none; 
+        position: relative; 
+      }
+  #video-checkbox:checked ~ #youtube-iframe { 
+    display: block; 
+  
+  }
+  #video-checkbox { 
+    display: none; 
+  }
+
+  #close-button {
+    position: absolute;
+    top: -5px;
+    right: 3px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+    @media (max-width: 375px) {
+      body{
+    overflow-y: auto !important;
+
+      }
+      .header img{
+        position: absolute;
+        width: 65px !important;
+        height: auto;
+        bottom: 40px;
+        right: -5px !important;
+      }
+
+      .header h1{
+       font-size: 18px !important;
+      }
+      
+      .header p {
+        position: absolute;
+        font-size: 18px !important;
+        bottom: 5px;
+        right: 18px !important;
+      }
+      
+      #riffle img{
+       position: relative;
+       top: 5px;
+
+      }
+
+      .video iframe {
+    width: 110px;
+    height: 195px;
+  }
+
+      #cowboy-image-container #show-videos-button {
+    width: 50vw !important;
+  }
+      #cowboy-image-container label p {
+    font-size: 2.5vw !important;
+  }
+   #cowboy-image-container #youtube-iframe iframe {
+    width: 90vw !important;
+  }
+
+  #close-button {
+  position: absolute;
+  top: -1vw;
+  right: .1vw;
+  font-size: 4.5vw;
+  cursor: pointer;
+}
+
+    }
+
+    @media (min-width: 376px) and (max-width: 768px) {
+
+      .header img{
+        width: 80px !important;
+        height: auto;
+      }
+
+      .header p {
+        font-size: 25px !important;
+      }
+
+
+      #riffle img{
+       position: relative;
+       top: 5px;
+
+      }
+
+  .play-all-button {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background-color: dimgray;
+    color: #fff;
+    border: none;
+    padding: 0.3rem 0.7rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+
+  .video-row {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .video iframe {
+    width: 110px;
+    height: 195px;
+  }
+
+  .video {
+    margin: 5px;
+  }
+
+  .play-all-button, .close-all-videos-button {
+  font-size: 10px;
+  padding: 8px !important;
+}
+
+#show-videos-button {
+  cursor: pointer;
+  width: 200px !important; /* adjust the width to your desired size */
+  height: auto;
+  font-size: 100px !important;
+}
+
+
+#cowboy-image-container p {
+  font-size: 13px !important;
+}
+
+
+   #cowboy-image-container #show-videos-button {
+    width: 35vw !important;
+  }
+  #cowboy-image-container label p {
+    font-size: 1.3vw !important;
+    text-shadow: 0 0.5vw 0.5vw rgba(0, 0, 0, 0.9) !important;
+  }
+  #cowboy-image-container #youtube-iframe iframe {
+    width: 65vw !important;
+  }
+
+  #close-button {
+  position: absolute;
+  top: -1.5vw;
+  right: .1vw;
+  font-size: 4.3vw;
+  cursor: pointer;
+}
+
+
+}
+    .back-button-container {
+      position: fixed;
+      top: 6.5px;
+      left: 2px;
+      z-index: 1;
+    }
+    .back-button {
+      background-color: dimgray;
+      color: #fff;
+      border: none;
+      padding: 0.3rem 0.7rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .back-button:hover {
+      background-color: #cfbdcd;
+    }
+    .cowboy-image-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .show-videos-button {
+      background-color: dimgray;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+    }
+
+    .show-videos-button:hover {
+      background-color: #cfbdcd;
+    }
+
+ @media only screen and (min-width: 720px) and (max-width: 1024px) and (orientation: landscape) {
+
+#cowboy-image-container {
+  bottom: 30vh;
+}
+
+.cowboy-container{
+ transform: scale(1) translate(-49%, -57.5%) !important;
+  transform-origin: center !important;
+  border-radius: 1px !important;
+}
+
+.cowboy-container span {
+  top: -2vh !important;
+  right: .1vw !important;
+font-size: 25px !important;
+}
+
+
+  #show-videos-button {
+  width: 13vw !important;
+  height: auto !important;
+  cursor: pointer;
+}
+
+label[for="video-checkbox"] p {
+  font-size: .7vw !important;
+}
+
+
+.sword-container {
+  transform: scale(1.3) translate(-40%, -40%) !important;
+  transform-origin: center;
+  border-radius: 1px !important;
+}
+
+.sword-logo-container img{
+  width: 4vw !important;
+  height: auto !important;
+  cursor: pointer;
+}
+
+.sword-container span{
+  right: 1px !important;
+  top: -7px !important;
+  font-size: 23px !important;
+  
+}
+
+
+.mix-weapon-container {
+transform: scale(1.2) translate(-42%, -40%) !important;
+  transform-origin: center !important;
+  border-radius: 1px !important;
+}
+
+.mix-weapon-logo-container img {
+
+  width: 3.3vw !important;
+  height: auto !important;
+  cursor: pointer;
+
+}
+
+.mix-weapon-container span{
+  right: -.9vw !important ;
+  top: -15px !important;
+  font-size: 23px !important;
+}
+
+
+#riffle img {
+  width: 6vw !important; /* increased from 5vw */
+  height: auto;
+}
+
+.video-container {
+  height: 65vh !important; /* Set a fixed height */
+  overflow-y: auto; /* Make it scrollable vertically */
+}
+
+
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="header">
+  <h1 id="Weaponz" style="font-size: 25px; color: #746f6f; text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white, 3px 3px 8px rgb(177, 166, 74); cursor: pointer;">Weapon Arsenals</h1>
+  <a href="CS.html" onclick="return playSound('logoSound', this)" style="position: absolute; bottom: 20px; right: 5px; text-align: center;">
+  <div id="riffle" style="position: absolute; bottom: -10px; right: 5px; text-align: center;">
+  <img src="CS1/riffle logo.png" alt="Logo" style="width: 5vw; height: auto;">
+</div>
+  <audio id="logoSound" src="sounds/crack.weba"></audio>
+</a>
+</div>
+  
+  <div id="videos-and-play-button" style="display: none;">
+    <div class="play-all-button-container" style="text-align: center; margin-bottom: 10px; position: relative;">
+      <button class="play-all-button" id="play-all-button" style="position: absolute; top: -60px; right: 10px;">Load & Fire!</button>
+      <button class="close-all-videos-button" id="close-all-videos-button" style="position: absolute; top: -60px; left: 10px;">Close All Videos</button>
+    </div>
+    <div class="video-container">
+      <div class="video-row">
+        <!-- Video 1 -->
+        <div class="video">
+          <div id="video1"></div>
+        </div>
+        <!-- Video 2 -->
+        <div class="video">
+          <div id="video2"></div>
+        </div>
+        <!-- Video 3 -->
+        <div class="video">
+          <div id="video3"></div>
+        </div>
+      </div>
+      <div class="video-row">
+        <!-- Video 4 -->
+        <div class="video">
+          <div id="video4"></div>
+        </div>
+        <!-- Video 5 -->
+        <div class="video">
+          <div id="video5"></div>
+        </div>
+        <!-- Video 6 -->
+        <div class="video">
+          <div id="video6"></div>
+        </div>
+      </div>
+      <div class="video-row">
+        <!-- Video 7 -->
+        <div class="video">
+          <div id="video7"></div>
+        </div>
+        <!-- Video 8 -->
+        <div class="video">
+          <div id="video8"></div>
+        </div>
+        <!-- Video 9 -->
+        <div class="video">
+          <div id="video9"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+ <!-- Cellphone -->
+
+<div class="cp-logo-container" style="mix-blend-mode: multiply; position: fixed; bottom: 0.5vh; left: 50vw; transform: translateX(-50%); z-index: 1;">
+  <img src="cp/cp-logo.JPG" alt="Cellphone Logo" style="width: 2vw; height: auto; cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onclick="toggleCp()">
+</div>
+
+<div class="cp-container" style="display: none; max-width: 62.5vw; margin: 4.6875vh auto 2.08333vh; flex-wrap: wrap; justify-content: center; background-color: #3d3b3b; padding: 1.04167vw; border-radius: 2px; box-shadow: 0 0 0.520833vw rgba(0, 0, 0, 0.3); position: relative;">
+  <div style="width: 100%; text-align: right; margin-bottom: 0.520833vh; position: absolute; top: -.9vh; right: .2vw;">
+    <span style="cursor: pointer; font-size: 4vh;" onclick="toggleCp()">×</span>
+  </div>
+  <h2 id="classic-cell-phones" style="width: 100%; text-align: center; margin-bottom: 1.04167vh; font-size: 2.08333vh; cursor: pointer; transition: transform 0.2s ease-in-out; z-index: 1; position: relative;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onclick="var audio = document.getElementById('classic-sound'); audio.paused ? audio.play() : audio.pause()">Classic Cell-Phones</h2>
+  <audio id="classic-sound" src="sounds/scizzie.weba" preload="auto"></audio>
+  <div class="phone">
+  <img src="cp/6150.png" alt="Nokia 6150" style="height: 21vh;" onclick="this.src = this.src.endsWith('6150.png') ? 'cp/6150a.png' : 'cp/6150.png'; this.style.height = this.src.endsWith('6150a.png') ? '18vh' : '21vh'">
+  <div class="phone-name">Nokia 6150</div>
+</div>
+  <div class="phone">
+    <img src="cp/qual.png" alt="qual" style="height: 18vh;" onclick="this.src = this.src.endsWith('qual.png') ? 'cp/quala.png' : 'cp/qual.png'">
+    <div class="phone-name">Qcp 2700</div>
+  </div>
+  <div class="phone">
+  <img src="cp/pager.png" alt="Pager" style="position: relative; top: 5vh; height: 8.5vh;" onclick="this.src = this.src.endsWith('pager.png') ? 'cp/pagera.png' : 'cp/pager.png'; this.style.height = this.src.endsWith('pagera.png') ? '9.5vh' : '8.5vh'">
+  <div class="phone-name" style="position: relative; top: 5vh;" >Spok Pager</div>
+</div>
+  <div class="phone">
+    <img src="cp/8110a.png" alt="Nokia 8110" style="height: 18.5vh;" onclick="this.src = this.src.endsWith('8110a.png') ? 'cp/8110.png' : 'cp/8110a.png'">
+    <div class="phone-name">Nokia 8110</div>
+  </div>
+  <div class="phone">
+    <img src="cp/7110a.png" alt="Nokia 7110" style="height: 17.5vh;" onclick="this.src = this.src.endsWith('7110a.png') ? 'cp/7110.png' : 'cp/7110a.png'">
+    <div class="phone-name">Nokia 7110</div>
+  </div>
+  <div class="phone">
+    <img src="cp/3310.png" alt="Nokia 3310" style="height: 13.8889vh;" onclick="this.src = this.src.endsWith('.png') ? 'cp/3310a.gif' : this.src.endsWith('3310a.gif') ? 'cp/3310.gif' : 'cp/3310.png'">
+    <div class="phone-name">Nokia 3310</div>
+  </div>
+  <div class="phone">
+   <img src="cp/8890.png" alt="Nokia 8890" style="height: 13vh;" onclick="this.src = this.src.endsWith('8890.png') ? 'cp/8890a.png' : 'cp/8890.png'">
+    <div class="phone-name">Nokia 8890</div>
+  </div>
+   <div class="phone">
+    <img src="cp/1100.png" alt="Nokia 1100" style="height: 13.8889vh;" onclick="this.src = this.src.endsWith('.png') ? 'cp/1100.gif' : 'cp/1100.png'">
+    <div class="phone-name">Nokia 1100</div>
+  </div>
+  <div class="phone">
+   <img src="cp/8210.png" alt="Nokia 8210" style="height: 12.96296vh;" onclick="this.src = this.src.endsWith('8210.png') ? 'cp/8210a.png' : this.src.endsWith('8210a.png') ? 'cp/8210b.png' : 'cp/8210.png'">
+    <div class="phone-name">Nokia 8210</div>
+  </div>
+  <div class="phone">
+    <img src="cp/1600.png" alt="Nokia 1600" style="height: 13.8889vh;" onclick="this.src = this.src.endsWith('1600.png') ? 'cp/1600a.png' : 'cp/1600.png'">
+    <div class="phone-name">Nokia 1600</div>
+  </div>
+  <div class="phone">
+    <img src="cp/7250.png" alt="Nokia 7250" style="height: 13.8889vh;" onclick="this.src = this.src.endsWith('7250.png') ? 'cp/7250a.png' : 'cp/7250.png'">
+    <div class="phone-name">Nokia 7250</div>
+  </div>
+  <div class="phone">
+  <img src="cp/2760.png" alt="Nokia 2760" style="height: 11vh;" onclick="this.src = this.src.endsWith('2760.png') ? 'cp/2760a.png' : 'cp/2760.png'; this.style.height = this.src.endsWith('2760a.png') ? '17vh' : '12.037vh'">
+  <div class="phone-name">Nokia 2760</div>
+</div>
+  <div class="phone">
+    <img src="cp/2660a.png" alt="Nokia 2660" style="height: 13vh;" onclick="this.src = this.src.endsWith('2660a.png') ? 'cp/2660.png' : 'cp/2660a.png'; this.style.height = this.src.endsWith('2660.png') ? '22.2222vh' : '13vh'">
+    <div class="phone-name">Nokia 2660</div>
+  </div>
+
+  
+  
+</div>
+
+    <style>
+      .cp-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .phone {
+            flex-basis: calc(20% - 20px);
+            margin: 10px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .phone img {
+            object-fit: contain;
+            transition: transform 0.2s;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .phone img:hover {
+            transform: scale(1.1);
+        }
+        
+        .phone-name {
+            font-size: .7vw;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+  /* Mobile portrait only (max-width: 375px) */
+  @media only screen and (max-width: 375px) {
+
+    .cp-container {
+            max-width: 345px !important; 
+        }
+    
+    .cp-container h2{
+      font-size: 13px !important;
+      width: 172.6px !important;
+      height: auto !important;
+      padding: 0 !important;
+    }
+
+    .cp-logo-container img{
+      width: 23px !important;
+    }    
+
+    .cp-container span{
+     font-size: 30px !important;
+    }
+
+  .phone {
+  flex-basis: calc(50% - 20px);
+  margin: 10px !important;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Nokia 6150 */
+img[alt="Nokia 6150"] {
+  width: 80px !important;
+  height: auto !important;
+}
+img[src*="6150a.png"] {
+  width: 43px !important;
+  height: auto !important;
+}
+
+/* Qcp 2700 */
+img[alt="qual"] {
+  width: 45px !important;
+  height: auto !important;
+}
+img[src*="quala.png"] {
+  width: 40px !important;
+  height: auto !important;
+}
+
+/* Spok Pager */
+img[alt="Pager"] {
+  width: 85px !important;
+  height: auto !important;
+}
+
+/* Nokia 8110 */
+img[alt="Nokia 8110"] {
+  width: 40px !important;
+  height: auto !important;
+}
+img[src*="8110.png"] {
+  width: 85px !important;
+  height: auto !important;
+}
+
+/* Nokia 3310 */
+img[src*="3310.png"] {
+  width: 45px !important;
+  height: auto !important;
+}
+img[src*="3310.gif"] {
+  width: 65px !important;
+  height: auto !important;
+}
+img[src*="3310a.gif"] {
+  width: 65px !important;
+  height: auto !important;
+}
+
+/* Nokia 7110 */
+img[alt="Nokia 7110"] {
+  width: 47px !important;
+  height: auto !important;
+}
+
+/* Nokia 8890 */
+img[alt="Nokia 8890"] {
+  width: 41px !important;
+  height: auto !important;
+}
+img[src*="8890a.png"] {
+  width: 80px !important;
+  height: auto !important;
+}
+
+/* Nokia 1100 */
+img[alt="Nokia 1100"] {
+  width: 50px !important;
+  height: auto !important;
+}
+img[src*="1100.gif"] {
+  width: 55px !important;
+  height: auto !important;
+}
+
+/* Nokia 8210 */
+img[alt="Nokia 8210"] {
+  width: 62px !important;
+  height: auto !important;
+}
+img[src*="8210a.png"] {
+  width: 60px !important;
+  height: auto !important;
+}
+img[src*="8210b.png"] {
+  width: 60px !important;
+  height: auto !important;
+}
+
+/* Nokia 1600 */
+img[alt="Nokia 1600"] {
+  width: 51px !important;
+  height: auto !important;
+}
+img[src*="1600a.png"] {
+  width: 42px !important;
+  height: auto !important;
+}
+
+/* Nokia 7250 */
+img[alt="Nokia 7250"] {
+  width: 46px !important;
+  height: auto !important;
+}
+
+/* Nokia 7250 */
+img[alt="Nokia 2760"] {
+  width: 50px !important;
+  height: auto !important;
+}
+img[src*="2760a.png"] {
+  width: 70px !important;
+  height: auto !important;
+}
+
+/* Nokia 2660 */
+img[alt="Nokia 2660"] {
+  width: 55px !important;
+  height: auto !important;
+}
+img[src*="2660.png"] {
+  width: 70px !important;
+  height: auto !important;
+}
+
+.phone-name {
+  font-size: 8.5px; /* Adjust font size */
+}
+
+}
+
+@media only screen and (min-width: 376px) and (max-width: 1024px) {
+  .cp-container {
+    max-width: 90vw !important;
+    overflow-x: auto !important;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-end; /* Align items to bottom */
+  }
+.cp-container h2{
+      font-size: 13px !important;
+      width: 388.9px !important;
+      height: auto !important;
+      padding: 0 !important;
+    }
+
+  .cp-logo-container img{
+    width: 30px !important;
+  }    
+
+  .cp-container span{
+    font-size: 35px !important;
+  }
+
+  .phone {
+    margin: 10px !important;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+
+.phone img[src*="pager.png"], .phone img[src*="pagera.png"],
+.phone img[src*="pager.png"] + .phone-name, .phone img[src*="pagera.png"] + .phone-name {
+  position: relative !important;
+  top: -5vh !important;
+} 
+  
+
+  img[alt="qual"] {
+    height: 18vh  !important;
+  }
+
+  img[alt="Nokia 3310"] {
+    height: 13.5vh !important;
+  }
+
+  img[alt="Nokia 1100"] {
+    height: 13vh !important;
+  }
+
+  img[alt="Nokia 8890"] {
+    height: 13vh !important;
+  }
+
+  img[alt="Nokia 7110"] {
+    height: 19.4444vh;
+  }
+
+  img[alt="Nokia 8210"] {
+    height: 12.96296vh;
+  }
+
+  img[alt="Nokia 7250"] {
+    height: 13.8889vh;
+  }
+
+  img[alt="Nokia 1600"] {
+    height: 13.8889vh;
+  }
+
+  img[alt="Nokia 2760"] {
+    height: 12.037vh;
+  }
+
+  img[alt="Nokia 2660"] {
+    height: 23vh;
+  }
+
+  img[alt="Nokia 6150"] {
+    height: 23vh;
+  }
+
+  .phone-name {
+    font-size: 10px;
+    text-align: center;
+  }
+}
+
+/* FOR TABLET LANDSCAPE ORIENTATION targeted my tablet tab M8 HD */
+@media only screen and (min-width: 720px) and (max-width: 1024px) and (orientation: landscape) {
+
+  .cp-logo-container img{
+    width: 18px !important;
+  }   
+
+  .phone-name {
+    font-size: 8px;
+    text-align: center;
+  }
+
+  .cp-container {
+    top: -28.5vh;
+    max-width: 80vw !important;
+    overflow-x: auto !important;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-end; /* Align items to bottom */
+  }
+
+  .cp-container span{
+   
+font-size: 25px !important;
+  }
+}
+
+
+    </style>
+ 
+ <script>
+// CP Hide and Show Section
+     function toggleCp() {
+  var cpContainer = document.querySelector('.cp-container');
+  var cpLogoContainer = document.querySelector('.cp-logo-container');
+  var cowboyImageContainer = document.querySelector('.cowboy-image-container');
+  var swordLogoContainer = document.querySelector('.sword-logo-container');
+  var mixWeaponLogoContainer = document.querySelector('.mix-weapon-logo-container');
+
+  if (cpContainer.style.display === 'none' || cpContainer.style.display === '') {
+    cpContainer.style.display = 'flex';
+    cpLogoContainer.style.display = 'none';
+    cowboyImageContainer.style.display = 'none';
+    swordLogoContainer.style.display = 'none';
+    mixWeaponLogoContainer.style.display = 'none';
+  } else {
+    cpContainer.style.display = 'none';
+    cpLogoContainer.style.display = 'block'; 
+    cowboyImageContainer.style.display = 'block'; 
+    swordLogoContainer.style.display = 'block'; 
+    mixWeaponLogoContainer.style.display = 'block'; 
+  }
+}
+</script>
+
+ <!-- Cellphone -->
+
+
+
+ <!-- Swordz in History -->
+
+ <div class="sword-logo-container" style="position: fixed; top: 130px; left: 10px; z-index: 1;">
+  <img src="swordz/Slogo.png" alt="Sword Logo" style="width: 4.427vw; height: auto; cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onclick="toggleSwords()">
+</div>
+
+
+
+<div class="sword-container" style="position: absolute; top: 50vh; left: 50vw; transform: translate(-50%, -50%); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2.083vh; display: none; background-color: #3d3b3b; border: 0.052vw solid #999393; border-radius: 5px; box-shadow: 0 0 1.042vh rgba(0, 0, 0, 0.1);">
+    <div style="width: 100%; display: flex; justify-content: flex-end;">
+        <span style="font-size: 4vh; cursor: pointer; color: #fff; position: fixed; top: -0.833vh; right: .2vw;" onclick="document.querySelector('.sword-container').style.display = 'none'; document.getElementById('cowboy-image-container').style.display = 'flex';">&times;</span>
+    </div>
+    <h1 style="margin-bottom: 5.208vh; font-size: 2.5vh; color: #fff;">Famous Swords</h1>
+    <div id="famous-swords" style="display: grid; grid-template-columns: repeat(5, 1fr); justify-items: center; gap: 1.042vh;">
+      
+       
+        
+        <div class="sword" style="text-align: center;">
+  <img src="swordz/Ulfberht.png" 
+       style="cursor: pointer; max-width: 7.813vw; max-height: 13.889vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('Ulfberht').play()">
+  <h2 style="font-size: 1.042vh; font-weight: normal; margin-top: 1.042vh;">Ulfberht Sword</h2>
+  <audio id="Ulfberht" src="swordz/Ulfberht.weba"></audio>
+      </div>
+        <div class="sword" style="text-align: center;">
+  <img src="swordz/katana.png" 
+       style="cursor: pointer; max-width: 10.417vw; max-height: 13.889vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('katana').play()">
+  <h2 style="font-size: 1.042vh; font-weight: normal; margin-top: 1.042vh;">Dōjigatana Sword</h2>
+  <audio id="katana" src="swordz/katana.weba"></audio>
+</div>
+
+<div class="sword" style="text-align: center;">
+  <img src="swordz/scimitar.png" 
+       style="cursor: pointer; max-width: 4.167vw; max-height: 13.889vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('scimitar').play()">
+  <h2 style="font-size: 1.042vh; font-weight: normal; margin-top: 1.042vh;">Scimitar Sword</h2>
+  <audio id="scimitar" src="swordz/Scimitar.weba"></audio>
+</div>
+
+<div class="sword" style="text-align: center;">
+  <img src="swordz/broadsword.png" 
+       style="cursor: pointer; max-width: 15.625vw; max-height: 13.889vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('broadsword').play()">
+  <h2 style="font-size: 1.042vh; font-weight: normal; margin-top: 0.104vh;">Broad Sword</h2>
+  <audio id="broadsword" src="swordz/broadsword.weba"></audio>
+</div>
+
+<div class="sword" style="text-align: center;">
+  <img src="swordz/medieval.png" 
+       style="cursor: pointer; max-width: 2.344vw; max-height: auto; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('medieval').play()">
+  <h2 style="font-size: 1.042vh; font-weight: normal; margin-top: 0.104vh;">Medieval Sword</h2>
+  <audio id="medieval" src="swordz/Medieval.weba"></audio>
+</div>
+
+<div class="sword" style="text-align: center;">
+  <img src="swordz/saber.png" 
+       style="cursor: pointer; max-width: 7.813vw; max-height: 13.889vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('saber').play()">
+  <h2 style="font-size: 1.042vh; font-weight: normal; margin-top: 0.104vh;">Saber Sword</h2>
+  <audio id="saber" src="swordz/Saber.weba"></audio>
+</div>
+
+<div class="sword" style="text-align: center;">
+  <img src="swordz/xiphos.png" 
+       style="cursor: pointer; max-width: 11.458vw; max-height: 13.889vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('xiphos').play()">
+  <h2 style="font-size: 1.042vh; font-weight: normal; margin-top: 1.042vh;">Xiphos Sword</h2>
+  <audio id="xiphos" src="swordz/xiphos.weba"></audio>
+</div>
+
+<div class="sword" style="text-align: center;">
+  <img src="swordz/kampilan.png" 
+       style="cursor: pointer; max-width: 11.979vw; max-height: 13.889vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('kampilan').play()">
+  <h2 style="font-size: 1.042vh; font-weight: normal; margin-top: 1.042vh;">Kampilan Sword</h2>
+  <audio id="kampilan" src="swordz/kampilan.weba"></audio>
+</div>
+
+<div class="sword" style="text-align: center;">
+  <img src="swordz/ninjato.png" 
+       style="cursor: pointer; max-width: 10.938vw; max-height: 13.889vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('ninjato').play()">
+  <h2 style="font-size: 1.042vh; font-weight: normal; margin-top: 1.042vh;">Ninjato Sword</h2>
+  <audio id="ninjato" src="swordz/ninjato.weba"></audio>
+</div>
+
+<div class="sword" style="text-align: center;">
+  <img src="swordz/Gladius.png" 
+       style="cursor: pointer; max-width: 10.938vw; max-height: 13.889vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('gladius').play()">
+  <h2 style="font-size: 1.042vh; font-weight: normal; margin-top: 1.042vh;">Gladius Sword</h2>
+  <audio id="gladius" src="swordz/gladius.weba"></audio>
+</div>
+        
+    </div>
+</div>
+
+<style>
+
+
+   @media (min-width: 376px) and (max-width: 768px) {
+
+    
+  .sword-container h1 {
+    position: absolute;
+    top: 10px !important;
+  }
+
+  .sword-logo-container img{
+      position: absolute;
+       top: 5px !important;
+       width: 50px !important;
+      height: auto !important;
+     }
+
+     .sword-container span{
+      position: absolute; 
+      top: -10px !important; 
+      right: 3px !important;
+      font-size: 35px !important;
+
+     }
+
+
+  .sword-container h2 {
+      font-size: 7px !important;
+    }
+    
+    .sword-container h1 {
+      font-size: 13px !important;
+    }
+
+  .sword-container {
+    padding-top: 120px !important; 
+    padding-bottom: 20px !important; 
+  position: absolute;
+  top: 58% !important;
+  width: 85% !important;
+  height: 61% !important;
+  max-height: 100% !important; /* adjust max height */
+  overflow-y: auto;
+}
+   #famous-swords {
+  position: relative !important;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) !important;
+  top: 60px !important;
+  align-items: end;
+  row-gap: 5px !important;
+  column-gap: 50px !important;
+  left: 5px !important;
+}
+    .sword img {
+    width: 70% !important;
+    height: auto !important;
+    margin: 1px; /* adjust margin */
+    padding: 0; /* adjust padding */
+   overflow-y: auto !important;
+    object-fit: contain !important; /* or object-fit: cover; */
+}
+
+    img[src*="Ulfberht"] {
+      max-width: 200px !important;
+      width: 100px !important;
+      height: auto !important;
+    }
+
+    img[src*="katana"] {
+        max-width: 250px !important; 
+        width: 130px !important;
+        
+    }
+
+    img[src*="scimitar"] {
+        max-width: 250px !important; 
+        width: 60px !important;
+    }
+
+
+    img[src*="broadsword"] {
+        max-width: 200px !important; 
+        width: 100px !important;
+        
+    }
+
+    img[src*="xiphos"] {
+        max-width: 100px !important; 
+        width: 60px !important;
+    }
+
+    img[src*="medieval"] {
+    width: 35px !important;
+    max-width: 40px !important; 
+    max-height: auto !important;
+}
+
+    img[src*="saber"] {
+        max-width: 155px !important; 
+        max-height: auto !important;
+    }
+    
+
+
+    img[src*="kampilan"] {
+      
+        max-width: 300px !important; 
+        width: 145px !important;
+        
+    }
+
+    img[src*="ninjato"] {
+        max-width: 300px !important; 
+        width: 140px !important; 
+      
+        
+    }
+    img[src*="Gladius"] {
+      
+        max-width: 100px !important; 
+        width: 90px !important;
+        
+        
+    }
+
+}
+
+
+@media (max-width: 375px) {
+
+  .sword-container h1 {
+    position: absolute;
+    top: 10px !important;
+  }
+
+  .sword-logo-container img{
+      position: absolute;
+       top: -20px !important;
+       width: 50px !important;
+      height: auto !important;
+     }
+
+     .sword-container span{
+      position: absolute; 
+      top: -5px !important; 
+      right: 3px !important;
+      font-size: 25px !important;
+
+     }
+
+
+  .sword-container h2 {
+      font-size: 8px !important;
+    }
+    
+    .sword-container h1 {
+      font-size: 13px !important;
+    }
+
+  .sword-container {
+    padding-top: 240px !important; 
+    padding-bottom: 1px !important; 
+  position: absolute;
+  top: 58% !important;
+  width: 90% !important;
+  height: 44% !important;
+  max-height: 150vh !important; /* adjust max height */
+  overflow-y: auto;
+}
+    #famous-swords {
+      position: absolute !important;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 35px !important;
+        top: 60px !important;
+        left: 15px !important;
+        
+    }
+    .sword img {
+    width: 70% !important;
+    height: auto !important;
+    margin: 1px; /* adjust margin */
+    padding: 0; /* adjust padding */
+   overflow-y: auto !important;
+    object-fit: contain !important; /* or object-fit: cover; */
+}
+
+
+
+
+    img[src*="Ulfberht"] {
+      max-width: 300px !important;
+      width: 90px !important;
+      
+    }
+
+    img[src*="katana"] {
+      position: relative;
+      right: 10px;
+        max-width: 250px !important; 
+        width: 130px !important;
+    }
+
+    img[src*="scimitar"] {
+        max-width: 250px !important; 
+        width: 50px !important;
+    }
+
+    img[src*="broadsword"] {
+        max-width: 250px !important; 
+        width: 130px !important;
+    }
+
+    img[src*="xiphos"] {
+        max-width: 100px !important; 
+        width: 40px !important;
+    }
+
+    img[src*="medieval"] {
+    width: 30px !important;
+    max-width:40px !important; 
+    max-height: auto !important;
+}
+
+    img[src*="saber"] {
+        max-width: 135px !important; 
+        max-height: auto !important;
+    }
+    
+
+
+    img[src*="kampilan"] {
+      position: relative;
+      right: 10px;
+        max-width: 300px !important; 
+        width: 135px !important;
+        
+    }
+
+    img[src*="ninjato"] {
+      position: relative;
+      left: 10px;
+        max-width: 200px !important; 
+        width: 140px !important;
+        
+    }
+    img[src*="Gladius"] {
+      
+        max-width: 100px !important; 
+        width: 40px !important;
+        
+        
+    }
+
+}
+</style>
+
+
+<script>
+//show swordz
+function toggleSwords() {
+  let swordContainer = document.querySelector('.sword-container');
+  let swordLogoContainer = document.querySelector('.sword-logo-container');  
+  let showVideosButtonContainer = document.getElementById('cowboy-image-container');
+  let cpLogoContainer = document.querySelector('.cp-logo-container');
+  document.querySelector('.mix-weapon-logo-container').style.display = 'none';
+  if (swordContainer.style.display === 'flex') {
+    swordContainer.style.display = 'none';
+    swordLogoContainer.style.display = 'block';
+    cpLogoContainer.style.display = 'block';
+    showVideosButtonContainer.style.display = 'flex';
+  } else {
+    swordContainer.style.display = 'flex';
+    swordLogoContainer.style.display = 'none';
+    cpLogoContainer.style.display = 'none';
+    showVideosButtonContainer.style.display = 'none';
+  }
+}
+
+//close button for weapons
+document.querySelector('.sword-container span').addEventListener('click', function() {
+  document.querySelector('.sword-container').style.display = 'none';
+  document.querySelector('.sword-logo-container').style.display = 'block';
+  document.querySelector('.cp-logo-container').style.display = 'block';
+  document.querySelector('.mix-weapon-logo-container').style.display = 'block';
+  document.getElementById('cowboy-image-container').style.display = 'flex';
+});
+</script>
+
+
+<!--Cowboy Guns Section-->
+<div class="cowboy-container" style="position: absolute; top: 56.5vh; left: 50vw; transform: translate(-50%, -52%); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2vh; display: none; background-color: #3d3b3b; border: 0.1vw solid #999393; border-radius: 5px; box-shadow: 0 0 1vh rgba(0, 0, 0, 0.1);">
+    <div style="width: 100%; display: flex; justify-content: flex-end;">
+        <span style="font-size: 4vh; cursor: pointer; color: #fff; position: fixed; top: -1vh; right: .2vw;" onclick="document.querySelector('.sword-container').style.display = 'none'; document.getElementById('cowboy-image-container').style.display = 'flex';">&times;</span>
+    </div>
+    <h1 style="margin-bottom: 5vh; font-size: 2.4vh; color: #fff;">Famous Cowboy Gunz</h1>
+    <div id="famous-guns" style="display: grid; grid-template-columns: repeat(5, 1fr); justify-items: center; gap: 1vh;">
+      
+       <div class="pistol" style="text-align: center;">
+  <img src="cowboy/PM.png" 
+       style="cursor: pointer; max-width: 9vw; max-height: 11.05vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('colt').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Colt PM</h2>
+  <audio id="colt" src="cowboy/colt.weba"></audio>        
+    </div>
+        
+        <div class="pistol" style="text-align: center;">
+  <img src="cowboy/00magnum.png" 
+       style="cursor: pointer; max-width: 9vw; max-height: 11.05vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('magnum').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">.44 Magnum Revolver</h2>
+  <audio id="magnum" src="cowboy/magnum.weba"></audio>              
+    </div>
+    <div class="pistol" style="text-align: center;">
+  <img src="cowboy/DG.png" 
+       style="cursor: pointer; max-width: 11.05vw; max-height: auto; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('DG').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">DG Revolver</h2>
+  <audio id="DG" src="cowboy/DG.weba"></audio>              
+    </div>
+    <div class="pistol" style="text-align: center;">
+  <img src="cowboy/LeMat.png" 
+       style="cursor: pointer;  max-width: 9.5vw; max-height: 11.05vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('lemat').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">LeMat Revolver</h2>
+  <audio id="lemat" src="cowboy/lemat.weba"></audio>              
+    </div>
+    <div class="pistol" style="text-align: center;">
+  <img src="cowboy/python1.png" 
+       style="cursor: pointer;  max-width: 9vw; max-height: 11.05vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('phyton').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Colt Python</h2>
+  <audio id="phyton" src="cowboy/phyton.weba"></audio>              
+    </div>
+    <div class="pistol" style="text-align: center;">
+  <img src="cowboy/schofield.png" 
+       style="cursor: pointer;  max-width: 9vw; max-height: 11.05vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('Schofield ').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Schofield Revolver</h2>
+  <audio id="Schofield " src="cowboy/Schofield.weba"></audio>              
+    </div>
+    <div class="pistol" style="text-align: center;">
+  <img src="cowboy/magnum44.png" 
+       style="cursor: pointer;  max-width: 9vw; max-height: 11.05vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('44').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">.44 Magnum</h2>
+  <audio id="44" src="cowboy/44.weba"></audio>              
+    </div>
+    <div class="pistol" style="text-align: center;">
+  <img src="cowboy/cross1.png" 
+       style="cursor: pointer;  max-width: 11.05vw; max-height: auto; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('cross').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Cross Revolver</h2>
+  <audio id="cross" src="cowboy/cross.weba"></audio>              
+    </div>
+    <div class="pistol" style="text-align: center;">
+  <img src="cowboy/pistol.png" 
+       style="cursor: pointer;  max-width: 9vw; max-height: 11.05vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('classic').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Remington Revolver</h2>
+  <audio id="classic" src="cowboy/classic.weba"></audio>              
+    </div>
+    <div class="pistol" style="text-align: center;">
+  <img src="cowboy/SW.png" 
+       style="cursor: pointer;  max-width: 9vw; max-height: 11.05vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('SW').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Smith & Wesson</h2>
+  <audio id="SW" src="cowboy/SW.weba"></audio>              
+    </div>
+    
+    <div class="pistol" style="text-align: center;">
+  <img src="cowboy/nagant.png" 
+       style="cursor: pointer;  max-width: 10vw; max-height: auto; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('nag').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Nagant Revolver</h2>
+  <audio id="nag" src="cowboy/nagant.weba"></audio>              
+    </div>
+    <div class="pistol" style="text-align: center;">
+  <img src="cowboy/walker.png" 
+       style="cursor: pointer;  max-width: 10.5vw; max-height: 11.05vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('walk').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Colt Walker </h2>
+  <audio id="walk" src="cowboy/walk.weba"></audio>              
+    </div>
+<div class="pistol" style="text-align: center;">
+  <img src="cowboy/ancient.png" 
+       style="cursor: pointer;  max-width: 8.5vw; max-height: auto; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('anc').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Ancient Pistol </h2>
+  <audio id="anc" src="cowboy/ancient.weba"></audio>              
+    </div>
+    <div class="pistol" style="text-align: center;">
+  <img src="cowboy/MH.png" 
+       style="cursor: pointer;  max-width: 9.945vw; max-height: 11.05vh; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('mh').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Merwin Hulbert & Co.</h2>
+  <audio id="mh" src="cowboy/MH.weba"></audio>              
+    </div>
+    <div class="" style="text-align: center;">
+  <img src="cowboy/Flintlock.png" 
+       style="cursor: pointer;  max-width: 11vw; max-height: auto; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('fl').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Flintlock </h2>
+  <audio id="fl" src="cowboy/flint.weba"></audio>              
+    </div>
+    <div class="small" style=" display: none; text-align: center;">
+  <img src="cowboy/small1.png" 
+       style=" cursor: pointer;  max-width: 5.525vw; max-height: auto; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('vin').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Vintage Gun</h2>
+  <audio id="vin" src="cowboy/vin.weba"></audio>              
+    </div>
+
+</div>
+</div>
+
+<div class="cowboy-image-container" id="cowboy-image-container" style="display: flex; flex-direction: column; align-items: center;">
+  <input type="checkbox" id="video-checkbox">
+  <img src="CS1/cowboy.png" id="show-videos-button" style="width: 15vw; height: auto; cursor: pointer;">
+  <label for="video-checkbox"><p style="cursor: pointer; text-align: center; font-weight:bold; font-size: .7vw; text-shadow: 0 0.2vw 0.2vw rgba(0, 0, 0, 0.9); margin-top: -0.1vw;">They call me Trinity</p></label>
+  <div id="youtube-iframe">
+    <span id="close-button" onclick="document.getElementById('video-checkbox').checked = false;">&times;</span>
+    <iframe style="width: 30vw; aspect-ratio: 16 / 9;" src="" 
+  title="YouTube video player" frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+  </div>
+</div>
+
+<style>
+
+@media (min-width: 376px) and (max-width: 768px) {
+
+  .cowboy-container h1 {
+    position: absolute;
+    top: 10px !important;
+  }
+
+  .gun-logo-container img{
+      position: absolute;
+       top: -20px !important;
+       width: 100px !important;
+      height: auto !important;
+     }
+
+     .cowboy-container span{
+      position: absolute; 
+      top: -9px !important; 
+      right: 3px !important;
+      font-size: 35px !important;
+
+     }
+
+
+  .cowboy-container h2 {
+      font-size: 8.5px !important;
+    }
+    
+    .cowboy-container h1 {
+      font-size: 13px !important;
+    }
+
+  .cowboy-container {
+    padding-top: 240px !important; 
+    padding-bottom: 1px !important; 
+  position: absolute;
+  top: 58% !important;
+  width: 84% !important;
+  height: 44% !important;
+  max-height: 150vh !important; /* adjust max height */
+  overflow-y: auto;
+}
+    #famous-guns {
+      position: absolute !important;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 30px !important;
+        top: 60px !important;
+        left: 25px !important;
+        
+    }
+    .pistol img {
+    width: 70% !important;
+    height: auto !important;
+    margin: 1px; /* adjust margin */
+    padding: 0; /* adjust padding */
+   overflow-y: auto !important;
+    object-fit: contain !important; /* or object-fit: cover; */
+}
+
+.pistol-grid {
+  grid-gap: 5px; /* adjust grid gap */
+}
+
+
+    img[src*="PM"] {
+      max-width: 300px !important;
+      width: 150px !important;
+    }
+
+    img[src*="00magnum"] {
+        max-width: 250px !important; 
+        width: 150px !important;
+         transform: scaleX(-1) !important;
+    }
+
+    img[src*="00magnum"]:hover {
+    transform: scaleX(-1) scale(1.1) !important;
+}
+
+    img[src*="DG"] {
+        max-width: 250px !important; 
+        width: 160px !important;
+    }
+
+    img[src*="python1"] {
+        max-width: 300px !important; 
+        width: 160px !important;
+         transform: scaleX(-1) !important;
+    }
+
+    img[src*="python1"]:hover {
+    transform: scaleX(-1) scale(1.1) !important;
+}
+
+    img[src*="LeMat"] {
+    max-width: 300px !important; 
+        width: 160px !important;
+}
+
+    img[src*="schofield"] {
+        max-width: 300px !important; 
+        width: 150px !important;
+        transform: scaleX(-1) !important;
+    }
+
+    img[src*="schofield"]:hover {
+    transform: scaleX(-1) scale(1.1) !important;
+}
+    
+    img[src*="magnum44"] {
+        max-width: 250px !important; 
+        width: 155px !important;
+    }
+
+
+    img[src*="cross1"] {
+      
+        max-width: 300px !important; 
+        width: 165px !important;
+        
+    }
+
+    img[src*="pistol"] {
+      
+        max-width: 300px !important; 
+        width: 145px !important;
+      transform: scaleX(-1) !important;
+
+    }
+    img[src*="pistol"]:hover {
+    transform: scaleX(-1) scale(1.1) !important;
+}
+
+    
+    img[src*="SW"] {
+      
+        max-width: 200px !important; 
+        width:  150px !important;
+        
+        
+    }
+
+    img[src*="nagant"] {
+      
+        max-width: 200px !important; 
+        width:  155px !important;    
+    }
+
+    img[src*="walker"] {  
+     max-width: 300px !important; 
+    width: 200px !important;
+    transform: scaleX(-1) !important;
+    transition: transform 0.3s;
+}
+
+img[src*="walker"]:hover {
+    transform: scaleX(-1) scale(1.1) !important;
+}
+
+ img[src*="ancient"] {
+      
+        max-width: 200px !important; 
+        width:  140px !important;    
+    }
+
+     img[src*="MH"] {
+      
+        max-width: 200px !important; 
+        width:  170px !important;    
+    }
+
+    img[src*="Flintlock"] {  
+     max-width: 300px !important; 
+    width: 185px !important;
+    transform: scaleX(-1) !important;
+    transition: transform 0.3s;
+}
+
+img[src*="Flintlock"]:hover {
+    transform: scaleX(-1) scale(1.1) !important;
+}
+
+.small{
+  display: block !important;
+}
+
+ img[src*="small1"] {  
+     max-width: 300px !important; 
+    width: 145px !important;
+    
+    transition: transform 0.3s;
+}
+
+img[src*="small1"]:hover {
+     transform: scale(1.1) !important;
+}
+
+
+}
+
+
+@media (max-width: 375px) {
+  .cowboy-container h1 {
+    position: absolute;
+    top: 10px !important;
+  }
+
+  .gun-logo-container img{
+      position: absolute;
+       top: -20px !important;
+       width: 100px !important;
+      height: auto !important;
+     }
+
+     .cowboy-container span{
+      position: absolute; 
+      top: -6px !important; 
+      right: 3px !important;
+      font-size: 25px !important;
+
+     }
+
+
+  .cowboy-container h2 {
+      font-size: 8.5px !important;
+    }
+    
+    .cowboy-container h1 {
+      font-size: 13px !important;
+    }
+
+  .cowboy-container {
+    padding-top: 240px !important; 
+    padding-bottom: 1px !important; 
+  position: absolute;
+  top: 59.5% !important;
+  width: 84% !important;
+  height: 44% !important;
+  max-height: 150vh !important; /* adjust max height */
+  overflow-y: auto;
+   overflow-x: hidden;
+}
+    #famous-guns {
+      position: absolute !important;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 30px !important;
+        top: 60px !important;
+        left: -20px !important;
+        
+    }
+    .pistol img {
+    width: 70% !important;
+    height: auto !important;
+    margin: 1px; /* adjust margin */
+    padding: 0; /* adjust padding */
+   overflow-y: auto !important;
+    object-fit: contain !important; /* or object-fit: cover; */
+}
+
+.pistol-grid {
+  grid-gap: 5px; /* adjust grid gap */
+}
+
+
+    img[src*="PM"] {
+      max-width: 300px !important;
+      width: 130px !important;
+    }
+
+    img[src*="00magnum"] {
+      position: relative;
+       max-width: 300px !important; 
+    width: 120px !important;
+    right: 13px !important;
+    transform: scaleX(-1) !important;
+    transition: transform 0.3s;
+}
+
+img[src*="00magnum"]:hover {
+    transform: scaleX(-1) scale(1.1) !important;
+}
+
+    img[src*="DG"] {
+      position: relative !important;
+      left: 9px !important;
+        max-width: 250px !important; 
+        width: 140px !important;
+    }
+
+   img[src*="python1"] {
+    position: relative !important;
+    left: -8px !important;
+    max-width: 300px !important; 
+    width: 180px !important;
+    transform: scaleX(-1) !important;
+    transition: transform 0.3s;
+}
+
+img[src*="python1"]:hover {
+    transform: scaleX(-1) scale(1.1) !important;
+}
+
+    img[src*="LeMat"] {
+      position: relative;
+    max-width: 300px !important; 
+        width: 140px !important;
+        right: 25px;
+}
+
+    img[src*="schofield"] {
+      position: relative;
+      right: 15px;
+        max-width: 300px !important; 
+    width: 125px !important;
+    transform: scaleX(-1) !important;
+    transition: transform 0.3s;
+}
+
+img[src*="schofield"]:hover {
+    transform: scaleX(-1) scale(1.1) !important;
+}
+    
+    img[src*="magnum44"] {
+      position: relative !important;
+      left: 8px !important;
+        max-width: 250px !important; 
+        width: 140px !important;
+    }
+
+
+    img[src*="cross1"] {
+      position: relative;
+        max-width: 300px !important; 
+        width: 155px !important;
+        right: 18px;
+        
+    }
+
+    img[src*="pistol"] {
+      position: relative;
+      left: 5px; 
+     max-width: 300px !important; 
+    width: 130px !important;
+    transform: scaleX(-1) !important;
+    transition: transform 0.3s;
+}
+
+img[src*="pistol"]:hover {
+    transform: scaleX(-1) scale(1.1) !important;
+}
+
+    img[src*="SW"] {
+       position: relative;
+      right: 17px;
+        max-width: 200px !important; 
+        width:  130px !important;
+        
+        
+    }
+
+    img[src*="nagant"] {
+      position: relative;
+      left: 5px;
+        max-width: 200px !important; 
+        width:  130px !important;    
+    }
+
+    img[src*="walker"] {  
+       position: relative;
+      right: 33px;
+     max-width: 300px !important; 
+    width: 160px !important;
+    transform: scaleX(-1) !important;
+    transition: transform 0.3s;
+}
+
+img[src*="walker"]:hover {
+    transform: scaleX(-1) scale(1.1) !important;
+}
+
+ img[src*="ancient"] {
+      position: relative;
+      left: 5px;
+        max-width: 200px !important; 
+        width:  130px !important;    
+    }
+
+     img[src*="MH"] {
+       position: relative;
+      right: 23px;
+        max-width: 200px !important; 
+        width:  143px !important;    
+    }
+
+    img[src*="Flintlock"] {
+      position: relative;
+      left: 15px;
+     max-width: 300px !important; 
+    width: 155px !important;
+    transform: scaleX(-1) !important;
+    transition: transform 0.3s;
+}
+
+img[src*="Flintlock"]:hover {
+    transform: scaleX(-1) scale(1.1) !important;
+}
+
+.small{
+  display: block !important;
+}
+
+ img[src*="small1"] {  
+   position: relative;
+      right: 17px;
+     max-width: 300px !important; 
+    width: 130px !important;
+    
+    transition: transform 0.3s;
+}
+
+img[src*="small1"]:hover {
+     transform: scale(1.1) !important;
+}
+
+}
+
+
+
+</style>
+
+<script>
+//cowboy image open button
+document.getElementById('show-videos-button').addEventListener('click', function() {
+  document.querySelector('.cowboy-container').style.display = 'flex';
+  document.getElementById('cowboy-image-container').style.display = 'none';
+  document.querySelector('.sword-logo-container').style.display = 'none';
+  document.querySelector('.cp-logo-container').style.display = 'none';
+  document.querySelector('.mix-weapon-logo-container').style.display = 'none';
+});
+
+//cowboy close button
+document.querySelector('.cowboy-container span').addEventListener('click', function() {
+  document.querySelector('.cowboy-container').style.display = 'none';
+  document.getElementById('cowboy-image-container').style.display = 'flex';
+  document.querySelector('.sword-logo-container').style.display = 'block';
+  document.querySelector('.cp-logo-container').style.display = 'block';
+  document.querySelector('.mix-weapon-logo-container').style.display = 'block';
+});
+</script> 
+ 
+<!----------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
+<!---------Ancient Weapon--------->
+<div class="mix-weapon-logo-container" style="mix-blend-mode: multiply; position: fixed; top: 130px; right: 10px; z-index: 1;">
+  <img src="mix/mixlogo.JPG" alt="Mix Weapon Logo" style="width: 3.5vw; height: auto; cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onclick="toggleMixWeapons(); this.parentElement.style.display='none';">
+</div>
+
+<div class="mix-weapon-container" style="position: absolute; top: 50vh; left: 50vw; transform: translate(-50%, -50%); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2.1vh; display: none; background-color: #3d3b3b; border: 0.1vw solid #999393; border-radius: 5px; box-shadow: 0 0 1vh rgba(0, 0, 0, 0.1);">
+    <img id="bloody" src="mix/war.png" style="position: absolute; top: 5px; left: 5px; width: 4vw; height: auto; cursor: pointer; transition: transform 0.3s; z-index: 1;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+        <span style="visibility: hidden;"></span>
+        <span style="font-size: 4vh; cursor: pointer; color: #fff; position: relative; top: -2.9vh; right: -.9vw;" onclick="document.querySelector('.mix-weapon-container').style.display = 'none'; document.querySelector('.mix-weapon-logo-container').style.display = 'block'; document.querySelector('.cowboy-image-container').style.display = 'flex'; document.querySelector('.sword-logo-container').style.display = 'block'; document.querySelector('.cp-logo-container').style.display = 'block';">&times;</span>
+    </div>
+    <h1 style="position: relative; font-size: 2.5vh; color: #fff; top: -3vh;">Ancient Weapon</h1>
+    <div id="mix-weapons" style="display: grid; grid-template-columns: repeat(5, 1fr); justify-items: center; gap: 1vw;">
+      
+        <div class="weapon" style="text-align: center;">
+  <img src="mix/axe.png" 
+       style="cursor: pointer; max-width: 8vw; max-height: auto; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('axe').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Viking Axe</h2>
+  <audio id="axe" src="mix/axe.weba"></audio>
+      </div>
+      <div class="weapon" style="text-align: center;">
+  <img src="mix/hammer.png" 
+       style="cursor: pointer; max-width: 8.9vw; max-height: auto; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('ham').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Dwarven Hammer</h2>
+  <audio id="ham" src="mix/hammer.weba"></audio>
+      </div>
+      <div class="weapon" style="text-align: center;">
+  <img src="mix/mace.png" 
+       style="cursor: pointer; max-width: 8.9vw; max-height: auto; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('mace').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Flail Mace</h2>
+  <audio id="mace" src="mix/flail.mp4"></audio>
+      </div>
+      <div class="weapon" style="text-align: center;">
+  <img src="mix/heavy.png" 
+       style="cursor: pointer; max-width: 7.3vw; max-height: auto; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('heav').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Spike Mace</h2>
+  <audio id="heav" src="mix/spike.weba"></audio>
+      </div>
+      <div class="weapon" style="text-align: center;">
+  <img src="mix/stone.png" 
+       style="cursor: pointer; max-width: 5.7vw; max-height: auto; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('Stone').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Stone Mace</h2>
+  <audio id="Stone" src="mix/stone.weba"></audio>
+      </div>
+      <div class="weapon" style="text-align: center;">
+  <img src="mix/spear.png" 
+       style="cursor: pointer; max-width: 8.3vw; max-height: auto; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('spear').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Spear</h2>
+  <audio id="spear" src="mix/spear.weba"></audio>
+      </div>
+      <div class="weapon" style="text-align: center;">
+  <img src="mix/ms.png" 
+       style="cursor: pointer; max-width: 7.8vw; max-height: auto; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('ms').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Morning Star</h2>
+  <audio id="ms" src="mix/ms.weba"></audio>
+      </div>
+      <div class="weapon" style="text-align: center;">
+  <img src="mix/maul.png" 
+       style="cursor: pointer; max-width: 4.7vw; max-height: auto; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('maul').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Maul Weapon</h2>
+  <audio id="maul" src="mix/maul.weba"></audio>
+      </div>
+      <div class="weapon" style="text-align: center;">
+  <img src="mix/dia.png" 
+       style="cursor: pointer; max-width: 4.2vw; max-height: auto; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('dia').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Diablo Maul</h2>
+  <audio id="dia" src="mix/dia.weba"></audio>
+      </div>
+      <div class="weapon" style="text-align: center;">
+  <img src="mix/scythe.png" 
+       style="cursor: pointer; max-width: 9.4vw; max-height: auto; object-fit: contain; transition: transform 0.3s;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'" 
+       onclick="document.getElementById('scy').play()">
+  <h2 style="font-size: 1vh; font-weight: normal; margin-top: 1vh;">Scythe Weapon</h2>
+  <audio id="scy" src="mix/scythe.weba"></audio>
+      </div>
+</div>
+</div>
+
+
+<script>
+  let intervalId;
+const mixWeaponAudioElements = Array.from(document.querySelectorAll('.mix-weapon-container audio')).filter(audio => !audio.src.includes('dia.weba'));
+let maxDuration = Math.max(...mixWeaponAudioElements.map(audio => audio.duration));
+
+document.getElementById('bloody').addEventListener('click', () => {
+  if (!intervalId) {
+    playRandomlyLoop();
+    document.getElementById('bloody').textContent = 'Stop All Loop';
+  } else {
+    clearInterval(intervalId);
+    intervalId = null;
+    document.getElementById('bloody').textContent = 'Play All Random Loop';
+  }
+});
+
+function playRandomlyLoop() {
+  intervalId = setInterval(() => {
+    const randomAudio = mixWeaponAudioElements[Math.floor(Math.random() * mixWeaponAudioElements.length)];
+    randomAudio.currentTime = 0;
+    randomAudio.play().catch(e => console.log('Error playing audio:', e, randomAudio.src));
+  }, maxDuration * 1000 || 1000); // use max duration or default to 1s
+}
+</script>
+
+<style>
+
+@media (min-width: 376px) and (max-width: 768px) {
+
+ 
+.mix-weapon-container h1 {
+    position: absolute !important;
+    top: 10px !important;
+  }
+
+
+  .mix-weapon-container h2 {
+      font-size: 8.5px !important;
+    }
+    
+  
+    #bloody {
+    width: 50px !important;
+    height: auto !important;
+  }
+
+
+    #mix-weapons {
+      position: absolute !important;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) !important;
+        row-gap: 40px !important;
+        column-gap: 40px !important;
+        top: 60px !important;
+        left: 60px !important;
+        
+    }
+    .weapon img {
+    width: 70% !important;
+    height: auto !important;
+    margin: 1px; /* adjust margin */
+    padding: 0; /* adjust padding */
+   overflow-y: auto !important;
+    object-fit: contain !important; /* or object-fit: cover; */
+}
+
+.weapon-grid {
+  grid-gap: 5px; /* adjust grid gap */
+}
+
+
+
+  .mix-weapon-logo-container img{
+      position: absolute;
+       top: 5px !important;
+       width: 40px !important;
+      height: 35px !important;
+      right: -1px !important;
+      
+     }
+
+     .mix-weapon-container h1 {
+     
+      font-size: 13px !important;
+     }
+
+     .mix-weapon-container span{
+      position: fixed !important; 
+      top: -10px !important; 
+      right: 3px !important;
+      font-size: 35px !important;
+
+     }
+
+  .mix-weapon-container {
+    padding-top: 240px !important; 
+    padding-bottom: 1px !important; 
+  position: absolute;
+  top: 58% !important;
+  width: 84% !important;
+  height: 44% !important;
+  max-height: 150vh !important; /* adjust max height */
+  overflow-y: auto;
+  
+}
+
+
+img[src*="axe"] {
+      max-width: 300px !important;
+      width: 110px !important;
+      
+    }
+
+img[src*="hammer"] {
+  position: relative;
+  right: 10px;
+      max-width: 200px !important;
+      width: 120px !important;
+      position: relative;
+      right: -30px;
+    }
+
+    img[src*="mace"] {
+  position: relative;
+  left: 10px;
+      max-width: 200px !important;
+      width: 120px !important;
+    }
+
+    img[src*="heavy"] {
+  position: relative;
+  right: 10px;
+      max-width: 200px !important;
+      width: 100px !important;
+      position: relative;
+      right: -30px;
+    }
+
+     img[src*="stone"] {
+      max-width: 200px !important;
+      width: 80px !important;
+    }
+
+    img[src*="spear"] {
+      max-width: 200px !important;
+      width: 105px !important;
+      position: relative;
+      right: -30px;
+    }
+
+    img[src*="ms"] {
+      max-width: 200px !important;
+      width: 110px !important;
+}
+
+img[src*="maul"] {
+      max-width: 200px !important;
+      width: 60px !important;
+      position: relative;
+      right: -30px;
+}
+
+img[src*="dia"] {
+      max-width: 200px !important;
+      width: 60px !important;
+}
+
+img[src*="scythe"] {
+      max-width: 200px !important;
+      width: 150px !important;
+      position: relative;
+      right: -10px;
+}
+  
+
+
+
+}
+
+@media (max-width: 375px) {
+
+.mix-weapon-container h1 {
+    position: absolute !important;
+    top: 1px !important;
+  }
+
+
+  .mix-weapon-container h2 {
+      font-size: 8.5px !important;
+    }
+    
+  #bloody {
+    width: 50px !important;
+    height: auto !important;
+  }
+
+    #mix-weapons {
+      position: absolute !important;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 30px !important;
+        top: 60px !important;
+        left: 10px !important;
+        
+    }
+    .weapon img {
+    width: 70% !important;
+    height: auto !important;
+    margin: 1px; /* adjust margin */
+    padding: 0; /* adjust padding */
+   overflow-y: auto !important;
+    object-fit: contain !important; /* or object-fit: cover; */
+}
+
+.weapon-grid {
+  grid-gap: 5px; /* adjust grid gap */
+}
+
+
+
+  .mix-weapon-logo-container img{
+      position: absolute;
+       top: -20px !important;
+       width: 40px !important;
+      height: 35px !important;
+      right: -1px !important;
+     }
+
+     .mix-weapon-container h1 {
+     
+      font-size: 13px !important;
+     }
+
+     .mix-weapon-container span{
+      position: fixed !important; 
+      top: -5px !important; 
+      right: 3px !important;
+      font-size: 25px !important;
+
+     }
+
+  .mix-weapon-container {
+    padding-top: 240px !important; 
+    padding-bottom: 1px !important; 
+  position: absolute;
+  top: 58% !important;
+  width: 84% !important;
+  height: 44% !important;
+  max-height: 150vh !important; /* adjust max height */
+  overflow-y: auto !important;
+}
+
+
+img[src*="axe"] {
+      max-width: 200px !important;
+      width: 115px !important;
+      
+    }
+
+img[src*="hammer"] {
+  position: relative;
+  right: 10px;
+      max-width: 300px !important;
+      width: 120px !important;
+    }
+
+    img[src*="mace"] {
+  position: relative;
+  left: 10px;
+      max-width: 200px !important;
+      width: 120px !important;
+    }
+
+    img[src*="heavy"] {
+  position: relative;
+  right: 10px;
+      max-width: 200px !important;
+      width: 120px !important;
+    }
+
+     img[src*="stone"] {
+      max-width: 200px !important;
+      width: 85px !important;
+    }
+
+    img[src*="spear"] {
+      max-width: 200px !important;
+      width: 120px !important;
+    }
+
+    img[src*="ms"] {
+      max-width: 200px !important;
+      width: 120px !important;
+}
+
+img[src*="maul"] {
+      max-width: 200px !important;
+      width: 68px !important;
+}
+
+img[src*="dia"] {
+      max-width: 200px !important;
+      width: 65px !important;
+}
+
+img[src*="scythe"] {
+      max-width: 200px !important;
+      width: 160px !important;
+      position: relative;
+      right: 20px;
+}
+}
+</style>
+
+<script>
+function toggleMixWeapons() {
+    document.querySelector('.mix-weapon-container').style.display = 'flex';
+    document.querySelector('.cowboy-image-container').style.display = 'none';
+    document.querySelector('.sword-logo-container').style.display = 'none';
+    document.querySelector('.cp-logo-container').style.display = 'none';
+}
+</script>
+
+
+
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    let players = [];
+let videoIds = ['kfJBGtOIoXc', 'dpT0sPSI5UM', '8huoikTZ0xY', 'EK_bQY3B6GU', 'zRrxKJRu7Eg', 'm7g-PHkt-D0', 'ExtG5rFg1iw', 'kutUmh2D3-s', 'rksvni9MeyE'];
+let isPlaying = false;
+
+function onYouTubeIframeAPIReady() {
+  // do nothing
+}
+
+document.getElementById('Weaponz').addEventListener('click', function() {
+  let videosAndPlayButton = document.getElementById('videos-and-play-button');
+  let showVideosButtonContainer = document.getElementById('cowboy-image-container');
+  let swordLogoContainer = document.querySelector('.sword-logo-container');
+  let mixLogoContainer = document.querySelector ('.mix-weapon-logo-container');           
+  let cpLogoContainter = document.querySelector ('.cp-logo-container');
+
+  
+  
+  if (videosAndPlayButton.style.display === 'none') {
+    videosAndPlayButton.style.display = 'block';
+    showVideosButtonContainer.style.display = 'none';
+    swordLogoContainer.style.display = 'none';
+    mixLogoContainer.style.display = 'none';
+    cpLogoContainter.style.display = 'none';
+    
+    initPlayers();
+  }
+});
+
+function initPlayers() {
+  for (let i = 0; i < videoIds.length; i++) {
+    players.push(new YT.Player('video' + (i + 1), {
+      videoId: videoIds[i],
+      playerVars: {
+        autoplay: 0,
+        controls: 1,
+        modestbranding: 1,
+        rel: 0,
+        showinfo: 0,
+        playsinline: 1,
+      },
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    }));
+  }
+}
+
+function onPlayerReady(event) {
+  // do nothing
+}
+
+function onPlayerStateChange(event) {
+  // do nothing
+}
+
+function loopVideos() {
+  if (isPlaying) {
+    players.forEach(function(player) {
+      if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+        let duration = player.getDuration();
+        let currentTime = player.getCurrentTime();
+        if (currentTime >= duration - 0.1) {
+          player.seekTo(0.01);
+          player.playVideo();
+        }
+      }
+    });
+    requestAnimationFrame(loopVideos);
+  }
+}
+
+document.getElementById('play-all-button').addEventListener('click', function() {
+  let iframe = document.querySelector('#youtube-iframe iframe');
+  iframe.src = iframe.src.replace('autoplay=1', 'autoplay=0');
+  
+  if (!isPlaying) {
+    isPlaying = true;
+    players.forEach(function(player) {
+      player.playVideo();
+    });
+    loopVideos();
+    document.getElementById('play-all-button').innerHTML = 'Stop';
+  } else {
+    isPlaying = false;
+    players.forEach(function(player) {
+      player.stopVideo();
+    });
+    document.getElementById('play-all-button').innerHTML = 'Load & Fire!';
+  }
+});
+
+document.getElementById('close-all-videos-button').addEventListener('click', function() {
+  let videosAndPlayButton = document.getElementById('videos-and-play-button');
+  let showVideosButtonContainer = document.getElementById('cowboy-image-container');
+  let swordLogoContainer = document.querySelector('.sword-logo-container');
+  let mixLogoContainer = document.querySelector ('.mix-weapon-logo-container');
+  let cpLogoContainter = document.querySelector ('.cp-logo-container');   
+  
+  videosAndPlayButton.style.display = 'none';
+  showVideosButtonContainer.style.display = 'flex';
+  showVideosButtonContainer.style.flexDirection = 'column';
+  showVideosButtonContainer.style.alignItems = 'center';
+  swordLogoContainer.style.display = 'block';
+  mixLogoContainer.style.display = 'block' ;
+  cpLogoContainter.style.display = 'block' ;
+  
+  isPlaying = false;
+  players.forEach(function(player) {
+    player.stopVideo();
+  });
+  document.getElementById('play-all-button').innerHTML = 'Load & Fire!';
+});
+
+// Counters Strike Go Go Go
+function playSound(id, element) {
+  var sound = document.getElementById(id);
+  sound.currentTime = 1.8; // Skip the first 1.8 seconds
+  sound.play();
+  setTimeout(function() {
+    sound.pause();
+    window.location.href = element.getAttribute('href');
+  }, 1500); // Increased duration to 1.5 seconds
+  return false;
+}
+
+// Close stop for trinity
+document.getElementById('video-checkbox').addEventListener('change', function() {
+  let iframe = document.querySelector('#youtube-iframe iframe');
+  if (this.checked) {
+    iframe.src = 'https://www.youtube.com/embed/z9rDRjg2vMM?autoplay=1';
+  } else {
+    iframe.src = '';
+  }
+});
+
+document.getElementById('close-button').addEventListener('click', function() {
+  let iframe = document.querySelector('#youtube-iframe iframe');
+  iframe.src = '';
+  document.getElementById('video-checkbox').checked = false;
+});
+</script>
+
+
+<div class="back-button-container">
+    <a href="index.html" class="back-button"> Back</a>
+  </div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
