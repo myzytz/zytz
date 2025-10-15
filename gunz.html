@@ -1913,7 +1913,7 @@ document.querySelector('.cowboy-container span').addEventListener('click', funct
         <span style="font-size: 4vh !important; cursor: pointer; color: #fff; position: relative; top: -2.9vh; right: -.9vw;" onclick="document.querySelector('.mix-weapon-container').style.display = 'none'; document.querySelector('.mix-weapon-logo-container').style.display = 'block'; document.querySelector('.cowboy-image-container').style.display = 'flex'; document.querySelector('.sword-logo-container').style.display = 'block'; document.querySelector('.cp-logo-container').style.display = 'block';">&times;</span>
     </div>
     <h1 onclick="document.getElementById('myAudio').paused ? document.getElementById('myAudio').play() : document.getElementById('myAudio').pause()" style="position: relative; font-size: 1.5vh; color: #fff; top: -7vh; cursor: pointer;">Ancient Weapon</h1>
-    <audio id="myAudio" src="mix/pain.mp4"></audio>
+    <audio id="myAudio" src="mix/pain.mp4" loop></audio>
     <div id="mix-weapons" style="display: grid; grid-template-columns: repeat(5, 1fr); justify-items: center; gap: 1vw;">
     
         <div class="weapon" style="text-align: center;">
@@ -2499,6 +2499,7 @@ document.getElementById('close-button').addEventListener('click', function() {
 </body>
 
 </html>
+
 
 
 
