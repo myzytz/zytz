@@ -514,7 +514,7 @@ body::before {
     <div class="hero-grid">
       <!-- Add heroes here -->
  <div class="hero-card">
-  <img src="https://i.imgur.com/Kj5aOHn.gif" alt="TB" class="hero-gif" onclick="var audio = this.audio || [new Audio('dota/tb.weba'), new Audio('dota/tb1.weba')]; this.index = this.index || 0; this.playing = this.playing || false; if (this.playing) { this.playing.pause(); this.playing = false; } else { this.playing = audio[this.index % 2]; this.playing.play(); this.index++; }">
+  <img src="https://i.imgur.com/Kj5aOHn.gif" alt="TB" class="hero-gif" onclick="var audio = this.audio || [new Audio('dota/tb1.weba'), new Audio('dota/tb.weba')]; this.index = this.index || 0; this.playing = this.playing || false; if (this.playing) { this.playing.pause(); this.playing = false; } else { this.playing = audio[this.index % 2]; this.playing.play(); this.index++; }">
   <h3 class="hero-name">Illidan</h3>
 </div>
       <div class="hero-card">
@@ -1205,5 +1205,6 @@ document.getElementById('dota2').addEventListener('click', function() {
 </body>
 
 </html>
+
 
 
