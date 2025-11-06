@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Myrydz album</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    
+body {
+ background-image: url('https://wallpapers.com/images/hd/modern-minimalist-garage-storage-room-nnquyl65x9g8a69w.jpg');
+ background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+  font-family: 'Montserrat', sans-serif !important; 
+  margin: 0;
+  padding: 0;
+   min-height: 100vh; /* Changed from height to min-height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+}
+
+.photo-album {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  column-gap: 0.52vw;
+  row-gap: 2vw;
+  overflow-y: auto;
+  width: 31.25vw;
+  height: 53vh;
+  top: 30vh;
+}
+
+.photo-album > div {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  top: -1vw;
+}
+
+.photo-album > div span {
+  position: absolute;
+  margin-top: -3%;
+  left: 50%;
+  transform: translateX(-50%);
+ 
+}
+
+.photo-album img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+
+/* SCROLL BAR */
+.photo-album::-webkit-scrollbar, .container1::-webkit-scrollbar, .container-item::-webkit-scrollbar {
+  width: 1vw;
+  height: 1vw;
+}
+
+.photo-album::-webkit-scrollbar-thumb, .container1::-webkit-scrollbar-thumb, .container-item::-webkit-scrollbar-thumb {
+  background-image: url('https://img.freepik.com/premium-photo/carbon-fiber-background_1155277-3131.jpg?semt=ais_hybrid&w=740&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 0.2vw;
+}
+
+.photo-album::-webkit-scrollbar-track, .container1::-webkit-scrollbar-track, .container-item::-webkit-scrollbar-track {
+  background-image: url('https://w0.peakpx.com/wallpaper/427/195/HD-wallpaper-gray-asphalt-texture-gray-stone-road-asphalt-floor-asphalt-texture-asphalt-track-road-texture.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 0.2vw;
+}
+
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+}
+
+.lightbox img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90%;
+  max-height: 90%;
+  cursor: pointer;
+}
+
+.close-btn {
+  position: absolute;
+  top: -20px;
+  right: 1px;
+  font-size: 60px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.back-button-container {
+  position: fixed;
+  top: 3px;
+  left: 3px;
+}
+
+.back-button {
+  display: inline-block;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.back-button img {
+  width: 60px; /* adjust the width to match the old button size */
+  height: auto; /* adjust the height to match the old button size */
+  cursor: pointer;
+}
+
+.back-button:hover img {
+  transform: scale(1.1);
+  transition: transform 0.2s;
+}
+
+.lightbox[style*="block"] + .back-button-container {
+  pointer-events: none;
+  opacity: 0.5; /* Optional: to visually indicate it's disabled */
+}
+
+.lightbox[style*="block"] ~ .photo-album span[style*="Devel Sixteen"] {
+  pointer-events: none !important;
+
+}
+
+/* Logo Video */
+iframe[src*="d9yQTChJT8E"], .logo-video {
+  width: 70vw !important;
+  height: 39.5vw !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+
+/* Make sure the layout remains the same on smaller screens */
+@media (max-width: 768px) {
+
+  body {
+ background-image: url('https://wallpapers.com/images/hd/modern-minimalist-garage-storage-room-nnquyl65x9g8a69w.jpg');
+ background-size: cover;
+ background-position: center;
+ background-repeat: no-repeat;
+ }
+
+ .title {
+    position: absolute !important;
+    top: 110px !important;
+  }
+
+  .title span{
+    position: relative !important;
+    top: 1px !important;
+  }
+
+
+  .Shift {
+    position: absolute !important;
+    top: 88% !important;
+    right: 2% !important;
+    white-space: nowrap; 
+  }
+
+  .Shift img {
+    width: 80px !important;
+    height: auto !important;
+  }
+
+  .Shift span {
+    position: relative;
+    font-size: 7.5px !important;
+    top: -10px !important;
+  }
+
+  .photo-album {
+    width: 400px;
+    height: 400px;
+    grid-auto-rows: calc((400px - 6px) / 4);
+    row-gap: 5px;
+  }
+
+  .photo-album > div {
+  top: -5vh !important;
+}
+
+  .photo-album span {
+    font-size: 6px !important;
+ }
+
+ 
+
+}
+
+@media (max-width: 480px) {
+
+  .Shift {
+    position: absolute !important;
+    top: 86.5% !important;
+    right: 2% !important;
+    white-space: nowrap; 
+  }
+
+  .Shift img {
+    width: 70px !important;
+    height: auto !important;
+  }
+
+  .Shift span {
+    font-size: 7.5px !important;
+  }
+
+  .photo-album {
+    width: 300px;
+    height: 300px;
+    grid-auto-rows: calc((300px - 6px) / 4);
+  }
+
+  .photo-album span {
+    font-size: 6px !important;
+ }
+
+ iframe {
+  width: 320% !important;
+  height: 570px !important; 
+ }
+
+}
+
+@media (max-width: 375px) {
+
+   body {
+ background-image: url('https://wallpapers.com/images/hd/modern-minimalist-garage-storage-room-nnquyl65x9g8a69w.jpg');
+ background-size: cover;
+ background-position: center;
+ background-repeat: no-repeat;
+ }
+
+
+ .title {
+    position: absolute !important;
+    top: 130px !important;
+  }
+
+  .title img {
+    width: 45vw !important;
+    height: auto !important;
+  }
+
+  .title span{
+    position: relative !important;
+    top: 5px !important;
+    font-size: 4vw !important;
+  }
+
+  .Shift {
+    position: absolute !important;
+    top: 86.5% !important;
+    right: 2% !important;
+    white-space: nowrap; 
+  }
+
+  .Shift img {
+    width: 70px !important;
+    height: auto !important;
+  }
+
+  .Shift span {
+    position: relative;
+    font-size: 7.5px !important;
+    top: -10px !important;
+  }
+
+  .photo-album {
+    position: absolute !important;
+    width: 330px;
+    height: 360px;
+    grid-auto-rows: calc((250px - 6px) / 4);
+    top: 230px !important;
+     row-gap: 20px !important;
+  }
+
+  
+
+
+ .photo-album span {
+    font-size: 6.5px !important;
+    top: 108% !important;
+    margin-top: 3% !important; 
+ }
+
+ .photo-album > div {
+  top: -1vh !important;
+}
+
+/* Span Video */
+ iframe:not(.logo-video) {
+  width: 320px !important;
+  height: 570px !important; 
+}
+
+/* Logo Video */
+iframe[src*="d9yQTChJT8E"], .logo-video {
+  width: 95vw !important;
+  height: 55vw !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.back-button img {
+  width: 40px; 
+  }
+
+}
+
+  </style>
+</head>
+<body>
+
+<div id="logos" style="display: none;">
+
+  <img id="ninja-logo" src="https://image.spreadshirtmedia.com/image-server/v1/compositions/T650A2PA4005PT17X48Y22D1013804081W30335H36406/views/1,width=550,height=550,appearanceId=2,backgroundColor=000000,noPt=true/kawasaki-ninja-h2-h2r-mot-mens-tall-t-shirt.jpg" style="width: 80px; height: auto;">
+  <img id="ducati-logo" src="https://images.seeklogo.com/logo-png/31/2/ducati-logo-png_seeklogo-311080.png" style="width: 100px; height: auto;  margin-left: 5px; margin-top: 15px;">
+  <img id="aprilia-logo" src="https://images.seeklogo.com/logo-png/17/2/aprilia-factory-logo-png_seeklogo-173498.png" style="width: 110px; height: auto; margin-left: 5px; margin-top: 1px;">
+  <img id="bugatti-logo" src="https://pngimg.com/uploads/bugatti_logo/bugatti_logo_PNG9.png" style="width: 180px; height: auto; margin-left: 20px;">
+  <img id="SSC-logo" src="https://www.carlogos.org/logo/SSC-logo-2048x2048.png" style="width: 100px; height: auto; margin-left: -5px; margin-top: 5px;">
+  <img id="yang-logo" src="https://carnewschina.com/wp-content/uploads/2022/12/Yangwang-Logo.jpg" style="width: 100px; height: 100px; margin-left: 10px; margin-top: 10px; border-radius: 0; display: inline-block; object-fit: cover;">
+  <img id="rimac-logo" src="https://auta5p.eu/katalog/rimac/rimac_logo.gif" style="width: 60px; height: auto; margin-left: -5px; margin-top: 5px;">
+  <img id="ferrari-logo" src="https://grandex.de/wp-content/uploads/2024/01/car_logo_png1642-268x298-1.png" style="width: 70px; height: auto; margin-left: -5px; margin-top: 5px;">
+  <img id="mclaren-logo" src="https://logos-world.net/wp-content/uploads/2021/09/Mclaren-Emblem.png" style="width: 100px; height: auto; margin-left: -5px; margin-top: -5px;">
+  <img id="aston-logo" src="https://logos-world.net/wp-content/uploads/2021/03/Aston-Martin-Logo-2003-2021.png" style="width: 150px; height: auto; margin-left: 33px; margin-top: -20px;">
+  <img id="fenyr-logo" src="https://car-logos.b-cdn.net/wp-content/uploads/2023/03/w-motors-logo-2012-present-1024x742.webp" style="width: 150px; height: auto; margin-left: -5px; margin-top: 5px;">
+  <img id="lambo-logo" src="https://pngimg.com/d/lamborghini_PNG10709.png" style="width: 70px; height: auto; margin-left: 1px; margin-top: 5px;">
+  <img id="maserati-logo" src="https://cms.symple.ch/ModelsImages-565/30_main-mc20.png" style="width: 130px; height: auto; margin-left: 1px; margin-top: 5px;">
+  <img id="lotus-logo" src="https://pngimg.com/d/lotus_PNG50.png" style="width: 95px; height: auto; margin-left: 5px; margin-top: 5px;">
+  <img id="ford-logo" src="https://www.pngmart.com/files/22/Ford-Logo-PNG-Clipart.png" style="width: 130px; height: auto; margin-left: 20px; margin-top: -10px;">
+  <img id="porsche-logo" src="https://1000logos.net/wp-content/uploads/2018/02/Porsche-Logo.png" style="width: 160px; height: auto; margin-left: -5px; margin-top: 5px;">
+  <img id="suzuki-logo" src="https://images.seeklogo.com/logo-png/43/2/hayabusa-logo-png_seeklogo-430367.png" style="width: 105px; height: auto; margin-left: 6px; margin-top: 5px;">
+  <img id="bmw-logo" src="https://logodownload.org/wp-content/uploads/2014/04/bmw-logo-1.png" style="width: 80px; height: auto; margin-left: 1px; margin-top: 5px;">
+  <img id="yamaha-logo" src="https://logoeps.com/wp-content/uploads/2013/06/yamaha-yzf-vector-logo.png" style="width: 110px; height: auto; margin-left: 10px; margin-top: -20px;">
+  <img id="lightning-logo" src="https://lightningmotorcycle.com/wp-content/uploads/2023/01/lightningfooter.png" style="width: 80px; height: auto; margin-left: 5px; margin-top: 10px;">
+  <img id="honda-logo" src="https://images.seeklogo.com/logo-png/31/2/honda-logo-png_seeklogo-310689.png" style="width: 80px; height: auto; margin-left: 5px; margin-top: -10px;">
+  <img id="agusta-logo" src="https://upload.wikimedia.org/wikipedia/commons/3/37/MV_Agusta_Logo_1945_noBG.png" style="width: 100px; height: auto; margin-left: 5px; margin-top: -5px;">
+  <img id="mtt-logo" src="https://upload.wikimedia.org/wikipedia/en/1/10/Marine_Turbine_Technologies_%28logo%29.png" style="width: 100px; height: auto; margin-left: 10px; margin-top: -10px;">
+  <img id="arch-logo" src="https://listcarbrands.com/wp-content/uploads/2022/12/Arch-Emblem.png" style="width: 120px; height: auto; margin-left: -5px; margin-top: -5px;">
+  <img id="dt-logo" src="https://pngimg.com/d/dodge_PNG47.png" style="width: 150px; height: auto; margin-left: -15px; margin-top: -5px;">
+  <img id="td-logo" src="https://images.seeklogo.com/logo-png/36/2/triumph-kingdom-logo-png_seeklogo-365043.png" style="width: 100px; height: auto; margin-left: 5px; margin-top: 5px;">
+  <img id="norton-logo" src="https://images.seeklogo.com/logo-png/36/2/norton-motorcycle-logo-png_seeklogo-361502.png" style="width: 100px; height: auto; margin-left: 5px; margin-top: 5px;">
+  <img id="wmc-logo" src="https://whitemotorcycleconcepts.com/wp-content/uploads/2019/12/WMC-logo-WHT-300x137.png" style="width: 110px; height: auto; margin-left: 10px; margin-top: -15px;">
+  <img id="bimota-logo" src="https://wp.logos-download.com/wp-content/uploads/2019/06/Bimota_Logo.png?dl" style="width: 110px; height: auto; margin-left: 10px; margin-top: 10px;">
+  <!-- Add more logos here -->
+</div>
+
+
+
+
+<div class="photo-album">
+  <div style="position: relative; text-align: center;"> 
+    <img src="https://wallpapercave.com/wp/wp5053755.jpg" alt="ninja" style="width: 100%; height: auto;"> 
+    <span style="position: absolute; top: 110%; left: 50%; transform: translate(-50%, -50%); font-size: .5vw; color: rgb(0, 0, 0); white-space: nowrap; cursor: pointer; z-index: 1 !important; ">Ninja H2R</span> 
+  </div>
+<div style="position: relative; text-align: center;"> 
+  <img src="https://www.ducati.at/fileadmin/_processed_/5/8/csm_C03_PanigaleV2FinalEdition_086bd1721d.jpg" alt="ducati" style="width: 100%; height: auto;"> 
+  <span style="position: absolute; top: 110%; left: 50%; transform: translate(-50%, -50%); font-size: .5vw; color: rgb(0, 0, 0); white-space: nowrap; cursor: pointer; z-index: 1 !important;">Ducati Panigale</span> 
+</div>
+<div style="position: relative; text-align: center;"> 
+  <img src="https://pixelz.cc/wp-content/uploads/2019/12/aprilia-rs-660-uhd-4k-wallpaper.jpg" alt="aprilia" style="width: 100%; height: auto;"> 
+  <span style="position: absolute; top: 110%; left: 50%; transform: translate(-50%, -50%); font-size: .5vw; color: rgb(0, 0, 0); white-space: nowrap; cursor: pointer; z-index: 1 !important;">Aprilia rsv4</span> 
+</div>
+<div style="position: relative; text-align: center;"> 
+  <img src="https://moto.suzuki.it/productimg/MOTO/models/HAYABUSA/base/HAYABUSA.jpg" alt="suzuki" style="width: 100%; height: auto;"> 
+  <span style="position: absolute; top: 110%; left: 50%; transform: translate(-50%, -50%); font-size: .5vw; color: rgb(0, 0, 0); white-space: nowrap; cursor: pointer; z-index: 1 !important;">Suzuki Hayabusa</span> 
+</div>
+<div style="position: relative; text-align: center;"> 
+  <img src="https://wallpapercat.com/w/full/9/0/1/1718170-3840x2160-desktop-4k-bmw-m-1000-rr-background-photo.jpg" alt="bmw" style="width: 100%; height: auto;"> 
+  <span style="position: absolute; top: 110%; left: 50%; transform: translate(-50%, -50%); font-size: .5vw; color: rgb(0, 0, 0); white-space: nowrap; cursor: pointer; z-index: 1 !important;">BMW M 1000 RR</span> 
+</div>
+<div style="position: relative; text-align: center;"> 
+  <img src="https://wallpapercave.com/wp/wp2973886.jpg" alt="yamaha" style="width: 100%; height: auto;"> 
+  <span style="position: absolute; top: 110%; left: 50%; transform: translate(-50%, -50%); font-size: .5vw; color: rgb(0, 0, 0); white-space: nowrap; cursor: pointer; z-index: 1 !important;">Yamaha YZF-R6</span> 
+</div>
+<div style="position: relative; text-align: center;"> 
+  <img src="https://static0.hotcarsimages.com/wordpress/wp-content/uploads/2024/05/via-facebook.jpeg" alt="lightning" style="width: 100%; height: auto;"> 
+  <span style="position: absolute; top: 110%; left: 50%; transform: translate(-50%, -50%); font-size: .5vw; color: rgb(7, 7, 7); white-space: nowrap; cursor: pointer; z-index: 1 !important;">Lightning ls 218</span> 
+</div>
+<div style="position: relative; text-align: center;"> 
+  <img src="https://www.hdwallpapers.in/download/honda_cbr1000rr_r_fireblade_sp_2020_4k_8k-3840x2160.jpg" alt="honda" style="width: 100%; height: auto;"> 
+  <span style="position: absolute; top: 110%; left: 50%; transform: translate(-50%, -50%); font-size: .5vw; color: rgb(0, 0, 0); white-space: nowrap; cursor: pointer; z-index: 1 !important;">Honda cbr 1000rr</span> 
+</div>
+<div style="position: relative; text-align: center;"> 
+  <img src="https://www.mvagusta.net/attachments/img_5432-jpeg.519242/?auto=webp&fit=bounds&format=pjgp&height=1920&optimize=high&width=1920" alt="agusta" style="width: 100%; height: auto;"> 
+  <span style="position: absolute; top: 110%; left: 50%; transform: translate(-50%, -50%); font-size: .5vw; color: rgb(0, 0, 0); white-space: nowrap; cursor: pointer; z-index: 1 !important;">MV Agusta F4</span> 
+</div>
+<div style="position: relative; text-align: center;"> 
+  <img src="https://bikereview.com.au/wp-content/uploads/2017/08/MTT-Y2K-Turbine-Motorcycle-Bike-Review-117.jpg" alt="mtt" style="width: 100%; height: auto;"> 
+  <span style="position: absolute; top: 110%; left: 50%; transform: translate(-50%, -50%); font-size: .5vw; color: rgb(3, 3, 3); white-space: nowrap; cursor: pointer; z-index: 1 !important;">MTT Y2K</span> 
+</div>
+<div style="position: relative; text-align: center;"> 
+  <img src="https://media.wired.com/photos/5a032ee75f0bed3d7bb758f8/master/w_2400,h_1800,c_limit/ARCH-inline.jpg" alt="arch" style="width: 100%; height: auto;"> 
+  <span style="position: absolute; top: 110%; left: 50%; transform: translate(-50%, -50%); font-size: .5vw; color: rgb(0, 0, 0); white-space: nowrap; cursor: pointer; z-index: 1 !important;">Arch Method 143</span> 
+</div>
+<div style="position: relative; text-align: center;"> 
+  <img src="https://wallpapers.com/images/hd/tomahawk-motorcycle-dodge-iphone-2p5zvyfcgbjyoe1u.jpg" alt="dt" style="width: 100%; height: auto;"> 
+  <span style="position: absolute; top: 110%; left: 50%; transform: translate(-50%, -50%); font-size: .5vw; color: rgb(2, 2, 2); white-space: nowrap;  cursor: pointer; z-index: 1 !important;">Dodge Tomahawk</span> 
+</div>
+<div style="position: relative; text-align: center;"> 
+  <img src="https://wallpapercave.com/wp/wp3653204.jpg" alt="td" style="width: 100%; height: auto;"> 
+  <span style="position: absolute; top: 110%; left: 50%; transform: translate(-50%, -50%); font-size: .5vw; color: rgb(0, 0, 0); white-space: nowrap; cursor: pointer; z-index: 1 !important;">Triumph Daytona</span> 
+</div>
+<div style="position: relative; text-align: center;"> 
+  <img src="https://www.thebusinessdesk.com/_files/images/apr_17/Norton-V4-SS.jpg" alt="norton" style="width: 100%; height: auto;"> 
+  <span style="position: absolute; top: 110%; left: 50%; transform: translate(-50%, -50%); font-size: .5vw; color: rgb(0, 0, 0); white-space: nowrap; cursor: pointer; z-index: 1 !important;">Norton V4ss</span> 
+</div>
+<div style="position: relative; text-align: center;"> 
+  <img src="https://www.topgear.com/sites/default/files/2021/06/wmc250ev_51266528265_o.jpg" alt="wmc" style="width: 100%; height: auto;"> 
+  <span style="position: absolute; top: 110%; left: 50%; transform: translate(-50%, -50%); font-size: .5vw; color: rgb(0, 0, 0); white-space: nowrap; cursor: pointer; z-index: 1 !important;">WMC250EV</span> 
+</div>
+<div style="position: relative; text-align: center;"> 
+  <img src="https://cdn-fastly.motorcycle.com/media/2024/10/21/15301/post.png?size=2000x2000&nocrop=1" alt="bimota" style="width: 100%; height: auto;"> 
+  <span style="position: absolute; top: 110%; left: 50%; transform: translate(-50%, -50%); font-size: .5vw; color: rgb(0, 0, 0); white-space: nowrap; cursor: pointer; z-index: 1 !important;">Bimota KB998</span> 
+</div>
+
+</div> 
+
+  <div class="back-button-container" style="transform: scaleX(-1);">
+  <a href="index.html" onclick="localStorage.setItem('showpfolder', true); return true;" class="back-button">
+    <img src="https://png.pngtree.com/png-vector/20240416/ourmid/pngtree-3d-blue-arrow-icon-png-image_12289742.png" alt="Back">
+  </a>
+</div>
+
+  <div class="lightbox" id="lightbox">
+  <img id="lightbox-img" src="" alt="">
+  <span class="close-btn" onclick="closeLightbox()">×</span>
+</div>
+
+
+<script>
+// Script on YT video
+// Create overlay and video iframe
+var overlay = document.createElement('div');
+overlay.style.position = 'fixed';
+overlay.style.top = '0';
+overlay.style.left = '0';
+overlay.style.width = '100%';
+overlay.style.height = '100%';
+overlay.style.background = 'rgba(0, 0, 0, 0.8)';
+overlay.style.zIndex = '900';
+overlay.style.display = 'none';
+
+var videoIframe = document.createElement('iframe');
+videoIframe.allow = 'autoplay';
+videoIframe.style.position = 'fixed';
+videoIframe.style.top = '50%';
+videoIframe.style.left = '50%';
+videoIframe.style.transform = 'translate(-50%, -50%)';
+videoIframe.style.zIndex = '1000';
+videoIframe.style.width = '360px';
+videoIframe.style.height = '640px';
+videoIframe.style.display = 'none';
+videoIframe.style.border = 'none';
+
+document.body.appendChild(overlay);
+document.body.appendChild(videoIframe);
+
+// Function to open video lightbox
+function openVideoLightbox(videoSrc) {
+  videoIframe.src = videoSrc + '?autoplay=1';
+  videoIframe.style.display = 'block';
+  overlay.style.display = 'block';
+}
+
+// Function to close video lightbox
+function closeVideoLightbox() {
+  videoIframe.style.display = 'none';
+  overlay.style.display = 'none';
+  videoIframe.src = '';
+}
+
+// Add event listener to overlay to close video lightbox
+overlay.addEventListener('click', closeVideoLightbox);
+
+// Add event listeners to spans to open video lightbox
+var spanElements = document.querySelectorAll('span');
+var videoSources = [
+  'https://www.youtube.com/embed/P5aHBKnBToo',
+  'https://www.youtube.com/embed/w0HAdiSYc0s',
+  'https://www.youtube.com/embed/b0jMF2nWaPw',
+  'https://www.youtube.com/embed/giAgS0u32Ho',
+  'https://www.youtube.com/embed/wn6yH7qMdiA',
+  'https://www.youtube.com/embed/u0-sOiWYr80?autoplay=1',
+  'https://www.youtube.com/embed/7XLN44NOUlk',
+  'https://www.youtube.com/embed/wr0WrMQj5lM',
+  'https://www.youtube.com/embed/MdCs9_kM7ho',
+  'https://www.youtube.com/embed/I7aeJk7g4eU',
+  'https://www.youtube.com/embed/PgEZvKqPwfw',
+  'https://www.youtube.com/embed/mG_bd0hB2YQ',
+  'https://www.youtube.com/embed/uszxohZ0yX0',
+  'https://www.youtube.com/embed/JIhKhM9KTjc',
+  'https://www.youtube.com/embed/tdTbZsdAggc',
+  'https://www.youtube.com/embed/za4A2d43gKo',
+];
+
+spanElements.forEach((span, index) => {
+  if (index < 3) {
+    span.addEventListener('click', function() {
+      openVideoLightbox(videoSources[index]);
+    });
+  }
+});
+
+spanElements[2].addEventListener('click', function() {
+  // Video playback logic for iframe3
+  if (iframe3.style.display == 'block') {
+    iframe3.style.display = 'none';
+    overlay.style.display = 'none';
+    iframe3.src = ''; 
+  } else {
+    iframe3.style.display = 'block';
+    overlay.style.display = 'block';
+    iframe3.src = originalSrc3; 
+    iframe1.style.display = 'none';
+    iframe1.src = '';
+    iframe2.style.display = 'none';
+    iframe2.src = '';
+  }
+});
+
+spanElements[3].addEventListener('click', function() {
+  openVideoLightbox(videoSources[3]);
+});
+
+spanElements[4].addEventListener('click', function() {
+  openVideoLightbox(videoSources[4]);
+});
+
+spanElements[5].addEventListener('click', function() {
+  openVideoLightbox(videoSources[5]);
+});
+
+spanElements[6].addEventListener('click', function() {
+  openVideoLightbox(videoSources[6]);
+});
+
+spanElements[7].addEventListener('click', function() {
+  openVideoLightbox(videoSources[7]);
+});
+
+spanElements[8].addEventListener('click', function() {
+  openVideoLightbox(videoSources[8]);
+});
+
+spanElements[9].addEventListener('click', function() {
+  openVideoLightbox(videoSources[9]);
+});
+
+spanElements[10].addEventListener('click', function() {
+  openVideoLightbox(videoSources[10]);
+});
+
+spanElements[11].addEventListener('click', function() {
+  openVideoLightbox(videoSources[11]);
+});
+
+spanElements[12].addEventListener('click', function() {
+  openVideoLightbox(videoSources[12]);
+});
+
+spanElements[13].addEventListener('click', function() {
+  openVideoLightbox(videoSources[13]);
+});
+
+spanElements[14].addEventListener('click', function() {
+  openVideoLightbox(videoSources[14]);
+});
+
+spanElements[15].addEventListener('click', function() {
+  openVideoLightbox(videoSources[15]);
+});
+
+spanElements[16].addEventListener('click', function() {
+  openVideoLightbox(videoSources[16]);
+});
+
+// Existing Script 
+let currentImageIndex;
+let lightboxImages;
+let touchStartX = 0;
+let isZoomed = false;
+let currentScale = 1;
+let startX, startY, translateX = 0, translateY = 0, isDragging = false;
+
+function openLightbox(index) {
+  lightboxImages = Array.from(document.querySelectorAll('.photo-album img'));
+  currentImageIndex = index;
+  document.getElementById('lightbox').style.display = 'block';
+  document.getElementById('lightbox-img').src = lightboxImages[currentImageIndex].src;
+  document.querySelector('.back-button').style.pointerEvents = 'none';
+  document.getElementById('lightbox-img').style.top = '50%';
+  document.getElementById('lightbox-img').style.left = '50%';
+  document.getElementById('lightbox-img').style.transform = 'translate(-50%, -50%) scale(1)';
+  document.getElementById('lightbox').style.zIndex = '1000';
+
+    updateLogo();
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.querySelector('.back-button').style.pointerEvents = 'auto';
+  document.getElementById('lightbox-img').style.transform = 'translate(-50%, -50%) scale(1)';
+  currentScale = 1;
+  translateX = 0;
+  translateY = 0;
+  document.getElementById('lightbox').style.zIndex = '';
+
+  // Remove logos from lightbox
+  const logosInLightbox = document.getElementById('lightbox').querySelectorAll('img:not(#lightbox-img)');
+  logosInLightbox.forEach((logo) => {
+    logo.style.display = 'none';
+    document.getElementById('logos').appendChild(logo);
+  });
+}
+
+
+
+
+document.querySelector('.close-btn').addEventListener('click', function() {
+  closeLightbox();
+  videoIframe.style.display = 'none';
+  overlay.style.display = 'none';
+  videoIframe.src = '';
+});
+
+
+function navigateLightbox(direction) {
+  if (currentScale !== 1) return;
+  currentImageIndex = (currentImageIndex + direction + lightboxImages.length) % lightboxImages.length;
+  document.getElementById('lightbox-img').src = lightboxImages[currentImageIndex].src;
+  document.getElementById('lightbox-img').style.transform = 'translate(-50%, -50%) scale(1)';
+  currentScale = 1;
+  translateX = 0;
+  translateY = 0;
+
+  // Update the logo
+  updateLogo();
+}
+
+function updateLogo() {
+  const carName = document.querySelectorAll('.photo-album span')[currentImageIndex].textContent;
+  const logoId = logos[carName];
+  const logosInLightbox = document.getElementById('lightbox').querySelectorAll('img:not(#lightbox-img)');
+  logosInLightbox.forEach((logo) => {
+    logo.style.display = 'none';
+  });
+
+  if (logoId) {
+    const logo = document.getElementById(logoId);
+    logo.style.position = 'absolute';
+    logo.style.top = '50px';
+    logo.style.left = '50px';
+    logo.style.zIndex = '1001';
+    document.getElementById('lightbox').appendChild(logo);
+    logo.style.display = 'block';
+  }
+}
+
+document.addEventListener('keydown', (event) => {
+  if (document.getElementById('lightbox').style.display === 'block') {
+    if (event.key === 'ArrowLeft') {
+      navigateLightbox(-1);
+    } else if (event.key === 'ArrowRight') {
+      navigateLightbox(1);
+    } else if (event.key === 'Escape') {
+      closeLightbox();
+    }
+  }
+});
+
+document.getElementById('lightbox').addEventListener('click', (event) => {
+  if (event.target === document.getElementById('lightbox')) {
+    closeLightbox();
+  }
+});
+
+document.getElementById('lightbox-img').addEventListener('wheel', (event) => {
+  event.preventDefault();
+  if (event.deltaY < 0) {
+    currentScale *= 1.1;
+  } else {
+    currentScale /= 1.1;
+  }
+  document.getElementById('lightbox-img').style.top = '50%';
+  document.getElementById('lightbox-img').style.left = '50%';
+  document.getElementById('lightbox-img').style.transform = `translate(${translateX}px, ${translateY}px) translate(-50%, -50%) scale(${currentScale})`;
+});
+
+document.getElementById('lightbox-img').addEventListener('mousedown', (event) => {
+  if (currentScale !== 1) {
+    isDragging = true;
+    startX = event.clientX;
+    startY = event.clientY;
+    document.getElementById('lightbox-img').style.cursor = 'grabbing';
+  }
+});
+
+document.addEventListener('mousemove', (event) => {
+  if (isDragging) {
+    translateX += event.clientX - startX;
+    translateY += event.clientY - startY;
+    startX = event.clientX;
+    startY = event.clientY;
+    document.getElementById('lightbox-img').style.transform = `translate(${translateX}px, ${translateY}px) translate(-50%, -50%) scale(${currentScale})`;
+  }
+});
+
+document.addEventListener('mouseup', () => {
+  isDragging = false;
+  if (currentScale > 1) {
+    document.getElementById('lightbox-img').style.cursor = 'grab';
+  }
+});
+
+document.getElementById('lightbox-img').addEventListener('touchstart', (event) => {
+  if (currentScale !== 1) {
+    isDragging = true;
+    startX = event.touches[0].clientX;
+    startY = event.touches[0].clientY;
+  }
+  touchStartX = event.touches[0].clientX;
+});
+
+document.getElementById('lightbox-img').addEventListener('touchmove', (event) => {
+  if (isDragging) {
+    translateX += event.touches[0].clientX - startX;
+    translateY += event.touches[0].clientY - startY;
+    startX = event.touches[0].clientX;
+    startY = event.touches[0].clientY;
+
+        document.getElementById('lightbox-img').style.transform = `translate(${translateX}px, ${translateY}px) translate(-50%, -50%) scale(${currentScale})`;
+  }
+});
+
+document.getElementById('lightbox-img').addEventListener('touchend', (event) => {
+  isDragging = false;
+  const touchEndX = event.changedTouches[0].clientX;
+  const swipeThreshold = 50;
+
+  if (touchStartX - touchEndX > swipeThreshold) {
+    navigateLightbox(1);
+  } else if (touchEndX - touchStartX > swipeThreshold) {
+    navigateLightbox(-1);
+  }
+});
+
+document.getElementById('lightbox-img').addEventListener('click', (event) => {
+  const rect = event.target.getBoundingClientRect();
+  if (event.clientX < rect.left + rect.width / 2) {
+    navigateLightbox(-1);
+  } else {
+    navigateLightbox(1);
+  }
+});
+
+const albumImages = document.querySelectorAll('.photo-album img');
+albumImages.forEach((image, index) => {
+  image.addEventListener('click', (event) => {
+    event.stopPropagation(); // Prevent event bubbling
+    openLightbox(index);
+  });
+});
+
+// Add the logo code here
+const logos = {
+  "Ninja H2R": "ninja-logo",
+  "Ducati Panigale": "ducati-logo",
+  "Aprilia rsv4": "aprilia-logo",
+  "Bugatti Bolide": "bugatti-logo",
+  "SSC Tuatara": "SSC-logo",
+  "YANGWANG U9": "yang-logo",
+  "Rimac Nevera": "rimac-logo",
+  "Ferrari 296": "ferrari-logo",
+  "McLaren 750s": "mclaren-logo",
+  "Aston Martin": "aston-logo",
+  "Fenyr SuperSport": "fenyr-logo",
+  "Lambo Huracan": "lambo-logo",
+  "Maserati MC20": "maserati-logo",
+  "Lotus Evija": "lotus-logo",
+  "GT Ford": "ford-logo",
+  "Porsche Carrera": "porsche-logo",
+  "Suzuki Hayabusa": "suzuki-logo",
+  "BMW M 1000 RR": "bmw-logo",  
+  "Yamaha YZF-R6": "yamaha-logo", 
+  "Lightning ls 218": "lightning-logo", 
+  "Honda cbr 1000rr": "honda-logo", 
+  "MV Agusta F4": "agusta-logo", 
+  "MTT Y2K": "mtt-logo", 
+  "Arch Method 143": "arch-logo",  
+  "Dodge Tomahawk": "dt-logo",     
+  "Triumph Daytona": "td-logo",  
+  "Norton V4ss": "norton-logo",   
+  "WMC250EV": "wmc-logo",
+  "Bimota KB998": "bimota-logo",
+  // Add more car logos here
+};
+
+albumImages.forEach((image, index) => {
+  image.addEventListener('click', (event) => {
+    const carName = document.querySelectorAll('.photo-album span')[index].textContent;
+    const logoId = logos[carName];
+    if (logoId) {
+      const logo = document.getElementById(logoId);
+      logo.style.position = 'absolute';
+      logo.style.top = '50px';
+      logo.style.left = '50px';
+      logo.style.zIndex = '1001';
+      document.getElementById('lightbox').appendChild(logo);
+      logo.style.display = 'block';
+    }
+  });
+});
+
+document.querySelector('.close-btn').addEventListener('click', function() {
+  closeLightbox();
+  const logos = document.querySelectorAll('#logos img');
+  logos.forEach((logo) => {
+    logo.style.display = 'none';
+    logo.parentNode.removeChild(logo);
+    document.getElementById('logos').appendChild(logo);
+  });
+});
+
+
+
+// ADD EVENT LISTENER TO THE LOGO VIDEO
+document.getElementById('ninja-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/PfIqQhsCEGY', true);
+});
+
+document.getElementById('ducati-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/FK-OxFmlM8M', true);
+});
+
+document.getElementById('aprilia-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/IsJ910DvBBQ', true);
+});
+
+document.getElementById('bugatti-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/D1Aja2c8H68', true);
+});
+
+document.getElementById('SSC-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/0xyVGQ9i-uw', true);
+});
+
+document.getElementById('yang-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/aD9v1WyAgLA', true);
+});
+
+document.getElementById('rimac-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/HSnHQ8-61PY', true);
+});
+
+document.getElementById('ferrari-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/nJk6NBBZd9Q', true);
+});
+
+document.getElementById('mclaren-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/5JEJTfA9FQI', true);
+});
+
+document.getElementById('aston-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/S3au_VAAmYg', true);
+});
+
+document.getElementById('fenyr-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/KMjIwd01QAE', true);
+});
+
+document.getElementById('lambo-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/0X4aZfsCUHc', true);
+});
+
+document.getElementById('maserati-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/4xgpuQxQbb8', true);
+});
+
+document.getElementById('lotus-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/IM0tU-oDItc', true);
+});
+
+document.getElementById('ford-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/97D2-v5XQn0', true);
+});
+
+document.getElementById('porsche-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/AgFXR-HUlBw?start=86&autoplay=1', true);
+});
+
+document.getElementById('suzuki-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/iuARHf1MdYs', true);
+});
+
+document.getElementById('bmw-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/cqjxsicM2PE', true);
+});
+
+document.getElementById('yamaha-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/2fLue5nPDIs', true);
+});
+
+document.getElementById('lightning-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/Lz1aTLBKIoQ', true);
+});
+
+document.getElementById('honda-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/QzXdukStINM', true);
+});
+
+document.getElementById('agusta-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/1K2-q1i6x6o', true);
+});
+
+document.getElementById('mtt-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/jFS8pzBZU5c', true);
+});
+
+document.getElementById('arch-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/e9-4rnb7a6k', true);
+});
+
+document.getElementById('dt-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/Vr4frdyEgJw', true);
+});
+
+document.getElementById('td-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/DRnxzBxEHVU', true);
+});
+
+document.getElementById('norton-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/FdIEr73BNAE', true);
+});
+
+document.getElementById('wmc-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/Godg-C50z3k', true);
+});
+
+document.getElementById('bimota-logo').addEventListener('click', () => {
+  openVideoLightbox('https://www.youtube.com/embed/1wWoUfLn6us', true);
+});
+
+// Function to open video lightbox
+function openVideoLightbox(videoSrc, isLogoVideo = false) {
+  videoIframe.src = videoSrc + '?autoplay=1';
+  videoIframe.style.display = 'block';
+  overlay.style.display = 'block';
+  document.getElementById('lightbox').style.display = 'none'; 
+
+  if (isLogoVideo) {
+    videoIframe.classList.add('logo-video');
+
+    // Create button dynamically
+    const youtubeAppButton = document.createElement('button');
+youtubeAppButton.style.position = 'fixed';
+youtubeAppButton.style.bottom = '20px';
+youtubeAppButton.style.right = '20px';
+youtubeAppButton.style.background = 'none';
+youtubeAppButton.style.border = 'none';
+youtubeAppButton.style.cursor = 'pointer';
+youtubeAppButton.style.padding = '0';
+youtubeAppButton.style.zIndex = '1001';
+
+const img = document.createElement('img');
+img.src = 'https://media.tenor.com/8cViuZ78BC4AAAAj/play-youtube.gif';
+img.style.width = '40px';
+img.style.height = '40px';
+img.style.pointerEvents = 'none';
+
+youtubeAppButton.appendChild(img);
+document.body.appendChild(youtubeAppButton);
+
+    // Extract the video ID from the videoSrc
+    const videoId = videoSrc.split('/').pop().split('?')[0]; // Get the video ID without query parameters
+    youtubeAppButton.addEventListener('click', () => {
+  const youtubeAppUrl = `vnd.youtube://www.youtube.com/watch?v=${videoId}`;
+  const youtubeWebUrl = `https://www.youtube.com/watch?v=${videoId}`;
+
+  window.location.href = youtubeAppUrl;
+  setTimeout(() => {
+    window.location.href = youtubeWebUrl;
+  }, 2000);
+});
+
+    document.body.appendChild(youtubeAppButton);
+
+    // Remove button when video is closed
+overlay.addEventListener('click', () => {
+  youtubeAppButton.remove();
+  videoIframe.src = '';
+  overlay.style.display = 'none';
+  videoIframe.style.display = 'none';
+  document.querySelector('.back-button').style.pointerEvents = 'auto'; // Add it here
+});
+  } else {
+    videoIframe.classList.remove('logo-video');
+  }
+}
+
+</script>
+
+<!-- SUPER BIKE TITLE -->
+<div class="title" style="text-align: center; position: absolute; top: 16%; left: 50%; transform: translateX(-50%);  ">
+  <img src="icons/bike.png" alt="Super Bikes" style=" mix-blend-mode: multiply; width: 200px; height: auto; display: block;">
+  <div style="margin-top: 10px;">
+    <span style="z-index: 1; font-size: 20px; font-weight: 500; background: linear-gradient(to bottom, #410101, #c75450, #f5f3f3); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">SUPER BIKES</span>
+  </div>
+</div>
+
+
+<!--SUPER CAR LOGO-->
+<div class="Shift" style="position: absolute; top: 2%; right: 1%; z-index: 5; text-align: center;">
+  <div style="cursor: pointer;" onclick="playSoundAndRedirect('rydz-no-garage.html')">
+    <img src="https://www.pngall.com/wp-content/uploads/13/Car-Logo-PNG-Picture.png" alt="Super Cars" style="width: 95px; height: auto; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    <div style="margin-top: 5px;">
+      <span style="font-size: 10px; font-weight: 500; background: linear-gradient(to bottom, #9b0e0e, #ca3030, #df9999); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bolder;">SUPER CARS</span>
+    </div>
+  </div>
+</div>
+
+<audio id="bikeSound" src="sounds/whitenoise.weba"></audio>
+
+<script>
+  function playSoundAndRedirect(url) {
+    document.getElementById('bikeSound').play();
+    setTimeout(function() {
+      window.location.href = url;
+    }, 3000); // adjust the delay according to your sound file duration
+  }
+</script>
+
+</body>
