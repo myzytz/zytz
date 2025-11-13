@@ -435,7 +435,7 @@ img.car[alt="openleft"] {
 <body>
   
   <div id="garage-door">
-  <div id="countdown" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 35px; color: rgb(150, 148, 148); font-weight: bold; text-shadow: 0 0 10px black; display: none; z-index: 2;">5</div>
+  <div id="countdown" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 35px; color: rgb(150, 148, 148); font-weight: bold; text-shadow: 0 0 10px black; display: none; z-index: 2;">3</div>
 <div class="back-button-container" style="transform: scaleX(-1);">
   <a href="index.html" onclick="event.stopPropagation();" class="back-button">
     <img src="https://png.pngtree.com/png-vector/20240416/ourmid/pngtree-3d-blue-arrow-icon-png-image_12289742.png" alt="Back">
@@ -645,7 +645,7 @@ let garageDoor = document.getElementById('garage-door');
 let garageDoorSound = document.getElementById('garage-door-sound');
 let isDoorOpen = false;
 let isDoorMoving = false;
-let countdownValue = 5;
+let countdownValue = 3;
 let countdownInterval;
 let hasCountedDown = false;
 let isCountingDown = false;
@@ -673,7 +673,7 @@ garageDoor.addEventListener('click', function() {
           if (countdownValue < 0) {
             clearInterval(countdownInterval);
             countdownElement.style.display = "none";
-            countdownValue = 5; 
+            countdownValue = 3; 
             hasCountedDown = true;
             isCountingDown = false;
             isDoorMoving = false;
@@ -728,5 +728,6 @@ garageDoor.addEventListener('click', function() {
 </script>
 
 </body>
+
 
 </html>
