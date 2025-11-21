@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CarTooN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+ body {
+  background-image: url(''), linear-gradient(to right, #808080, #666666);
+  font-family: 'Montserrat', sans-serif !important; 
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.video-episodes {
+ 
+  max-width: 80vw;
+  margin: 5vh auto;
+  text-align: center;
+  
+}
+
+.episode-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2vw;
+}
+
+.episode {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 1vh 1vw;
+  border-radius: 0.5vw;
+  box-shadow: 0 0 1vh rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.episode img {
+  width: 4.5vw;
+  height: 4.5vw;
+  object-fit: cover;
+  border-radius: 0.5vw;
+}
+
+.episode h3 {
+  font-size: .8vw;
+  margin-top: 1vh;
+  font-weight: 450;
+}
+
+.episode a {
+  text-decoration: none;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.pagination {
+  margin-top: 1vh;
+}
+.pagination button {
+  margin: 0 .5vw;
+  padding: .8vh .8vw;
+  border: none;
+  border-radius: 0.5vw;
+  background-color: #d3d3d3; /* Light gray background color */
+  color: #333; /* Dark text color */
+  cursor: pointer;
+  font-size: 1vw;
+}
+
+.pagination button:hover {
+  background-color: #ccc; /* Lighter gray hover background color */
+}
+
+.pagination button.active {
+  background-color: #999; /* Darker gray active background color */
+}
+
+.SD-logo {
+    width: 15vw;
+    height: auto;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  .episode-list {
+    grid-template-columns: repeat(4, 1fr);
+     margin-bottom: -4vh
+  }
+  .pagination button {
+    padding: .5vh 1.5vw;
+    font-size: 3vw;
+  }
+  .episode img {
+    width: 15vw;
+    height: 15vw;
+    
+  }
+  .SD-logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: -20px;
+}
+.episode h3 {
+  font-size: 2.5vw;
+  margin-top: 1vh;
+  font-weight: 450;
+}
+
+.video-episodes {
+  position: absolute;
+  top: 5vh; /* Adjust this value to your liking */
+  
+}
+
+.pagination {
+  margin-top: 5vh;
+}
+
+.back-button img {
+  width: 30px !important;
+  height: auto !important;
+  transform: scaleX(-1) !important;
+}
+
+.play-button {
+   width: 45px !important;
+  height: auto !important;
+  top:-20px !important ;
+  right: -20px !important ;
+}
+
+
+}
+
+ .back-button-container {
+  position: fixed;
+  top: 5px;
+  left: -5px;
+}
+
+.back-button img {
+  width: 2.5vw;
+  height: auto;
+  transform: scaleX(-1);
+}
+
+.back-button {
+  display: inline-block;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.play-button {
+  position: fixed;
+  top: -15px;
+  right: -15px;
+  margin: 10px;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  width: 5vw; 
+  height: auto;
+  object-fit: cover;
+}
+
+.play-button:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+    
+  </style>
+</head>
+<body>
+  <section class="video-episodes">
+    <h2 style="text-align: center;">
+      <img src="icons/CN.svg" alt="SlamDunk" class="SD-logo">
+    </h2>
+    <ul class="episode-list" id="episode-list"></ul>
+    <div class="pagination" id="pagination"></div>
+    <div id="video-container"></div>
+</section>
+
+  <script>
+    const episodesPerPage = 8;
+    const episodes = Array(24).fill(0).map((_, i) => [
+i === 0 ? "Solid Serenade": i === 1 ? "Texas Tom": i === 2 ? "Heavenly Puss": i === 3 ? "Luv that Pup": 
+i === 4 ? "Mouse Dinner": i === 5 ? "Cat Fishin": i === 6 ? "Island": i === 7 ? "Puss d boots": 
+i === 8 ? "Quiet Pls": i === 9 ? "So Sleepy": i === 10 ? "Dog Trouble": i === 11 ? "Christmass": 
+i === 12 ? "Spring Time": i === 13 ? "Zoot Cat": i === 14 ? "Visitor": i === 15 ? "Homeless": 
+i === 16 ? "Scared": i === 17 ? "Date": i === 18 ? "Doraemon": i === 19 ? "Tom Sawyer": 
+i === 20 ? "Cedie": i === 21 ? "Peter Pan": i === 22 ? "Judy Abbott": 
+i === 23 ? "The Hobbit 1977": `Episode ${i + 1}`,
+i === 0 ? "https://www.dailymotion.com/video/x8ps1yt" :
+i === 1 ? "https://www.dailymotion.com/video/x8tqtqm" :
+i === 2 ? "https://www.dailymotion.com/video/x8p3ixt" :
+i === 3 ? "https://www.dailymotion.com/video/x8p6gtz" :
+i === 4 ? "https://www.dailymotion.com/video/x8wlqu6" :
+i === 5 ? "https://www.dailymotion.com/video/x8p6gtg" :
+i === 6 ? "https://www.dailymotion.com/video/x8hevda" :
+i === 7 ? "https://www.dailymotion.com/video/x7ydkj7" :
+i === 8 ? "https://www.dailymotion.com/video/x3mf7iu" :
+i === 9 ? "https://www.dailymotion.com/video/x8uwhdw" :
+i === 10 ? "https://www.dailymotion.com/video/x93k9co" :
+i === 11 ? "https://www.dailymotion.com/video/x3k0kzs" :
+i === 12 ? "https://www.dailymotion.com/video/x3mf7iv" :
+i === 13 ? "https://www.dailymotion.com/video/x3k0gl1" :
+i === 14 ? "https://www.youtube.com/watch?v=Mb3lWAntBik" :
+i === 15 ? "https://www.youtube.com/watch?v=aG6o3bXIQeY" :
+i === 16 ? "https://www.youtube.com/watch?v=y8SdYLTy2sM" :
+i === 17 ? "https://www.youtube.com/watch?v=vXlxGh0UK7g" :
+i === 18 ? "https://www.youtube.com/watch?v=6t4WYBTABC8&list=PLPmpddCcbpsJgvxOl4C81CCVcazI7YQIl":
+i === 19 ? "https://www.youtube.com/watch?v=3yz9e2Ngc8k&list=PLlFwkuiG49kqpMpTyeq0_HELQ0IZliwFc":
+i === 20 ? "https://www.youtube.com/watch?v=u3h9GfZ1tVo&list=PLiIYQoL2sCU7Yg7gxXHkth7uI3FeQh6nO&index=1":
+i === 21 ? "https://www.bilibili.tv/en/video/4796710254548480?bstar_from=bstar-web.ugc-video-detail.playlist.all":
+i === 22 ? "https://www.youtube.com/watch?v=KLgQxAp3N2c&list=PLMJbMBwIUrN-GzddciIhBpaRCmQfpJkmg":
+i === 23 ? "https://www.youtube.com/watch?v=2Fw0lEaxiVs&list=PLDE76XyYfRE8obhf2c54rzYq4RH48mAJv":
+
+  `episode-${i + 1}-id`,
+i === 0 ? "https://i.pinimg.com/originals/51/80/15/518015bb0987af4f77a4ce7196315407.gif" :
+i === 1 ? "https://i.makeagif.com/media/9-14-2021/mR6GfW.gif" :
+i === 2 ? "https://i.pinimg.com/originals/29/e8/f0/29e8f0bc69bd13ad38225ce6a27ae729.gif" :
+i === 3 ? "https://media.tenor.com/nh64rg2BKlQAAAAM/spike-puppy-tom-and-jerry-cute-puppy.gif" :
+i === 4 ? "https://i.pinimg.com/originals/27/70/e3/2770e306b3dba28fdc01e00d8da1558e.gif" :
+i === 5 ? "https://i.makeagif.com/media/12-29-2020/O6t65S.gif" :
+i === 6 ? "https://i.makeagif.com/media/2-24-2025/TEcESK.gif" :
+i === 7 ? "https://64.media.tumblr.com/d06641d1bbba19d3a0200ec57322ad7d/d581ab1f3529b417-94/s500x750/1b554f85eacabecadef4397d8c7b34d962126f5b.gif" :
+i === 8 ? "https://64.media.tumblr.com/b315976391353384600886fdab91ea1e/tumblr_p6n3effDHc1r2ad2vo1_540.gif" :
+i === 9 ? "https://i.pinimg.com/originals/29/60/03/296003e1bd2cbd692c294a4f5e50fbac.gif" :
+i === 10 ? "https://media.tenor.com/zaGtJcwnPsUAAAAM/tom-and-jerry-medo.gif" :
+i === 11 ? "https://64.media.tumblr.com/3f39891440dac9303ae1e8f5558e33c0/tumblr_nzpuxonTGt1sqf5tdo1_400.gif" :
+i === 12 ? "https://s2.dmcdn.net/v/VLfIF1bDU7zi9lX0l/x120" :
+i === 13 ? "https://s2.dmcdn.net/v/CqDFr1MWhlExXBBO_/x120" :
+i === 14 ? "https://i.ytimg.com/vi/Mb3lWAntBik/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAahizpLI6XhIpxi2kfMHu1DtOQiQ" :
+i === 15 ? "https://i.ytimg.com/vi/aG6o3bXIQeY/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCrTxFoEgINUQl9LJmTi3Wo5Ur9tQ" :
+i === 16 ? "https://i.ytimg.com/vi/y8SdYLTy2sM/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDxGAoGR-QNq458yUhbZOWRgTKwSA" :
+i === 17 ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbL5v7NL8H_g-PgRJr0drPOV1rgDqtHPw1nw&s" :
+i === 18 ? "https://i.pinimg.com/originals/43/4b/ed/434bedd934f43e68f4d5392ba78174f8.gif" :
+i === 19 ? "https://i.pinimg.com/originals/9e/db/e4/9edbe427d241a0e45d095c292d7e8acb.gif":
+i === 20 ? "https://throwbackbatang90s.wordpress.com/wp-content/uploads/2015/03/cedie-with-dugal.gif":
+i === 21 ? "https://cdn.animenewsnetwork.com/thumbnails/fit200x200/encyc/A1734-58.jpg":
+i === 22 ? "https://64.media.tumblr.com/38b573fd55fcaa82793f6aa551f7e57f/81cee50d8b868ff6-00/s500x750/09f66f03e9f01666a38b361916bb9ab9a27d3297.gif":
+i === 23 ? "https://m.media-amazon.com/images/M/MV5BMThhY2YxOTctZTA4Ny00ZGU2LWEwNjQtNDZlMDJiMDJiYzlmXkEyXkFqcGc@._V1_.jpg":
+
+   ''
+]);
+
+    let currentPage = 1;
+
+    function generateEpisodeList(page) {
+  const start = (page - 1) * episodesPerPage;
+  const end = start + episodesPerPage;
+  const list = document.getElementById('episode-list');
+  list.innerHTML = '';
+  episodes.slice(start, end).forEach(([title, id, image], index) => {
+    list.insertAdjacentHTML('beforeend', `
+  <li class="episode">
+    <a href="${id}" target="_blank">
+      <img src="${image}" alt="${title}">
+      <h3>${title}</h3>
+    </a>
+  </li>
+`);
+});
+}
+
+    
+
+    function generatePagination() {
+      const pagination = document.getElementById('pagination');
+      const totalPages = Math.ceil(episodes.length / episodesPerPage);
+      pagination.innerHTML = '';
+      for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement('button');
+        button.textContent = i;
+        button.onclick = () => {
+          currentPage = i;
+          generateEpisodeList(currentPage);
+          updateActiveButton();
+        };
+        pagination.appendChild(button);
+      }
+      updateActiveButton();
+    }
+
+    function updateActiveButton() {
+  const buttons = document.querySelectorAll('#pagination button');
+  buttons.forEach((button, index) => {
+    if (index + 1 === currentPage) {
+      button.classList.add('active');
+    } else {
+      button.classList.remove('active');
+    }
+  });
+}
+
+    generateEpisodeList(currentPage);
+    generatePagination();
+  </script>
+ <div class="back-button-container">
+    <a href="anime.html"class="back-button"> <img src="https://www.clker.com/cliparts/N/H/o/D/v/Y/dark-blue-arrow-hi.png" alt="Back"> </a>
+</div>
+
+ <audio id="tomahhhhh" src="sounds/tomahhhhhh!.weba"></audio>
+<audio id="tomscream" src="sounds/Tomscream.weba"></audio>
+<img src="https://static.vecteezy.com/system/resources/thumbnails/068/542/214/small/media-control-button-with-play-and-forward-symbols-free-png.png" class="play-button" id="playButton" onclick="playRandomAudio()" alt="Play">
+
+<script>
+  const originalImage = "https://static.vecteezy.com/system/resources/thumbnails/068/542/214/small/media-control-button-with-play-and-forward-symbols-free-png.png";
+  const newImage = "https://media.baamboozle.com/uploads/images/670196/f0ff45c5-806f-4f48-bb84-1c22ad372a80.gif";
+  const playButton = document.getElementById("playButton");
+  const audios = document.getElementById("tomahhhhh").parentNode.querySelectorAll('audio');
+
+  audios.forEach(audio => {
+    audio.addEventListener('ended', () => {
+      playButton.src = originalImage;
+    });
+  });
+
+  function playRandomAudio() {
+    const randomAudio = audios[Math.floor(Math.random() * audios.length)];
+    playButton.src = newImage;
+    randomAudio.play().catch(error => console.error('Audio playback failed:', error));
+  }
+</script>
+
+
+  
+</body>
+</html>
