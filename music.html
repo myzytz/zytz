@@ -270,11 +270,11 @@
       </audio>
     </li>
     <li>
-      <span class="song-title" onclick="playSong('player8')">Eminence Front</span>
-      <audio id="player8" onended="playNext('player9')">
-        <source src="music/Eminence Front.weba" type="audio/webm">
-      </audio>
-    </li>
+  <span class="song-title" onclick="playSong('player8')">Eminence Front</span>
+  <audio id="player8" preload="auto" onended="playNext('player9')">
+    <source src="music/Eminence Front.weba#t=3.5" type="audio/webm">
+  </audio>
+</li>
 	<li>
       <span class="song-title" onclick="playSong('player9')">Frauline</span>
       <audio id="player9" onended="playNext('player10')">
@@ -332,3 +332,4 @@
 </body>
 
 </html>
+
