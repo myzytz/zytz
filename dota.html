@@ -267,6 +267,9 @@
     background-position: left top;
     background-repeat: no-repeat;
     z-index: -1;
+    -webkit-tap-highlight-color: transparent !important; /* Keep this for good measure */
+    overscroll-behavior-x: none !important;
+    overscroll-behavior-y: none !important;
   }
 
 
@@ -4219,6 +4222,7 @@ preloaderElement.style.backgroundImage = `url(${backgrounds[randomIndex]})`;
 </body>
 
 </html>
+
 
 
 
