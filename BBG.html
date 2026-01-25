@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BubbleGang</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+ body {
+  background-image: linear-gradient(to right, #808080, #666666);
+  font-family: 'Montserrat', sans-serif !important; 
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.video-episodes {
+ 
+  max-width: 80vw;
+  margin: 5vh auto;
+  text-align: center;
+  
+}
+
+.episode-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2vw;
+}
+
+.episode {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 1vh 1vw;
+  border-radius: 0.5vw;
+  box-shadow: 0 0 1vh rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.episode img {
+  width: 4.5vw;
+  height: 4.5vw;
+  object-fit: cover;
+  border-radius: 0.5vw;
+}
+
+.episode h3 {
+  font-size: .8vw;
+  margin-top: 1vh;
+  font-weight: 450;
+}
+
+.episode a {
+  text-decoration: none;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.pagination {
+  margin-top: 1vh;
+}
+.pagination button {
+  margin: 0 .5vw;
+  padding: .8vh .8vw;
+  border: none;
+  border-radius: 0.5vw;
+  background-color: #d3d3d3; /* Light gray background color */
+  color: #333; /* Dark text color */
+  cursor: pointer;
+  font-size: 1vw;
+}
+
+.pagination button:hover {
+  background-color: #ccc; /* Lighter gray hover background color */
+}
+
+.pagination button.active {
+  background-color: #999; /* Darker gray active background color */
+}
+
+.ndo-logo {
+    width: 15vw;
+    height: auto;
+     margin-bottom: -10px;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  .episode-list {
+    grid-template-columns: repeat(4, 1fr);
+     margin-bottom: -4vh
+  }
+  .pagination button {
+    padding: .5vh 1.5vw;
+    font-size: 3vw;
+  }
+  .episode img {
+    width: 15vw;
+    height: 15vw;
+    
+  }
+  .ndo-logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: -10px;
+}
+.episode h3 {
+  font-size: 2.5vw;
+  margin-top: 1vh;
+  font-weight: 450;
+}
+
+.video-episodes {
+  position: absolute;
+  top: 5vh; /* Adjust this value to your liking */
+  
+}
+
+.pagination {
+  margin-top: 5vh;
+}
+
+.back-button img {
+  width: 30px !important;
+  height: auto !important;
+  transform: scaleX(-1) !important;
+}
+
+.play-button {
+  width: 45px !important;
+  height: auto !important;
+  top:-20px !important ;
+  right: -20px !important ;
+}
+
+
+}
+
+/* BBG Hover effect */
+.complete-episode {
+  color: pink;
+  position: relative;
+}
+
+.complete-episode:hover::after {
+  content: "Complete Episode";
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 2px 5px;
+  top: 100%;
+  left: 0;
+  white-space: nowrap;
+  color: rgb(194, 63, 106);
+}
+
+
+.back-button-container {
+  position: fixed;
+  top: 5px;
+  left: -5px;
+}
+
+.back-button img {
+  width: 2.5vw;
+  height: auto;
+  transform: scaleX(-1);
+}
+
+.back-button {
+  display: inline-block;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.play-button {
+  position: fixed;
+  top: -15px;
+  right: -15px;
+  margin: 10px;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  width: 5vw; 
+  height: auto;
+  object-fit: cover;
+}
+
+.play-button:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}   
+
+  </style>
+
+</head>
+<body>
+  <section class="video-episodes">
+    <h2 style="text-align: center;">
+      <img src="icons/bbg.webp" alt="NDO" class="ndo-logo">
+    </h2>
+    <ul class="episode-list" id="episode-list"></ul>
+    <div class="pagination" id="pagination"></div>
+    <div id="video-container"></div>
+</section>
+
+  <script>
+const episodesPerPage = 12;
+const episodes = Array(104).fill(0).map((_, i) => [
+i === 35 ? "<span class='complete-episode'>BBG GAGS</span>": i === 60 ? "<span class='complete-episode'>Mr. Assimo</span>" : `BBG ${i + 1}`,
+
+i === 0 ? "https://www.dailymotion.com/video/xgu4mv" : 
+i === 1 ? "https://www.youtube.com/watch?v=8O_Z99NmLjg" : 
+i === 2 ? "https://www.youtube.com/watch?v=NxAmYF9KzPk" : 
+i === 3 ? "https://www.youtube.com/watch?v=D2RYFOkBXnA" : 
+i === 4 ? "https://www.youtube.com/watch?v=vIB3hTCV9k4" : 
+i === 5 ? "https://www.youtube.com/watch?v=ZcDDynZIiXM" : 
+i === 6 ? "https://www.youtube.com/watch?v=pM0Xkzvued8" : 
+i === 7 ? "https://www.youtube.com/watch?v=0uo32In_aDY" : 
+i === 8 ? "https://www.youtube.com/watch?v=nkrUFcorXg4" : 
+i === 9 ? "https://www.youtube.com/watch?v=i0rdE2FFPNM" : 
+i === 10 ? "https://www.youtube.com/watch?v=cMM7qpKrXMs" : 
+i === 11 ? "https://www.youtube.com/watch?v=LvVFGKoUHFY" : 
+i === 12 ? "https://www.youtube.com/watch?v=OaEw8QyKUxY" : 
+i === 13 ? "https://www.youtube.com/watch?v=T2hJzvkEuaU" : 
+i === 14 ? "https://www.youtube.com/watch?v=3LNPVv9A8es" : 
+i === 15 ? "https://www.youtube.com/watch?v=w9TQtmvcdb0" : 
+i === 16 ? "https://www.youtube.com/watch?v=hOwPYTbDtDc" : 
+i === 17 ? "https://www.youtube.com/watch?v=0Ermsyg5FNA" : 
+i === 18 ? "https://www.youtube.com/watch?v=mQXun_HnK0s" : 
+i === 19 ? "https://www.youtube.com/watch?v=KFvMVw-pmkI" : 
+i === 20 ? "https://www.youtube.com/watch?v=zt_BrNEFc-c" : 
+i === 21 ? "https://www.youtube.com/watch?v=VjX4yGhIe0M" : 
+i === 22 ? "https://www.youtube.com/watch?v=QvksfUVKRHE" : 
+i === 23 ? "https://www.youtube.com/watch?v=s-5tCI2SnKI" :
+i === 24 ? "https://www.youtube.com/watch?v=JrTnFlomVcA" :
+i === 25 ? "https://www.youtube.com/watch?v=zB3eg64PZ9s" :
+i === 26 ? "https://www.youtube.com/watch?v=E1XfVUcMTC0" :
+i === 27 ? "https://www.youtube.com/watch?v=byA8XGK6bB0" :
+i === 28 ? "https://www.youtube.com/watch?v=AEy4_xcBX_k" :
+i === 29 ? "https://www.youtube.com/watch?v=JiK29jLPMaA" :
+i === 30 ? "https://www.youtube.com/watch?v=FSyn5RBQtcc" :
+i === 31 ? "https://www.youtube.com/watch?v=1Fx7dtCtnDM" :
+i === 32 ? "https://www.youtube.com/watch?v=GRXPxzNwov0" :
+i === 33 ? "https://www.youtube.com/watch?v=Po40Oyz22eE" :
+i === 34 ? "https://www.youtube.com/watch?v=2Igx_6p-tUQ" :
+i === 35 ? "https://www.youtube.com/watch?v=PdJIcQPbpeA&list=PLRXCz8lcNbcCMm6wMZKxfptk0CzOm5aaK" :
+i === 36 ? "https://www.youtube.com/watch?v=tlTUJu0UlDg" :
+i === 37 ? "https://www.youtube.com/watch?v=HQVv5VziIOc" :
+i === 38 ? "https://www.youtube.com/watch?v=pm1CgONGXJg" :
+i === 39 ? "https://www.youtube.com/watch?v=CFakYsvFECE" :
+i === 40 ? "https://www.youtube.com/watch?v=MA6qQkJGPoM" :
+i === 41 ? "https://www.youtube.com/watch?v=C-_xeF9fqBM" :
+i === 42 ? "https://www.youtube.com/watch?v=U-baM9NgVHM" :
+i === 43 ? "https://www.youtube.com/watch?v=U5-vY95Z_Hg" :
+i === 44 ? "https://www.youtube.com/watch?v=wpB1PXDVGqE" :
+i === 45 ? "https://www.youtube.com/watch?v=k2z2I1mghdY" :
+i === 46 ? "https://www.youtube.com/watch?v=b2chXcxit1Y" :
+i === 47 ? "https://www.youtube.com/watch?v=_hWuX618oJc" :
+i === 48 ? "https://www.youtube.com/watch?v=Yiqac1gnkMk" :
+i === 49 ? "https://www.youtube.com/watch?v=cUmDgqigOoU" :
+i === 50 ? "https://www.youtube.com/watch?v=q_r1Yd1H_5g" :
+i === 51 ? "https://www.youtube.com/watch?v=PbZD-_s8LWs" :
+i === 52 ? "https://www.youtube.com/watch?v=ht4nKX8IGh0" :
+i === 53 ? "https://www.youtube.com/watch?v=NJ6D7FXlNIE" :
+i === 54 ? "https://www.youtube.com/watch?v=jDo-n5CP_80" :
+i === 55 ? "https://www.youtube.com/watch?v=xZECIJ-4PNM" :
+i === 56 ? "https://www.youtube.com/watch?v=2Z3BZH7G_8k" :
+i === 57 ? "https://www.youtube.com/watch?v=YZ3tPoNslfw" :
+i === 58 ? "https://www.youtube.com/watch?v=mUEnVQlC3bg&list=PL0G3u7gi4ufjfPb7NJdnDsn37k32k3-jG&index=63" :
+i === 59 ? "https://www.youtube.com/watch?v=TyNiHNnP10E" :
+i === 60 ? "https://www.youtube.com/watch?v=YI2ALGTg2Ak&list=PLCDtsGEtuIDPMzU4sozBe0soEw-dvpqvZ" :
+i === 61 ? "https://www.youtube.com/watch?v=gmprupvpFiE" :
+i === 62 ? "https://www.youtube.com/watch?v=VT3XBDZEXj0" :
+i === 63 ? "https://www.youtube.com/watch?v=tBSTEo_D1kE&pp=ygUQYnViYmxlIGdhbmcgMjAxNw%3D%3D" :
+i === 64 ? "https://www.youtube.com/watch?v=0H6vE4Qr6ec&t=14s&pp=ygUQYnViYmxlIGdhbmcgMjAxNw%3D%3D" :
+i === 65 ? "https://www.youtube.com/watch?v=LVOmRkb5WFk" :
+i === 66 ? "https://www.youtube.com/watch?v=WcPBfHp9ewo" :
+i === 67 ? "https://www.youtube.com/watch?v=MDvOrA3rT-U" :
+i === 68 ? "https://www.youtube.com/watch?v=V3gYsdS0ugE" :
+i === 69 ? "https://www.youtube.com/watch?v=Vfuei4WTz84" :
+i === 70 ? "https://www.youtube.com/watch?v=ryWuayNGpS4" :
+i === 71 ? "https://www.youtube.com/watch?v=fcut7TLJWiA" :
+i === 72 ? "https://www.youtube.com/watch?v=vLtSrN6YrcI" :
+i === 73 ? "https://www.youtube.com/watch?v=BXFsvCZjPSk" :
+i === 74 ? "https://www.youtube.com/watch?v=_uIPnJARQq8" :
+i === 75 ? "https://www.dailymotion.com/video/xfp622" :
+i === 76 ? "https://www.youtube.com/watch?v=dhN18UxYCCo" :
+i === 77 ? "https://www.youtube.com/watch?v=ibjmJq3KCmU" :
+i === 78 ? "https://www.youtube.com/watch?v=JCzo3j7MEEU" :
+i === 79 ? "https://www.youtube.com/watch?v=F1nNrry4GOs" :
+i === 80 ? "https://www.youtube.com/watch?v=kFFg5PkQI4c" :
+i === 81 ? "https://www.youtube.com/watch?v=b6vJ5RpoWCA" :
+i === 82 ? "https://www.youtube.com/watch?v=jiIViowuOgU&list=PL1P5VWSFvAlTxCyg3cFBdJt9KkknkDTEu&index=13" :
+i === 83 ? "https://www.youtube.com/watch?v=m-_yddo1FY4" :
+i === 84 ? "https://www.youtube.com/watch?v=LXWVVYMyu0k" :
+i === 85 ? "https://www.youtube.com/watch?v=HOkxAClRnYo&t=13s" :
+i === 86 ? "https://www.youtube.com/watch?v=0mfdV4IcrbE" :
+i === 87 ? "https://www.youtube.com/watch?v=rtu9kTRcdTw" :
+i === 88 ? "https://www.youtube.com/watch?v=5P1Mcso3KYE" :
+i === 89 ? "https://www.youtube.com/watch?v=6450E2KF7Ps" :
+i === 90 ? "https://www.youtube.com/watch?v=EaTwG9BbcXU" :
+i === 91 ? "https://www.youtube.com/watch?v=SD2MbkF2JpE" :
+i === 92 ? "https://www.youtube.com/watch?v=DUzWquHIWh0" :
+i === 93 ? "https://www.youtube.com/watch?v=XbJyZOpuWYo" :
+i === 94 ? "https://www.youtube.com/watch?v=B-GsnHRLQ2A" :
+i === 95 ? "https://www.youtube.com/watch?v=hJVIjQjpJlk" :
+i === 96 ? "https://www.youtube.com/watch?v=wYGXFMPwUdI" :
+i === 97 ? "https://www.youtube.com/watch?v=J4W_77W1534" :
+i === 98 ? "https://www.youtube.com/watch?v=5Riq67aYn8Q" :
+i === 99 ? "https://www.youtube.com/watch?v=pzPdhvcNI8c" :
+i === 100 ? "https://www.facebook.com/reel/1112619087718981" :
+i === 101 ? "https://www.youtube.com/watch?v=1rQxlqhl5-w" :
+i === 102 ? "https://www.youtube.com/watch?v=4VkWaH9q9rU" :
+i === 103 ? "https://www.youtube.com/watch?v=oXzvYfXEpTU" :
+
+
+  `episode-${i + 1}-id`,
+i === 0 ? "https://s1.dmcdn.net/v/1huBt1cm4mdjQbo53/x720" : 
+i === 1 ? "https://i.ytimg.com/vi/8O_Z99NmLjg/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAYUWtBsUfLkJwnVUpzC7a9f0mtEQ" : 
+i === 2 ? "https://i.ytimg.com/vi/NxAmYF9KzPk/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAL2dnhGQEO6I2hnK4WfEv0ujIyMA" : 
+i === 3 ? "https://i.ytimg.com/vi/D2RYFOkBXnA/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLA5kuOEiMCzDiCqsQNP3XfIbN33Eg" : 
+i === 4 ? "https://i.ytimg.com/vi/vIB3hTCV9k4/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLADkEHt-7a3_kqvigbaKZN-6zXIxQ" : 
+i === 5 ? "https://i.ytimg.com/vi/ZcDDynZIiXM/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLA_zp2grfABGQgprMYgKT_5ylJniw" : 
+i === 6 ? "https://i.ytimg.com/vi/pM0Xkzvued8/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCyA6JorNEUN2cLSQK6-li0jm-kyQ" : 
+i === 7 ? "https://i.ytimg.com/vi/0uo32In_aDY/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCFeawWv-Z68krWn7_T6GaBU6mNbw" : 
+i === 8 ? "https://i.ytimg.com/vi/nkrUFcorXg4/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDcO2Bu5FbfHIk6SH6NuCrFwqEFZA" : 
+i === 9 ? "https://i.ytimg.com/vi/i0rdE2FFPNM/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCuaWyPy57QQT02EQzFbR5pRKz6EA" : 
+i === 10 ? "https://i.ytimg.com/vi/cMM7qpKrXMs/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDBkkSyqHyepF1dCqaFECl5L0itcA" : 
+i === 11 ? "https://i.ytimg.com/vi/LvVFGKoUHFY/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDyHU2_kKLOLipIs94KkejOpvn2UQ" : 
+i === 12 ? "https://i.ytimg.com/vi/OaEw8QyKUxY/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLACw91bLZ3yTVkZXqcLZd4POBENfA" : 
+i === 13 ? "https://i.ytimg.com/vi/T2hJzvkEuaU/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDE6w2lZDLEj0t-Zeyq3uM1kZuFMw" : 
+i === 14 ? "https://i.ytimg.com/vi/3LNPVv9A8es/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLD73u6V7x6j6rqZLlYjQprflKrV2A" : 
+i === 15 ? "https://i.ytimg.com/vi/w9TQtmvcdb0/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLA50zyUMvdGYeV996OzDaVYFLNrnQ" : 
+i === 16 ? "https://i.ytimg.com/vi/hOwPYTbDtDc/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCAvxrO3FPC2L2MokfmVvGfmJ53sw" : 
+i === 17 ? "https://i.ytimg.com/vi/0Ermsyg5FNA/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBMAryPJMxu4_TLp25F-Rpb2p1igQ" : 
+i === 18 ? "https://i.ytimg.com/vi/mQXun_HnK0s/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCotzrcpKLKTTrjO0HFOayAX1I_iA" : 
+i === 19 ? "https://i.ytimg.com/vi/KFvMVw-pmkI/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLD9E48oup0YYLv9aSbjZM7MGT0ttA" : 
+i === 20 ? "https://i.ytimg.com/vi/zt_BrNEFc-c/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAG66kR_BBYgt7L0CHQ1Y7dSnk2GA" : 
+i === 21 ? "https://i.ytimg.com/vi/VjX4yGhIe0M/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBOp8Tn9JYboj9L_KFZ-ENDK9829w" : 
+i === 22 ? "https://i.ytimg.com/vi/QvksfUVKRHE/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCxK5RbD8gqG6AqwTvNeknUos2pdg" : 
+i === 23 ? "https://i.ytimg.com/vi/s-5tCI2SnKI/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAFiJhox1U4rndevjuf1rgOwmpwyw" :
+i === 24 ? "https://i.ytimg.com/vi/JrTnFlomVcA/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLALT1Fk05EI6ozy3nlSW-zSfjgYHw" :
+i === 25 ? "https://i.ytimg.com/vi/zB3eg64PZ9s/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDFROozCV8rw0iCP3hvqTtlda7mfg" :
+i === 26 ? "https://i.ytimg.com/vi/E1XfVUcMTC0/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAP6xgylSZYz5GNlnKNlrf8ztz4yw" :
+i === 27 ? "https://i.ytimg.com/vi/byA8XGK6bB0/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLByArhPdLZNlqTtUqIQyRc5J_UuYA" :
+i === 28 ? "https://i.ytimg.com/vi/AEy4_xcBX_k/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLB3SMGpzkUOrWw0cKDzg3QVOKASkA" :
+i === 29 ? "https://i.ytimg.com/vi/JiK29jLPMaA/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBCM91McusHpAF2Bw6qIymAWXTO9Q" :
+i === 30 ? "https://i.ytimg.com/vi/FSyn5RBQtcc/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBw_NioEMLv2nbu0gD5-NIVDHmeiA" :
+i === 31 ? "https://i.ytimg.com/vi/1Fx7dtCtnDM/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLARUpr00vFH_qv-pUTHjG0xqxYRyw" :
+i === 32 ? "https://i.ytimg.com/vi/GRXPxzNwov0/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLB6wPMFNqocPXx6r5LR8L63DrN7NA" :
+i === 33 ? "https://i.ytimg.com/vi/Po40Oyz22eE/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLC53vTik7qwgsfbpDEo-HJhTU4y5Q" :
+i === 34 ? "https://i.ytimg.com/vi/2Igx_6p-tUQ/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBwZZ0dO7aGKSAV2xfwjtmHhDnc1g" :
+i === 35 ? "https://i.ytimg.com/vi/PdJIcQPbpeA/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLB72JlbRVMRYAukq05AJUyR-yfPDQ" :
+i === 36 ? "https://i.ytimg.com/vi/tlTUJu0UlDg/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCo4w5qmoFsM3xbPNgYJuV1sOD5NQ" :
+i === 37 ? "https://i.ytimg.com/vi/HQVv5VziIOc/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDN6IEy7iY15y7MAg2Ozx6WStmF4Q" :
+i === 38 ? "https://i.ytimg.com/vi/pm1CgONGXJg/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBz98AZ_2Xo5QNiNvCck3N7MrsYiA" :
+i === 39 ? "https://i.ytimg.com/vi/CFakYsvFECE/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAWL6VwM6UyH9MbqYIK8vKYKF9Jpw" :
+i === 40 ? "https://i.ytimg.com/vi/MA6qQkJGPoM/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBNTKxYcKGjAKAw-MRjxlYaM28-Bg" :
+i === 41 ? "https://i.ytimg.com/vi/C-_xeF9fqBM/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDlYeE6kowOwMAgs7OkNYIId0IzsA" :
+i === 42 ? "https://i.ytimg.com/vi/U-baM9NgVHM/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCDx06zW3ImmumXmeZkni_1W9Dq9Q" :
+i === 43 ? "https://i.ytimg.com/vi/U5-vY95Z_Hg/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDy62dTi9WUyntZsEY3y3bqgEDBgQ" :
+i === 44 ? "https://i.ytimg.com/vi/wpB1PXDVGqE/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBAMFVMKcsFXPmqxaVBYRix0BqLnw" :
+i === 45 ? "https://i.ytimg.com/vi/k2z2I1mghdY/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDG-pvKR8abaOkNUtDzWyESMURQ9w" :
+i === 46 ? "https://i.ytimg.com/vi/b2chXcxit1Y/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBrPJr4BgbA7GkYN-E1LorG-H0L-A" :
+i === 47 ? "https://i.ytimg.com/vi/_hWuX618oJc/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDvKfbp1Hfv6b8yDbcsDFJSSDGEzg" :
+i === 48 ? "https://i.ytimg.com/vi/Yiqac1gnkMk/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBJXXDvHZNMn2YBZ6DMGj0dTq2rHQ" :
+i === 49 ? "https://i.ytimg.com/vi/cUmDgqigOoU/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCFEfqeeN_Hr-7xJDRsgA5EX_1QOg" :
+i === 50 ? "https://i.ytimg.com/vi/q_r1Yd1H_5g/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAoQ7lIX48bfUJxeOyO-SMIaKDuVA" :
+i === 51 ? "https://i.ytimg.com/vi/PbZD-_s8LWs/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDIxJaO1xOtqGoIo1qHJgbmugtzRQ" :
+i === 52 ? "https://i.ytimg.com/vi/ht4nKX8IGh0/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCwP7IMOPdkmYBSwNKA-ttpqnvk1g" :
+i === 53 ? "https://i.ytimg.com/vi/NJ6D7FXlNIE/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBZnrjvToUVVGgIISb94zvAYmk1xg" :
+i === 54 ? "https://i.ytimg.com/vi/jDo-n5CP_80/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAUEkwJhv1I1pg7A0Ot9TRqHy74jw" :
+i === 55 ? "https://i.ytimg.com/vi/xZECIJ-4PNM/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAl3dTllLQJK8-ZXhBkTmhKmnZZXQ" :
+i === 56 ? "https://i.ytimg.com/vi/2Z3BZH7G_8k/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBMmaap4H2pgl2NcQOoP5qJYtXi-w" :
+i === 57 ? "https://i.ytimg.com/vi/YZ3tPoNslfw/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBx4eiVcrhVmnNOzTYJeyCNZVI2hg" :
+i === 58 ? "https://i.ytimg.com/vi/mUEnVQlC3bg/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDi8YxBb6p1gd-bkIBD4wKzBtDqBg" :
+i === 59 ? "https://i.ytimg.com/vi/TyNiHNnP10E/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDXe867_V9FaAUNs3ZED-7VgF9zIA" :
+i === 60 ? "https://i.ytimg.com/vi/YI2ALGTg2Ak/hqdefault.jpg?sqp=-oaymwFACKgBEF5IWvKriqkDMwgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAHwAQH4Ac4FgALgA4oCDAgAEAEYZSBWKFgwDw==&rs=AOn4CLBLncuF9jwUHDCBpirqqqB9mjYd-Q" :
+i === 61 ? "https://i.ytimg.com/vi/gmprupvpFiE/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCM65fCd_gvuZS6GChLzY1gTPW_sw" :
+i === 62 ? "https://i.ytimg.com/vi/VT3XBDZEXj0/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBa9BvPBPnosRgx4UkMPq8czYUr5w" :
+i === 63 ? "https://i.ytimg.com/vi/tBSTEo_D1kE/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDBm3OLaMjqLYCaw8c7Ehg8hPYEFg" :
+i === 64 ? "https://i.ytimg.com/vi/0H6vE4Qr6ec/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLB0qkHvEk6kA8TTnnHGemIHd-agZQ" :
+i === 65 ? "https://i.ytimg.com/vi/LVOmRkb5WFk/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAis9ClXrVjYUSRUDpSQgg_zixx4g" :
+i === 66 ? "https://i.ytimg.com/vi/WcPBfHp9ewo/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCX4UZbetLeMiH6P8t7W9IhnjqF6A" :
+i === 67 ? "https://i.ytimg.com/vi/MDvOrA3rT-U/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBeGMQ6-Yh5tpl2Moez9OJ5RsW2NQ" :
+i === 68 ? "https://i.ytimg.com/vi/V3gYsdS0ugE/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBcozPXDLMFUrku2wFv0EYbOJoSZw" :
+i === 69 ? "https://i.ytimg.com/vi/Vfuei4WTz84/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAlrLS9aNtBHvb57lvBRZoGB0zPuw" :
+i === 70 ? "https://i.ytimg.com/vi/ryWuayNGpS4/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLB8gLkgx8wP-2jXxpU6XEXwxwuGQg" :
+i === 71 ? "https://i.ytimg.com/vi/fcut7TLJWiA/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDKLtB6UkGRWuo8Gyak697hq3KBgg" :
+i === 72 ? "https://i.ytimg.com/vi/vLtSrN6YrcI/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAUt313exaROZMrreUSSg_3jga8Pw" :
+i === 73 ? "https://i.ytimg.com/vi/BXFsvCZjPSk/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDmOLD2WPS07yCYzZMM6CacFVxV2A" :
+i === 74 ? "https://i.ytimg.com/vi/_uIPnJARQq8/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLA4bI2dVyViQ4NGG6KNPe3X4Bc4WA" :
+i === 75 ? "https://s1.dmcdn.net/v/1abdg1EDg1fRGRQ0L/x1080" :
+i === 76 ? "https://i.ytimg.com/vi/dhN18UxYCCo/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLB28OiMY4_wI0xlgUSgaRS9nq7lLQ" :
+i === 77 ? "https://i.ytimg.com/vi/ibjmJq3KCmU/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCIgrVGprhvp-UlTzGkBMjqvFvPIg" :
+i === 78 ? "https://i.ytimg.com/vi/JCzo3j7MEEU/hq2.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAXD0gKwjfwa0YDlwYhER3KFeKTVQ" :
+i === 79 ? "https://i.ytimg.com/vi/F1nNrry4GOs/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCkExAz8aAMdRX3Fq-B9ABp3ciRkg" :
+i === 80 ? "https://i.ytimg.com/vi/kFFg5PkQI4c/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLC2ORUip-t5tp6nMCrM7U2hY0581g" :
+i === 81 ? "https://i.ytimg.com/vi/b6vJ5RpoWCA/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDL-u-l3v28yJIW-YRt4R5KrBEkMA" :
+i === 82 ? "https://i.ytimg.com/vi/jiIViowuOgU/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLC_8j6_3uGHdIwytSOBQ3TsX6psYA" :
+i === 83 ? "https://i.ytimg.com/vi/m-_yddo1FY4/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBxf3Q3YtiFkdyUA68lFMqWLHU34w" :
+i === 84 ? "https://i.ytimg.com/vi/LXWVVYMyu0k/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAjxeLRNxoBKc3RiGRYATg-dNJDLA" :
+i === 85 ? "https://i.ytimg.com/vi/HOkxAClRnYo/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCdbeNy93eU2Py-mnQVsDGGpjQj7A" :
+i === 86 ? "https://i.ytimg.com/vi/0mfdV4IcrbE/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLB5lQtL8Bw8dxoB6qCXW3MfcKRyBA" :
+i === 87 ? "https://i.ytimg.com/vi/rtu9kTRcdTw/hqdefault.jpg?sqp=-oaymwFBCOADEI4CSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-BIAC6AKKAgwIABABGGUgWChQMA8=&rs=AOn4CLBDmErJyoUOY1vIrFuOTAXDZc8_5A" :
+i === 88 ? "https://i.ytimg.com/vi/5P1Mcso3KYE/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBFs9JXyAayv8-LLKcCm7EdWAiDiA" :
+i === 89 ? "https://i.ytimg.com/vi/6450E2KF7Ps/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBjgge4yzhRSYH20BeOvH7gwVw_Gw" :
+i === 90 ? "https://i.ytimg.com/vi/EaTwG9BbcXU/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCQHp6lYBtL9xKzpHM_ASMYS2nwuA" :
+i === 91 ? "https://i.ytimg.com/vi/SD2MbkF2JpE/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAllsFvvlXWJSF4OXUMOR-Dm3Hung" :
+i === 92 ? "https://i.ytimg.com/vi/ceCIBROLV5Q/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDjfAmJHAntbAQvCX5Dvu9hqOa0Zg" :
+i === 93 ? "https://i.ytimg.com/vi/XbJyZOpuWYo/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAB4WGPTec6W1oJzA9saGdO6-h-EA" :
+i === 94 ? "https://i.ytimg.com/vi/B-GsnHRLQ2A/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDHi3kBFCu6g3507Rp8DgEUifGu0g" :
+i === 95 ? "https://i.ytimg.com/vi/hJVIjQjpJlk/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDaSoKFjeJKL7N4_Vcoo_M72nnHsw" :
+i === 96 ? "https://i.ytimg.com/vi/wYGXFMPwUdI/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCS90lKgHk8aEL0ktzdUpqKil-Mlw" :
+i === 97 ? "https://i.ytimg.com/vi/J4W_77W1534/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBaGFhveYxVlr3RT9RcNvYt-mP2NQ" :
+i === 98 ? "https://i.ytimg.com/vi/5Riq67aYn8Q/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDj9rkrSky9yGT09MQuib55ty2V0A" :
+i === 99 ? "https://i.ytimg.com/vi/pzPdhvcNI8c/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDkI_uwLtidquUuzTFfyCBQk0gynA" :
+i === 100 ? "data:image/jpeg;base64,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" :
+i === 101 ? "https://i.ytimg.com/vi/1rQxlqhl5-w/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCvgq1t0QT9qRUrJwCdaNnl_qKCfQ" :
+i === 102 ? "https://i.ytimg.com/vi/4VkWaH9q9rU/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDJtKZJTklB08eX-5LmTh-GIhAOMw" :
+i === 103 ? "https://i.ytimg.com/vi/oXzvYfXEpTU/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBSX2ESdQ4Tb8FGMq4UApr0jTTF8Q" :
+''
+]);
+
+    let currentPage = 1;
+
+    function generateEpisodeList(page) {
+  const start = (page - 1) * episodesPerPage;
+  const end = start + episodesPerPage;
+  const list = document.getElementById('episode-list');
+  list.innerHTML = '';
+  episodes.slice(start, end).forEach(([title, id, image], index) => {
+    list.insertAdjacentHTML('beforeend', `
+  <li class="episode">
+    <a href="${id}" target="_blank">
+      <img src="${image}" alt="${title}">
+      <h3>${title}</h3>
+    </a>
+  </li>
+`);
+});
+}
+
+    
+
+    function generatePagination() {
+      const pagination = document.getElementById('pagination');
+      const totalPages = Math.ceil(episodes.length / episodesPerPage);
+      pagination.innerHTML = '';
+      for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement('button');
+        button.textContent = i;
+        button.onclick = () => {
+          currentPage = i;
+          generateEpisodeList(currentPage);
+          updateActiveButton();
+        };
+        pagination.appendChild(button);
+      }
+      updateActiveButton();
+    }
+
+    function updateActiveButton() {
+  const buttons = document.querySelectorAll('#pagination button');
+  buttons.forEach((button, index) => {
+    if (index + 1 === currentPage) {
+      button.classList.add('active');
+    } else {
+      button.classList.remove('active');
+    }
+  });
+}
+
+    generateEpisodeList(currentPage);
+    generatePagination();
+  </script>
+ <div class="back-button-container">
+<a href="Funnyvidz.html" class="back-button">
+<img src="https://www.clker.com/cliparts/N/H/o/D/v/Y/dark-blue-arrow-hi.png" alt="Back">
+</a>
+</div>
+
+<audio id="tomahhhhh" src="sounds/tomahhhhhh!.weba"></audio>
+<audio id="tomscream" src="sounds/Tomscream.weba"></audio>
+<img src="https://static.vecteezy.com/system/resources/thumbnails/068/542/214/small/media-control-button-with-play-and-forward-symbols-free-png.png" class="play-button" id="playButton" onclick="playRandomAudio()" alt="Play">
+
+<script>
+  const originalImage = "https://static.vecteezy.com/system/resources/thumbnails/068/542/214/small/media-control-button-with-play-and-forward-symbols-free-png.png";
+  const newImage = "https://media.baamboozle.com/uploads/images/670196/f0ff45c5-806f-4f48-bb84-1c22ad372a80.gif";
+  const playButton = document.getElementById("playButton");
+  const audios = document.getElementById("tomahhhhh").parentNode.querySelectorAll('audio');
+
+  audios.forEach(audio => {
+    audio.addEventListener('ended', () => {
+      playButton.src = originalImage;
+    });
+  });
+
+  function playRandomAudio() {
+    const randomAudio = audios[Math.floor(Math.random() * audios.length)];
+    playButton.src = newImage;
+    randomAudio.play().catch(error => console.error('Audio playback failed:', error));
+  }
+</script>
+  
+</body>
+</html>
