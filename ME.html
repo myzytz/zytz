@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Middle Earth</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+ body {
+  background-image: url("https://images4.alphacoders.com/135/thumb-1920-1358247.jpeg");
+  background-repeat: no-repeat;
+  background-position: center top; 
+  background-size: cover;
+  font-family: 'Montserrat', sans-serif !important;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.video-episodes {
+ 
+  max-width: 80vw;
+  margin: 5vh auto;
+  text-align: center;
+  
+}
+
+.episode-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2vw;
+}
+
+.episode {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 1vh 1vw;
+  border-radius: 0.5vw;
+  box-shadow: 0 0 1vh rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.episode img {
+  width: 4.5vw;
+  height: 4.5vw;
+  object-fit: cover;
+  border-radius: 0.5vw;
+}
+
+.episode h3 {
+  font-size: .8vw;
+  margin-top: 1vh;
+  font-weight: 450;
+}
+
+.episode a {
+  text-decoration: none;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.pagination {
+  margin-top: 1vh;
+}
+.pagination button {
+  margin: 0 .5vw;
+  padding: .8vh .8vw;
+  border: none;
+  border-radius: 0.5vw;
+  background-color: #d3d3d3; /* Light gray background color */
+  color: #333; /* Dark text color */
+  cursor: pointer;
+  font-size: 1vw;
+}
+
+.pagination button:hover {
+  background-color: #ccc; /* Lighter gray hover background color */
+}
+
+.pagination button.active {
+  background-color: #999; /* Darker gray active background color */
+}
+
+.Doc-logo {
+    position: relative;
+    top: 2vh;
+    width: 9vw;
+    height: auto;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+
+    html {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    overscroll-behavior-x: none !important;
+    -webkit-tap-highlight-color: transparent !important; 
+   }
+  body {
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overscroll-behavior-y: none !important;
+    overscroll-behavior-x: none !important;
+    -webkit-tap-highlight-color: transparent !important; 
+  }
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250vw;
+    height: 100vh;
+    background-image: url('https://images4.alphacoders.com/135/thumb-1920-1358247.jpeg');
+    background-size: 250vw 100vh;
+    background-position: left top;
+    background-repeat: no-repeat;
+    z-index: -1;
+  }
+
+
+    .Doc-logo {
+    top: -1vh !important;
+    width: 25vw !important;
+    height: auto !important;
+}
+
+  .episode-list {
+    grid-template-columns: repeat(4, 1fr);
+     margin-bottom: -4vh
+  }
+  .pagination button {
+    padding: .5vh 1.5vw;
+    font-size: 3vw;
+  }
+  .episode img {
+    width: 15vw;
+    height: 15vw;
+    
+  }
+  .Doc-logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: -20px;
+}
+.episode h3 {
+  font-size: 2.5vw;
+  margin-top: 1vh;
+  font-weight: 450;
+}
+
+.video-episodes {
+  position: fixed;
+  top: 13vh; /* Adjust this value to your liking */
+  
+}
+
+.pagination {
+  margin-top: 5vh;
+}
+
+.back-button img {
+  width: 30px !important;
+  height: auto !important;
+  transform: scaleX(-1) !important;
+}
+
+.play-button {
+  width: 45px !important;
+  height: auto !important;
+  top:-20px !important ;
+  right: -20px !important ;
+}
+
+}
+
+
+.back-button-container {
+  position: fixed;
+  top: 5px;
+  left: -5px;
+}
+
+.back-button img {
+  width: 2.5vw;
+  height: auto;
+  transform: scaleX(-1);
+}
+
+.back-button {
+  display: inline-block;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.play-button {
+  position: fixed;
+  top: -15px;
+  right: -15px;
+  margin: 10px;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  width: 5vw; 
+  height: auto;
+  object-fit: cover;
+}
+
+.play-button:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+    
+  </style>
+</head>
+<body>
+  <section class="video-episodes">
+    <h2 style="text-align: center; transform: scaleX(-1);">
+      <img src="https://cdn2.steamgriddb.com/icon/4172f3101212a2009c74b547b6ddf935.png" alt="Doc" class="Doc-logo">
+    </h2>
+    <ul class="episode-list" id="episode-list"></ul>
+    <div class="pagination" id="pagination"></div>
+    <div id="video-container"></div>
+</section>
+
+  <script>
+    const episodesPerPage = 8;
+    const episodes = Array(8).fill(0).map((_, i) => [
+i === 0 ? "Ring of Power S1" :
+i === 1 ? "Ring of Power S2" :
+i === 2 ? "The Hobbit I" :
+i === 3 ? "The Hobbit II" :
+i === 4 ? "The Hobbit III" :
+i === 5 ? "Fellowship of the Ring" :
+i === 6 ? "Two Tower" :
+i === 7 ? "Return of the King" :
+
+
+`Episode ${i + 1}`,
+
+i === 0 ? "https://api.despseek.com/cms/web/share/detail?id=22483&category=1&episodeId=145263&language=en&clientType=android_Official":
+i === 1 ? "https://api.despseek.com/cms/web/share/detail?id=44021&category=1&episodeId=530762&language=en&clientType=android_Official":
+i === 2 ? "https://api.despseek.com/cms/web/share/detail?id=3561&category=0&episodeId=19131&language=en&clientType=android_Official":
+i === 3 ? "https://api.despseek.com/cms/web/share/detail?id=3554&category=0&episodeId=19126&language=en&clientType=android_Official":
+i === 4 ? "https://mobile-api.netpop.app/cms/web/share/detail?id=10862&category=0&episodeId=47911&language=en&clientType=android_Official":
+i === 5 ? "https://api.despseek.com/cms/web/share/detail?id=4904&category=0&episodeId=27059&language=en&clientType=android_Official":
+i === 6 ? "https://api.despseek.com/cms/web/share/detail?id=10864&category=0&episodeId=47920&language=en&clientType=android_Official":
+i === 7 ? "https://api.despseek.com/cms/web/share/detail?id=10863&category=0&episodeId=47918&language=en&clientType=android_Official ":
+
+  `episode-${i + 1}-id`,
+i === 0 ? "https://hips.hearstapps.com/hmg-prod/images/rpaz-s1-fg-00535602-still979-r1-66c4a4e1782f7.jpg?crop=0.4186666666666667xw:1xh;center,top&resize=1200:*":
+i === 1 ? "https://deadline.com/wp-content/uploads/2024/05/LOTR_S2-sauron-crop-amazon.jpg?w=681&h=383&crop=1":
+i === 2 ? "https://www.hollywoodreporter.com/wp-content/uploads/2012/12/hobbit_an_unexpected_journey_8_a_h.jpg?w=1440&h=810&crop=1":
+i === 3 ? "https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1":
+i === 4 ? "https://exploringclassicbritishliterature.wordpress.com/wp-content/uploads/2015/05/bard-dragon-slayer.png":
+i === 5 ? "https://s26162.pcdn.co/wp-content/uploads/2023/07/The-Fellowship-of-the-Ring.jpg ":
+i === 6 ? "https://img2.hulu.com/user/v3/artwork/0607dd0d-5c63-4a50-b950-9d6af5cbd696?base_image_bucket_name=image_manager&base_image=c8e9f71b-de98-47ac-b28d-ac6375988028&size=458x687&format=webp ":
+i === 7 ? "https://www.listchallenges.com/f/lists/73ecb1f4-8338-4869-918a-22e4d17e24cf.jpg ":
+
+''
+]);
+
+    let currentPage = 1;
+
+    function generateEpisodeList(page) {
+  const start = (page - 1) * episodesPerPage;
+  const end = start + episodesPerPage;
+  const list = document.getElementById('episode-list');
+  list.innerHTML = '';
+  episodes.slice(start, end).forEach(([title, id, image], index) => {
+    list.insertAdjacentHTML('beforeend', `
+  <li class="episode">
+    <a href="${id}" target="_blank">
+      <img src="${image}" alt="${title}">
+      <h3>${title}</h3>
+    </a>
+  </li>
+`);
+});
+}
+
+    
+
+    function generatePagination() {
+      const pagination = document.getElementById('pagination');
+      const totalPages = Math.ceil(episodes.length / episodesPerPage);
+      pagination.innerHTML = '';
+      for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement('button');
+        button.textContent = i;
+        button.onclick = () => {
+          currentPage = i;
+          generateEpisodeList(currentPage);
+          updateActiveButton();
+        };
+        pagination.appendChild(button);
+      }
+      updateActiveButton();
+    }
+
+    function updateActiveButton() {
+  const buttons = document.querySelectorAll('#pagination button');
+  buttons.forEach((button, index) => {
+    if (index + 1 === currentPage) {
+      button.classList.add('active');
+    } else {
+      button.classList.remove('active');
+    }
+  });
+}
+
+    generateEpisodeList(currentPage);
+    generatePagination();
+  </script>
+<div class="back-button-container">
+    <a href="movies.html" class="back-button"> <img src="https://www.clker.com/cliparts/N/H/o/D/v/Y/dark-blue-arrow-hi.png" alt="Back"> </a>
+</div>
+
+   <audio id="myAudio" loop playsinline>
+    <source src="sounds//scizzie.weba" type="audio/webm">
+  </audio>
+  
+
+  
+ <img src="https://static.vecteezy.com/system/resources/thumbnails/068/542/214/small/media-control-button-with-play-and-forward-symbols-free-png.png" class="play-button" id="playButton" onclick="toggleAudio()" alt="Play">
+
+<script>
+  function toggleAudio() {
+    const audio = document.getElementById('myAudio');
+    const button = document.getElementById('playButton');
+
+    if (audio.paused) {
+      audio.play();
+      button.src = 'https://media.baamboozle.com/uploads/images/670196/f0ff45c5-806f-4f48-bb84-1c22ad372a80.gif'; // replace with your stop icon image
+    } else {
+      audio.pause();
+      button.src = 'https://static.vecteezy.com/system/resources/thumbnails/068/542/214/small/media-control-button-with-play-and-forward-symbols-free-png.png'; // original play icon
+    }
+  }
+</script>
+
+</body>
+</html>
